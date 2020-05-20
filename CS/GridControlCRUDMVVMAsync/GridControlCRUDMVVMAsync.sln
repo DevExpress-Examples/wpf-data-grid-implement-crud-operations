@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridControlCRUDMVVMAsync", "GridControlCRUDMVVMAsync.csproj", "{659194A7-745D-4A56-A683-B150B9170F53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{659194A7-745D-4A56-A683-B150B9170F53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{659194A7-745D-4A56-A683-B150B9170F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{659194A7-745D-4A56-A683-B150B9170F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{659194A7-745D-4A56-A683-B150B9170F53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51597E69-ADA1-4945-9493-FC7C9FB65AD2}
+	EndGlobalSection
+EndGlobal
