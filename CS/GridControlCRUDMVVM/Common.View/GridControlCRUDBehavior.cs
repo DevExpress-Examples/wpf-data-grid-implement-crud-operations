@@ -41,7 +41,7 @@ namespace DevExpress.CRUD.View {
             set { SetValue(NoRecordsErrorMessageProperty, value); }
         }
         public static readonly DependencyProperty NoRecordsErrorMessageProperty =
-            DependencyProperty.Register("NoRecordsErrorMessage", typeof(string), typeof(GridControlCRUDBehavior), new PropertyMetadata(null, (d, e) => ((GridControlCRUDBehavior)d).UpdateErrorText()));
+            DependencyProperty.Register("NoRecordsErrorMessage", typeof(string), typeof(GridControlCRUDBehavior), new PropertyMetadata(null, (d, e) => { ((GridControlCRUDBehavior)d).UpdateErrorText(); }));
 
         public ICommand DeleteCommand { get; }
         public ICommand RefreshCommand { get; }
