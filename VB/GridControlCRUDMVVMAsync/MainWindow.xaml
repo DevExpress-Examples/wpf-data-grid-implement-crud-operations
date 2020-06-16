@@ -1,0 +1,45 @@
+﻿<dx:ThemedWindow x:Class="GridControlCRUDMVVMAsync.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:view="clr-namespace:DevExpress.CRUD.View"
+        xmlns:northwind_viewModel="clr-namespace:DevExpress.CRUD.Northwind.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <northwind_viewModel:ProductCollectionViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <dxb:ToolBarControl>
+            <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding RefreshCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
+            <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding DeleteCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}"/>
+        </dxb:ToolBarControl>
+        <dxg:GridControl Grid.Row="1" x:Name="grid" ItemsSource="{Binding Entities}" ShowLoadingPanel="{Binding IsLoading}">
+            <dxg:GridColumn FieldName="Name" Width="2*"/>
+            <dxg:GridColumn FieldName="CategoryId" Header="Category" Width="*">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:ComboBoxEditSettings ItemsSource="{Binding Categories}" ValueMember="Id" DisplayMember="Name" IsTextEditable="False"/>
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+            <dxg:GridControl.View>
+                <dxg:TableView x:Name="view" AutoWidth="True" ShowUpdateRowButtons="OnCellEditorOpen" NewItemRowPosition="Top">
+                    <dxmvvm:Interaction.Behaviors>
+                        <view:GridControlCRUDAsyncBehavior x:Name="CRUDBehavior" NoRecordsErrorMessage="{Binding EntitiesErrorMessage}"
+                                                       OnCreateCommand="{Binding OnCreateCommand}" OnUpdateCommand="{Binding OnUpdateCommand}"
+                                                       OnDeleteCommand="{Binding OnDeleteCommand}" OnRefreshCommand="{Binding OnRefreshCommand}"/>
+                    </dxmvvm:Interaction.Behaviors>
+                </dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</dx:ThemedWindow>
