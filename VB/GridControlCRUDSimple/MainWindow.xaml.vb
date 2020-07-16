@@ -29,19 +29,22 @@ Namespace GridControlCRUDSimple
 		Private Sub tableView_ValidateRow(ByVal sender As Object, ByVal e As GridRowValidationEventArgs)
 			Dim productInfo As ProductInfo = CType(e.Row, ProductInfo)
 			Using context = New NorthwindContext()
-				Dim result As Product
-				If view.FocusedRowHandle = GridControl.NewItemRowHandle Then
-					result = New Product()
-					context.Products.Add(result)
+				Dim product As Product
+				If view.FocusedRowHandle = DataControlBase.NewItemRowHandle Then
+					product = New Product()
+					context.Products.Add(product)
 				Else
-					result = context.Products.SingleOrDefault(Function(product) product.Id = productInfo.Id)
-					If result Is Nothing Then
+					product = context.Products.SingleOrDefault(Function(p) p.Id = productInfo.Id)
+					If product Is Nothing Then
 						Throw New NotImplementedException("The modified row does not exist in a database anymore. Handle this case according to your requirements.")
 					End If
 				End If
-				result.Name = productInfo.Name
-				result.CategoryId = productInfo.CategoryId
+				product.Name = productInfo.Name
+				product.CategoryId = productInfo.CategoryId
 				context.SaveChanges()
+				If view.FocusedRowHandle = DataControlBase.NewItemRowHandle Then
+					productInfo.Id = product.Id
+				End If
 			End Using
 		End Sub
 
