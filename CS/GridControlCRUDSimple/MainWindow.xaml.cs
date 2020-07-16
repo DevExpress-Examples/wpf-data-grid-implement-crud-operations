@@ -33,19 +33,22 @@ namespace GridControlCRUDSimple {
         void tableView_ValidateRow(object sender, GridRowValidationEventArgs e) {
             var productInfo = (ProductInfo)e.Row;
             using(var context = new NorthwindContext()) {
-                Product result;
-                if(view.FocusedRowHandle == GridControl.NewItemRowHandle) {
-                    result = new Product();
-                    context.Products.Add(result);
+                Product product;
+                if(view.FocusedRowHandle == DataControlBase.NewItemRowHandle) {
+                    product = new Product();
+                    context.Products.Add(product);
                 } else {
-                    result = context.Products.SingleOrDefault(product => product.Id == productInfo.Id);
-                    if(result == null) {
+                    product = context.Products.SingleOrDefault(p => p.Id == productInfo.Id);
+                    if(product == null) {
                         throw new NotImplementedException("The modified row does not exist in a database anymore. Handle this case according to your requirements.");
                     }
                 }
-                result.Name = productInfo.Name;
-                result.CategoryId = productInfo.CategoryId;
+                product.Name = productInfo.Name;
+                product.CategoryId = productInfo.CategoryId;
                 context.SaveChanges();
+                if(view.FocusedRowHandle == DataControlBase.NewItemRowHandle) {
+                    productInfo.Id = product.Id;
+                }
             }
         }
 
