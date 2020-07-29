@@ -31,7 +31,7 @@ namespace DevExpress.CRUD.DataModel.EntityFramework {
             using(var context = createContext()) {
                 var entity = getDbSet(context).Find(getKey(obj));
                 if(entity == null) {
-                    throw new NotImplementedException("The deleted row does not exist in a database anymore. Handle this case according to your requirements.");
+                    throw new NotImplementedException("The modified row no longer exists in the database. Handle this case according to your requirements.");
                 }
                 getDbSet(context).Remove(entity);
                 SaveChanges(context);
