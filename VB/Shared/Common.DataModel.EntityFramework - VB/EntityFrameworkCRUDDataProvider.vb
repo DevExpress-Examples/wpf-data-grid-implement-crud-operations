@@ -28,7 +28,7 @@ Namespace DevExpress.CRUD.DataModel.EntityFramework
 			Using context = createContext()
 				Dim entity = getDbSet(context).Find(getKey(obj))
 				If entity Is Nothing Then
-					Throw New NotImplementedException("The deleted row does not exist in a database anymore. Handle this case according to your requirements.")
+					Throw New NotImplementedException("The modified row no longer exists in the database. Handle this case according to your requirements.")
 				End If
 				getDbSet(context).Remove(entity)
 				SaveChanges(context)
