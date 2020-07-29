@@ -36,7 +36,7 @@ Namespace GridControlCRUDSimple
 				Else
 					product = context.Products.SingleOrDefault(Function(p) p.Id = productInfo.Id)
 					If product Is Nothing Then
-						Throw New NotImplementedException("The modified row does not exist in a database anymore. Handle this case according to your requirements.")
+						Throw New NotImplementedException("The modified row no longer exists in the database. Handle this case according to your requirements.")
 					End If
 				End If
 				product.Name = productInfo.Name
@@ -61,7 +61,7 @@ Namespace GridControlCRUDSimple
 					Using context = New NorthwindContext()
 						Dim result = context.Products.Find(productInfo.Id)
 						If result Is Nothing Then
-							Throw New NotImplementedException("The deleted row does not exist in a database anymore. Handle this case according to your requirements.")
+							Throw New NotImplementedException("The modified row no longer exists in the database. Handle this case according to your requirements.")
 						End If
 						context.Products.Remove(result)
 						context.SaveChanges()
