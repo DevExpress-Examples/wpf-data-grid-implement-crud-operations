@@ -40,7 +40,7 @@ namespace GridControlCRUDSimple {
                 } else {
                     product = context.Products.SingleOrDefault(p => p.Id == productInfo.Id);
                     if(product == null) {
-                        throw new NotImplementedException("The modified row does not exist in a database anymore. Handle this case according to your requirements.");
+                        throw new NotImplementedException("The modified row no longer exists in the database. Handle this case according to your requirements.");
                     }
                 }
                 product.Name = productInfo.Name;
@@ -63,7 +63,7 @@ namespace GridControlCRUDSimple {
                     using(var context = new NorthwindContext()) {
                         var result = context.Products.Find(productInfo.Id);
                         if(result == null) {
-                            throw new NotImplementedException("The deleted row does not exist in a database anymore. Handle this case according to your requirements.");
+                            throw new NotImplementedException("The modified row no longer exists in the database. Handle this case according to your requirements.");
                         }
                         context.Products.Remove(result);
                         context.SaveChanges();
