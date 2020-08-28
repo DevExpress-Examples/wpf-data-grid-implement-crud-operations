@@ -1,4 +1,4 @@
-# How to implement CRUD operations in WPF Data Grid control
+# How to implement CRUD operations within the WPF Data Grid control
 
 The following examples demonstrate how to implement CRUD operations (create, read, update, and delete) in the [GridControl](https://documentation.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl.class) bound to a data source.
 
