@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridControlCRUDMVVM", "Grid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridControlCRUDMVVMAsync", "GridControlCRUDMVVMAsync\GridControlCRUDMVVMAsync.csproj", "{659194A7-745D-4A56-A683-B150B9170F53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridControlCRUDMVVMInfiniteAsyncSource", "GridControlCRUDMVVMInfiniteAsyncSource\GridControlCRUDMVVMInfiniteAsyncSource.csproj", "{99F77CC9-A05A-4064-B0A9-63E0B93ED156}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{659194A7-745D-4A56-A683-B150B9170F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{659194A7-745D-4A56-A683-B150B9170F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{659194A7-745D-4A56-A683-B150B9170F53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F77CC9-A05A-4064-B0A9-63E0B93ED156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F77CC9-A05A-4064-B0A9-63E0B93ED156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F77CC9-A05A-4064-B0A9-63E0B93ED156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F77CC9-A05A-4064-B0A9-63E0B93ED156}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

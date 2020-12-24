@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9E2883B9-744A-48BF-B25A-EA4B2D435C9D}</ProjectGuid>
+    <ProjectGuid>{99F77CC9-A05A-4064-B0A9-63E0B93ED156}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>GridControlCRUDSimple</RootNamespace>
-    <AssemblyName>GridControlCRUDSimple</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>GridControlCRUDMVVMInfiniteAsyncSource</RootNamespace>
+    <AssemblyName>GridControlCRUDMVVMInfiniteAsyncSource</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -17,6 +17,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,11 +41,15 @@
   <ItemGroup>
     <Reference Include="DevExpress.Data.v21.1" />
     <Reference Include="DevExpress.Data.Desktop.v21.1" />
+    <Reference Include="DevExpress.Images.v21.1, Version=21.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.Mvvm.v21.1" />
     <Reference Include="DevExpress.Printing.v21.1.Core" />
     <Reference Include="DevExpress.Xpf.Core.v21.1" />
     <Reference Include="DevExpress.Xpf.Printing.v21.1" />
     <Reference Include="DevExpress.Xpf.Grid.v21.1" />
+    <Reference Include="DevExpress.Xpf.LayoutControl.v21.1" />
     <Reference Include="DevExpress.Xpf.Grid.v21.1.Core" />
     <Reference Include="DevExpress.Xpf.Grid.v21.1.Extensions" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -74,28 +79,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\Shared\Common.DataModel\DesignTimeDataProvider.cs">
+      <Link>Common.DataModel\DesignTimeDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Common.DataModel.EntityFramework\EntityFrameworkCRUDDataProvider.cs">
+      <Link>Common.DataModel.EntityFramework\EntityFrameworkCRUDDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Common.DataModel.EntityFramework\EntityFrameworkDataProvider.cs">
+      <Link>Common.DataModel.EntityFramework\EntityFrameworkDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Common.DataModel\ICRUDDataProvider.cs">
+      <Link>Common.DataModel\ICRUDDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Shared\Common.DataModel\IDataProvider.cs">
+      <Link>Common.DataModel\IDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="Common.ViewModel\CollectionViewModel.cs" />
+    <Compile Include="Common.ViewModel\DataProviderAsyncExtensions.cs" />
+    <Compile Include="Common.View\ExpressionFilterConverter.cs" />
+    <Compile Include="Common.View\CRUDInfiniteAsyncSourceBehavior.cs" />
+    <Compile Include="IssuesContext.DataModel\IssueData.cs" />
+    <Compile Include="IssuesContext.DataModel\IssuesDataStorage.cs" />
+    <Compile Include="IssuesContext.DataModel\IssuesDataStorageFactory.cs" />
+    <Compile Include="IssuesContext\Issue.cs" />
+    <Compile Include="IssuesContext\IssuesContext.cs" />
+    <Compile Include="IssuesContext\IssuesContextInitializer.cs" />
+    <Compile Include="IssuesContext\OutlookDataGenerator.cs" />
+    <Compile Include="IssuesContext\User.cs" />
+    <Compile Include="IssuesContext.ViewModel\IssueCollectionViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="..\Shared\Northwind.DataModel\CategoryInfo.cs">
-      <Link>Northwind.DataModel\CategoryInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind.DataModel\ProductInfo.cs">
-      <Link>Northwind.DataModel\ProductInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind\Category.cs">
-      <Link>Northwind\Category.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind\NorthwindContext.cs">
-      <Link>Northwind\NorthwindContext.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind\NorthwindContextInitializer.cs">
-      <Link>Northwind\NorthwindContextInitializer.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind\Product.cs">
-      <Link>Northwind\Product.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

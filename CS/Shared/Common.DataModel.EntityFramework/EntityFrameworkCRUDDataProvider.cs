@@ -19,8 +19,8 @@ namespace DevExpress.CRUD.DataModel.EntityFramework {
 
         public EntityFrameworkCRUDDataProvider(
             Func<TContext> createContext, Func<TContext, DbSet<TEntity>> getDbSet, Expression<Func<TEntity, T>> getEnityExpression,
-            Func<T, TKey> getKey, Func<TEntity, TKey> getEntityKey, Action<T, TKey> setKey, Action<T, TEntity> applyProperties)
-            : base(createContext, getDbSet, getEnityExpression) {
+            Func<T, TKey> getKey, Func<TEntity, TKey> getEntityKey, Action<T, TKey> setKey, Action<T, TEntity> applyProperties, string keyProperty)
+            : base(createContext, getDbSet, getEnityExpression, keyProperty) {
             this.getKey = getKey;
             this.getEntityKey = getEntityKey;
             this.setKey = setKey;

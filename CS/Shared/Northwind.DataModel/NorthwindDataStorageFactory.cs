@@ -28,7 +28,8 @@ namespace DevExpress.CRUD.Northwind.DataModel {
                     getEnityExpression: category => new CategoryInfo {
                         Id = category.Id,
                         Name = category.Name,
-                    }
+                    },
+                    keyProperty: nameof(Category.Id)
                 ),
                 new EntityFrameworkCRUDDataProvider<NorthwindContext, Product, ProductInfo, long>(
                     createContext: () => new NorthwindContext(),
@@ -44,7 +45,8 @@ namespace DevExpress.CRUD.Northwind.DataModel {
                     applyProperties: (productInfo, product) => {
                         product.Name = productInfo.Name;
                         product.CategoryId = productInfo.CategoryId;
-                    }
+                    },
+                    keyProperty: nameof(Category.Id)
                 )
             );
         }

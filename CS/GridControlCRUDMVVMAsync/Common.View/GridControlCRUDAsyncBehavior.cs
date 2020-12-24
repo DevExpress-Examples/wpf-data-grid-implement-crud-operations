@@ -10,19 +10,19 @@ using System.Windows.Input;
 
 namespace DevExpress.CRUD.View {
     public class GridControlCRUDAsyncBehavior : Behavior<TableView> {
-        public AsyncCommand<object> OnCreateCommand {
-            get { return (AsyncCommand<object>)GetValue(OnCreateCommandProperty); }
+        public IAsyncCommand OnCreateCommand {
+            get { return (IAsyncCommand)GetValue(OnCreateCommandProperty); }
             set { SetValue(OnCreateCommandProperty, value); }
         }
         public static readonly DependencyProperty OnCreateCommandProperty =
-            DependencyProperty.Register("OnCreateCommand", typeof(AsyncCommand<object>), typeof(GridControlCRUDAsyncBehavior), new PropertyMetadata(null));
+            DependencyProperty.Register("OnCreateCommand", typeof(IAsyncCommand), typeof(GridControlCRUDAsyncBehavior), new PropertyMetadata(null));
 
-        public AsyncCommand<object> OnUpdateCommand {
-            get { return (AsyncCommand<object>)GetValue(OnUpdateCommandProperty); }
+        public IAsyncCommand OnUpdateCommand {
+            get { return (IAsyncCommand)GetValue(OnUpdateCommandProperty); }
             set { SetValue(OnUpdateCommandProperty, value); }
         }
         public static readonly DependencyProperty OnUpdateCommandProperty =
-            DependencyProperty.Register("OnUpdateCommand", typeof(AsyncCommand<object>), typeof(GridControlCRUDAsyncBehavior), new PropertyMetadata(null));
+            DependencyProperty.Register("OnUpdateCommand", typeof(IAsyncCommand), typeof(GridControlCRUDAsyncBehavior), new PropertyMetadata(null));
 
         public ICommand OnDeleteCommand {
             get { return (ICommand)GetValue(OnDeleteCommandProperty); }

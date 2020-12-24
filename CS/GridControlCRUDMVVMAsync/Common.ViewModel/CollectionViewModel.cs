@@ -11,14 +11,14 @@ namespace DevExpress.CRUD.ViewModel {
             this.dataProvider = dataProvider;
             StartRefresh();
             OnRefreshCommand = new AsyncCommand(OnRefreshAsync);
-            OnCreateCommand = new AsyncCommand<object>(entity => this.dataProvider.CreateAsync((T)entity));
-            OnUpdateCommand = new AsyncCommand<object>(entity => this.dataProvider.UpdateAsync((T)entity));
+            OnCreateCommand = new AsyncCommand<T>(entity => this.dataProvider.CreateAsync(entity));
+            OnUpdateCommand = new AsyncCommand<T>(entity => this.dataProvider.UpdateAsync(entity));
             OnDeleteCommand = new DelegateCommand<T>(this.dataProvider.Delete);
         }
 
         public AsyncCommand OnRefreshCommand { get; }
-        public AsyncCommand<object> OnCreateCommand { get; }
-        public AsyncCommand<object> OnUpdateCommand { get; }
+        public AsyncCommand<T> OnCreateCommand { get; }
+        public AsyncCommand<T> OnUpdateCommand { get; }
         public ICommand<T> OnDeleteCommand { get; }
 
         public IList<T> Entities {

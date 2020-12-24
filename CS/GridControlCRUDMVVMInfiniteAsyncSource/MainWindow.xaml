@@ -1,0 +1,100 @@
+<dx:ThemedWindow x:Class="GridControlCRUDMVVMInfiniteAsyncSource.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:data="clr-namespace:DevExpress.Xpf.Data;assembly=DevExpress.Xpf.Grid.v21.1.Extensions"
+        xmlns:local="clr-namespace:GridControlCRUDMVVMInfiniteAsyncSource"
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <local:IssueCollectionViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate x:Key="dialogTemplate">
+            <dxlc:LayoutControl Orientation="Vertical" VerticalAlignment="Top" Width="300">
+                <dxlc:DataLayoutItem Binding="{Binding Entity.Subject}"/>
+                <dxlc:LayoutItem Label="User">
+                    <dxe:ComboBoxEdit EditValue="{Binding Entity.UserId}" ItemsSource="{Binding Users}" ValueMember="Id" DisplayMember="FullName" IsTextEditable="False"/>
+                </dxlc:LayoutItem>
+                <dxlc:DataLayoutItem Binding="{Binding Entity.Created}"/>
+                <dxlc:DataLayoutItem Binding="{Binding Entity.Votes}"/>
+                <dxlc:DataLayoutItem Binding="{Binding Entity.Priority}"/>
+            </dxlc:LayoutControl>
+        </DataTemplate>
+    </Window.Resources>
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DialogService ViewTemplate="{StaticResource dialogTemplate}">
+            <dx:DialogService.DialogStyle>
+                <Style TargetType="Window">
+                    <Setter Property="SizeToContent" Value="WidthAndHeight" />
+                    <Setter Property="WindowStyle" Value="ToolWindow" />
+                </Style>
+            </dx:DialogService.DialogStyle>
+        </dx:DialogService>
+    </dxmvvm:Interaction.Behaviors>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <dxb:ToolBarControl>
+            <dxb:BarButtonItem Content="New (Ctrl+N)" Command="{Binding CreateCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_New.svg}"/>
+            <dxb:BarButtonItem Content="Edit (F2)" Command="{Binding UpdateCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Edit.svg}"/>
+            <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding RefreshCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
+            <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding DeleteCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}"/>
+        </dxb:ToolBarControl>
+        <dxg:GridControl Grid.Row="1" x:Name="grid">
+            <dxmvvm:Interaction.Behaviors>
+                <data:InfiniteAsyncSourceBehavior ElementType="{x:Type local:IssueData}" 
+                                                  FilterType="{Binding FilterType}"
+                                                  FetchRowsCommand="{Binding FetchCommand}"
+                                                  KeyProperty="Id"
+                                                       
+                                                  GetTotalSummariesCommand="{Binding GetTotalSummariesCommand}"
+                                                  GetUniqueValuesCommand="{Binding GetUniqueValuesCommand}">
+                    <data:InfiniteAsyncSourceBehavior.FilterConverter>
+                        <local:ExpressionFilterConverter Type="local:IssueData"/>
+                    </data:InfiniteAsyncSourceBehavior.FilterConverter>
+                </data:InfiniteAsyncSourceBehavior>
+                <local:CRUDInfiniteAsyncSourceBehavior x:Name="CRUDBehavior"
+                                                  OnCreateCommand="{Binding OnCreateCommand}"
+                                                  OnDeleteCommand="{Binding OnDeleteCommand}"
+                                                  OnRefreshCommand="{Binding OnRefreshCommand}"
+                                                  OnUpdateCommand="{Binding OnUpdateCommand}">
+                </local:CRUDInfiniteAsyncSourceBehavior>
+            </dxmvvm:Interaction.Behaviors>
+            <dxg:GridColumn FieldName="Subject" IsSmart="True" Width="2*"/>
+            <dxg:GridColumn FieldName="UserId" IsSmart="True" Width="*"
+                                AllowedBinaryFilters="Equals,DoesNotEqual" AllowedAnyOfFilters="All">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:ComboBoxEditSettings ItemsSource="{Binding Users}" ValueMember="Id" DisplayMember="FullName" IsTextEditable="False"/>
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+            <dxg:GridColumn FieldName="Created" IsSmart="True" Width="*"
+                            AllowSorting="True" DefaultSortOrder="Descending" SortOrder="Descending"
+                            AllowedDateTimeFilters="SingleDateRange" FilterPopupMode="DateSmart">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:DateEditSettings Mask="MM/dd/yy" MaskUseAsDisplayFormat="True"/>
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+            <dxg:GridColumn FieldName="Votes" IsSmart="True" Width="0.5*"
+                                AllowSorting="True" DefaultSortOrder="Descending"
+                                AllowedBinaryFilters="GreaterOrEqual,LessOrEqual" FilterPopupMode="Excel"/>
+            <dxg:GridColumn FieldName="Priority" IsSmart="True" Width="*"/>
+            <dxg:GridControl.TotalSummary>
+                <dxg:GridSummaryItem SummaryType="Count" Alignment="Right"/>
+                <dxg:GridSummaryItem SummaryType="Max" FieldName="Created" DisplayFormat="{}Last created: {0}" Alignment="Right"/>
+            </dxg:GridControl.TotalSummary>
+            <dxg:GridControl.View>
+                <dxg:TableView x:Name="view" AutoWidth="True" AllowEditing="False" ShowFixedTotalSummary="True"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</dx:ThemedWindow>
