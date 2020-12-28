@@ -5,9 +5,9 @@ using System.Windows.Input;
 
 namespace DevExpress.CRUD.ViewModel {
     public abstract class CollectionViewModel<T> : ViewModelBase where T : class {
-        readonly ICRUDDataProvider<T> dataProvider;
+        readonly IDataProvider<T> dataProvider;
 
-        protected CollectionViewModel(ICRUDDataProvider<T> dataProvider) {
+        protected CollectionViewModel(IDataProvider<T> dataProvider) {
             this.dataProvider = dataProvider;
             OnRefresh();
             OnRefreshCommand = new DelegateCommand(OnRefresh);

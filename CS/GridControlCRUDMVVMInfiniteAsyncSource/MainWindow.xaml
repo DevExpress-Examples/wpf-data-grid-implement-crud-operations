@@ -63,12 +63,12 @@
                         <local:ExpressionFilterConverter Type="local:IssueData"/>
                     </data:InfiniteAsyncSourceBehavior.FilterConverter>
                 </data:InfiniteAsyncSourceBehavior>
-                <local:CRUDInfiniteAsyncSourceBehavior x:Name="CRUDBehavior"
+                <local:GridControlCRUDInfiniteAsyncSourceBehavior x:Name="CRUDBehavior"
                                                   OnCreateCommand="{Binding OnCreateCommand}"
                                                   OnDeleteCommand="{Binding OnDeleteCommand}"
                                                   OnRefreshCommand="{Binding OnRefreshCommand}"
                                                   OnUpdateCommand="{Binding OnUpdateCommand}">
-                </local:CRUDInfiniteAsyncSourceBehavior>
+                </local:GridControlCRUDInfiniteAsyncSourceBehavior>
             </dxmvvm:Interaction.Behaviors>
             <dxg:GridColumn FieldName="Subject" IsSmart="True" Width="2*"/>
             <dxg:GridColumn FieldName="UserId" IsSmart="True" Width="*"

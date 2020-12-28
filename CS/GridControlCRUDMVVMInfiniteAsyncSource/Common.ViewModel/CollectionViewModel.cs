@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace DevExpress.CRUD.ViewModel {
     public abstract class CollectionViewModel<T> : ViewModelBase where T : class, new() {
-        readonly ICRUDDataProvider<T> dataProvider;
+        readonly IDataProvider<T> dataProvider;
 
-        protected CollectionViewModel(ICRUDDataProvider<T> dataProvider) {
+        protected CollectionViewModel(IDataProvider<T> dataProvider) {
             this.dataProvider = dataProvider;
             StartRefresh();
         }
@@ -23,21 +23,32 @@ namespace DevExpress.CRUD.ViewModel {
 
         [Command]
         public void Fetch(FetchRowsAsyncArgs<Expression<Func<T, bool>>> args) {
-            args.Result = FetchAsync(args);
-        }
-        async Task<FetchRowsResult> FetchAsync(FetchRowsAsyncArgs<Expression<Func<T, bool>>> args) {
-            var rows = await dataProvider.FetchAsync(args.SortOrder, args.Filter, args.Skip, args.Take ?? 30);
-            return rows.ToArray<object>();
+            args.Result = dataProvider.GetQueryableResultAsync<T, FetchRowsResult>(queryable => {
+                return queryable
+                    .SortBy(args.SortOrder, defaultUniqueSortPropertyName: dataProvider.KeyProperty)
+                    .Where(args.Filter)
+                    .Skip(args.Skip)
+                    .Take(args.Take ?? 30)
+                    .ToArray<object>();
+            });
         }
 
         [Command]
         public void GetTotalSummaries(GetSummariesAsyncArgs<Expression<Func<T, bool>>> args) {
-            args.Result = dataProvider.GetTotalSummariesAsync(args.Summaries, args.Filter);
+            args.Result = dataProvider.GetQueryableResultAsync(queryable => {
+                return queryable
+                    .Where(args.Filter)
+                    .GetSummaries(args.Summaries);
+            });
         }
 
         [Command]
         public void GetUniqueValues(GetUniqueValuesAsyncArgs<Expression<Func<T, bool>>> args) {
-            args.ResultWithCounts = dataProvider.GetDistinctValuesAsync(args.PropertyName, args.Filter);
+            args.ResultWithCounts = dataProvider.GetQueryableResultAsync(queryable => {
+                return queryable
+                    .Where(args.Filter)
+                    .DistinctWithCounts(args.PropertyName);
+            });
         }
 
         [Command]

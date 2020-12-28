@@ -21,7 +21,7 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
                 );
             }
             return new IssuesDataStorage(
-                new EntityFrameworkCRUDDataProvider<IssuesContext, Issue, IssueData, int>(
+                new EntityFrameworkDataProvider<IssuesContext, Issue, IssueData>(
                     createContext: () => new IssuesContext(),
                     getDbSet: context => context.Issues,
                     getEnityExpression: x => new IssueData() {
@@ -34,7 +34,7 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
                     },
                     getKey: ussueData => ussueData.Id,
                     getEntityKey: ussue => ussue.Id,
-                    setKey: (ussueData, id) => ussueData.Id = id,
+                    setKey: (ussueData, id) => ussueData.Id = (int)id,
                     applyProperties: (ussueData, issue) => {
                         issue.Subject = ussueData.Subject;
                         issue.UserId = ussueData.UserId;

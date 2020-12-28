@@ -7,8 +7,10 @@ using System.Linq.Expressions;
 namespace DevExpress.CRUD.DataModel {
     public interface IDataProvider<T> where T : class {
         IList<T> Read();
-        IList<T> Fetch(SortDefinition[] sortOrder, Expression<Func<T, bool>> filter, int skip, int take);
-        object[] GetTotalSummaries(SummaryDefinition[] summaries, Expression<Func<T, bool>> filter);
-        ValueAndCount[] GetDistinctValues(string propertyName, Expression<Func<T, bool>> filter);
+        void Create(T obj);
+        void Update(T obj);
+        void Delete(T obj);
+        TResult GetQueryableResult<TResult>(Func<IQueryable<T>, TResult> getResult); //used for virtual sources
+        string KeyProperty { get; }
     }
 }

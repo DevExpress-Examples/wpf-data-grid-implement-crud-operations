@@ -1,33 +1,50 @@
-﻿using System;
+﻿using DevExpress.Xpf.Data;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
 namespace DevExpress.CRUD.DataModel.EntityFramework {
-    public class EntityFrameworkCRUDDataProvider<TContext, TEntity, T, TKey> : EntityFrameworkDataProvider<TContext, TEntity, T>, ICRUDDataProvider<T>
+    public class EntityFrameworkDataProvider<TContext, TEntity, T> : IDataProvider<T>
         where TEntity : class
         where T : class
         where TContext : DbContext {
 
-        readonly Func<T, TKey> getKey;
-        readonly Func<TEntity, TKey> getEntityKey;
-        readonly Action<T, TKey> setKey;
+        protected readonly Func<TContext> createContext;
+        protected readonly Func<TContext, DbSet<TEntity>> getDbSet;
+        protected readonly Expression<Func<TEntity, T>> getEntityExpression;
+        readonly string keyProperty;
+
+        readonly Func<T, object> getKey;
+        readonly Func<TEntity, object> getEntityKey;
+        readonly Action<T, object> setKey;
         readonly Action<T, TEntity> applyProperties;
 
-        public EntityFrameworkCRUDDataProvider(
-            Func<TContext> createContext, Func<TContext, DbSet<TEntity>> getDbSet, Expression<Func<TEntity, T>> getEnityExpression,
-            Func<T, TKey> getKey, Func<TEntity, TKey> getEntityKey, Action<T, TKey> setKey, Action<T, TEntity> applyProperties, string keyProperty)
-            : base(createContext, getDbSet, getEnityExpression, keyProperty) {
-            this.getKey = getKey;
-            this.getEntityKey = getEntityKey;
-            this.setKey = setKey;
-            this.applyProperties = applyProperties;
+        public EntityFrameworkDataProvider(Func<TContext> createContext, Func<TContext, DbSet<TEntity>> getDbSet, Expression<Func<TEntity, T>> getEnityExpression, 
+            string keyProperty = null, Func<T, object> getKey = null, Func<TEntity, object> getEntityKey = null, Action<T, object> setKey = null, Action<T, TEntity> applyProperties = null) {
+            this.createContext = createContext;
+            this.getDbSet = getDbSet;
+            this.getEntityExpression = getEnityExpression;
+
+            this.keyProperty = keyProperty;
+            this.getKey = getKey ?? (_ => throw new NotSupportedException());
+            this.getEntityKey = getEntityKey ?? (_ => throw new NotSupportedException());
+            this.setKey = setKey ?? ((_, __) => throw new NotSupportedException());
+            this.applyProperties = applyProperties ?? ((_, __) => throw new NotSupportedException());
         }
 
-        void ICRUDDataProvider<T>.Delete(T obj) {
+        IList<T> IDataProvider<T>.Read() {
+            using(var context = createContext()) {
+                var query = getDbSet(context)
+                    .Select(getEntityExpression);
+                return query.ToList();
+            }
+        }
+
+        void IDataProvider<T>.Delete(T obj) {
             using(var context = createContext()) {
                 var entity = getDbSet(context).Find(getKey(obj));
                 if(entity == null) {
@@ -38,7 +55,7 @@ namespace DevExpress.CRUD.DataModel.EntityFramework {
             }
         }
 
-        void ICRUDDataProvider<T>.Create(T obj) {
+        void IDataProvider<T>.Create(T obj) {
             using(var context = createContext()) {
                 var entity = getDbSet(context).Create();
                 getDbSet(context).Add(entity);
@@ -48,7 +65,7 @@ namespace DevExpress.CRUD.DataModel.EntityFramework {
             }
         }
 
-        void ICRUDDataProvider<T>.Update(T obj) {
+        void IDataProvider<T>.Update(T obj) {
             using(var context = createContext()) {
                 var entity = getDbSet(context).Find(getKey(obj));
                 if(entity == null) {
@@ -58,6 +75,15 @@ namespace DevExpress.CRUD.DataModel.EntityFramework {
                 SaveChanges(context);
             }
         }
+
+        TResult IDataProvider<T>.GetQueryableResult<TResult>(Func<IQueryable<T>, TResult> getResult) {
+            using(var context = createContext()) {
+                var queryable = getDbSet(context).Select(getEntityExpression);
+                return getResult(queryable);
+            }
+        }
+
+        string IDataProvider<T>.KeyProperty => keyProperty;
 
         static void SaveChanges(TContext context) {
             try {
@@ -84,8 +110,8 @@ namespace DevExpress.CRUD.DataModel.EntityFramework {
         }
     }
     public class DbException : Exception {
-        public DbException(string message, Exception innerException) 
-            : base(message, innerException) { 
-        } 
+        public DbException(string message, Exception innerException)
+            : base(message, innerException) {
+        }
     }
 }

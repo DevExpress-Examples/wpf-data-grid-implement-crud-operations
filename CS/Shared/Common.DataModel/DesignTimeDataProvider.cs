@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 namespace DevExpress.CRUD.DataModel {
-    public class DesignTimeDataProvider<T> : ICRUDDataProvider<T> where T : class {
+    public class DesignTimeDataProvider<T> : IDataProvider<T> where T : class {
         readonly Func<int, T> createEntity;
         readonly int count;
 
@@ -15,31 +15,24 @@ namespace DevExpress.CRUD.DataModel {
         }
 
         IList<T> IDataProvider<T>.Read() {
-            return ReadCore();
-        }
-
-        IList<T> IDataProvider<T>.Fetch(SortDefinition[] sortOrder, Expression<Func<T, bool>> filter, int skip, int take) {
-            return ReadCore();
-        }
-        object[] IDataProvider<T>.GetTotalSummaries(SummaryDefinition[] summaries, Expression<Func<T, bool>> filter) {
-            return Enumerable.Repeat(default(object), summaries.Length).ToArray();
-        }
-        ValueAndCount[] IDataProvider<T>.GetDistinctValues(string propertyName, Expression<Func<T, bool>> filter) {
-            return new ValueAndCount[0];
-        }
-
-        IList<T> ReadCore() {
             return Enumerable.Range(0, count).Select(createEntity).ToList();
         }
 
-        void ICRUDDataProvider<T>.Create(T obj) {
+        TResult IDataProvider<T>.GetQueryableResult<TResult>(Func<IQueryable<T>, TResult> getResult) {
+            var queryable = ((IDataProvider<T>)this).Read().AsQueryable();
+            return getResult(queryable);
+        }
+
+        void IDataProvider<T>.Create(T obj) {
             throw new NotSupportedException();
         }
-        void ICRUDDataProvider<T>.Delete(T obj) {
+        void IDataProvider<T>.Delete(T obj) {
             throw new NotSupportedException();
         }
-        void ICRUDDataProvider<T>.Update(T obj) {
+        void IDataProvider<T>.Update(T obj) {
             throw new NotSupportedException();
         }
+
+        string IDataProvider<T>.KeyProperty => throw new NotSupportedException();
     }
 }

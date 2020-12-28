@@ -13,34 +13,34 @@ using System.Windows;
 using System.Windows.Input;
 
 namespace GridControlCRUDMVVMInfiniteAsyncSource {
-    public class CRUDInfiniteAsyncSourceBehavior : Behavior<GridControl> {
+    public class GridControlCRUDInfiniteAsyncSourceBehavior : Behavior<GridControl> {
         public ICommand OnUpdateCommand {
             get { return (ICommand)GetValue(OnUpdateCommandProperty); }
             set { SetValue(OnUpdateCommandProperty, value); }
         }
         public static readonly DependencyProperty OnUpdateCommandProperty =
-            DependencyProperty.Register("OnUpdateCommand", typeof(ICommand), typeof(CRUDInfiniteAsyncSourceBehavior), new PropertyMetadata(null));
+            DependencyProperty.Register("OnUpdateCommand", typeof(ICommand), typeof(GridControlCRUDInfiniteAsyncSourceBehavior), new PropertyMetadata(null));
 
         public ICommand OnCreateCommand {
             get { return (ICommand)GetValue(OnCreateCommandProperty); }
             set { SetValue(OnCreateCommandProperty, value); }
         }
         public static readonly DependencyProperty OnCreateCommandProperty =
-            DependencyProperty.Register("OnCreateCommand", typeof(ICommand), typeof(CRUDInfiniteAsyncSourceBehavior), new PropertyMetadata(null));
+            DependencyProperty.Register("OnCreateCommand", typeof(ICommand), typeof(GridControlCRUDInfiniteAsyncSourceBehavior), new PropertyMetadata(null));
 
         public ICommand OnDeleteCommand {
             get { return (ICommand)GetValue(OnDeleteCommandProperty); }
             set { SetValue(OnDeleteCommandProperty, value); }
         }
         public static readonly DependencyProperty OnDeleteCommandProperty =
-            DependencyProperty.Register("OnDeleteCommand", typeof(ICommand), typeof(CRUDInfiniteAsyncSourceBehavior), new PropertyMetadata(null));
+            DependencyProperty.Register("OnDeleteCommand", typeof(ICommand), typeof(GridControlCRUDInfiniteAsyncSourceBehavior), new PropertyMetadata(null));
 
         public IAsyncCommand OnRefreshCommand {
             get { return (IAsyncCommand)GetValue(OnRefreshCommandProperty); }
             set { SetValue(OnRefreshCommandProperty, value); }
         }
         public static readonly DependencyProperty OnRefreshCommandProperty =
-            DependencyProperty.Register("OnRefreshCommand", typeof(IAsyncCommand), typeof(CRUDInfiniteAsyncSourceBehavior), new PropertyMetadata(null));
+            DependencyProperty.Register("OnRefreshCommand", typeof(IAsyncCommand), typeof(GridControlCRUDInfiniteAsyncSourceBehavior), new PropertyMetadata(null));
 
         InfiniteAsyncSource Source => (InfiniteAsyncSource)AssociatedObject.ItemsSource;
 
@@ -48,7 +48,7 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
         public ICommand RefreshCommand { get; }
         public ICommand CreateCommand { get; }
         public ICommand UpdateCommand { get; }
-        public CRUDInfiniteAsyncSourceBehavior() {
+        public GridControlCRUDInfiniteAsyncSourceBehavior() {
             DeleteCommand = new DelegateCommand(DoDelete, CanDelete);
             CreateCommand = new DelegateCommand(DoCreate);
             UpdateCommand = new DelegateCommand(() => DoUpdate());
@@ -89,7 +89,7 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
         }
 
         void DoUpdate(object entity = null) {
-            typeof(CRUDInfiniteAsyncSourceBehavior)
+            typeof(GridControlCRUDInfiniteAsyncSourceBehavior)
                 .GetMethod(nameof(DoUpdateCore), BindingFlags.Instance | BindingFlags.NonPublic)
                 .MakeGenericMethod(Source.ElementType)
                 .Invoke(this, new object[] { entity ?? AssociatedObject.CurrentItem });
@@ -103,7 +103,7 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
         }
 
         void DoCreate() {
-            typeof(CRUDInfiniteAsyncSourceBehavior)
+            typeof(GridControlCRUDInfiniteAsyncSourceBehavior)
                 .GetMethod(nameof(DoCreateCore), BindingFlags.Instance | BindingFlags.NonPublic)
                 .MakeGenericMethod(Source.ElementType)
                 .Invoke(this, new object[] { });
