@@ -42,7 +42,7 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
         public static readonly DependencyProperty OnRefreshCommandProperty =
             DependencyProperty.Register("OnRefreshCommand", typeof(IAsyncCommand), typeof(GridControlCRUDInfiniteAsyncSourceBehavior), new PropertyMetadata(null));
 
-        InfiniteAsyncSource Source => (InfiniteAsyncSource)AssociatedObject.ItemsSource;
+        InfiniteAsyncSource Source => (InfiniteAsyncSource)AssociatedObject?.ItemsSource;
 
         public ICommand DeleteCommand { get; }
         public ICommand RefreshCommand { get; }
@@ -51,7 +51,7 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
         public GridControlCRUDInfiniteAsyncSourceBehavior() {
             DeleteCommand = new DelegateCommand(DoDelete, CanDelete);
             CreateCommand = new DelegateCommand(DoCreate);
-            UpdateCommand = new DelegateCommand(() => DoUpdate());
+            UpdateCommand = new DelegateCommand(() => DoUpdate(), CanUpdate);
             RefreshCommand = new AsyncCommand(DoRefresh, CanRefresh);
         }
 
@@ -102,6 +102,14 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
                 Source.ReloadRows(GetKey(entity));
         }
 
+        bool CanUpdate() {
+            return OnUpdateCommand != null && CanChangeCurrentItem();
+        }
+
+        bool CanChangeCurrentItem() {
+            return OnRefreshCommand?.IsExecuting != true && AssociatedObject?.CurrentItem != null;
+        }
+
         void DoCreate() {
             typeof(GridControlCRUDInfiniteAsyncSourceBehavior)
                 .GetMethod(nameof(DoCreateCore), BindingFlags.Instance | BindingFlags.NonPublic)
@@ -117,7 +125,9 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
         }
 
         object GetKey<T>(T entity) {
-            return TypeDescriptor.GetProperties(typeof(T))[Source.KeyProperty].GetValue(entity);
+            ITypedList typedList = Source;
+            var keyProperty = typedList.GetItemProperties(null)[Source.KeyProperty];
+            return keyProperty.GetValue(entity);
         }
 
         void DoDelete() {
@@ -135,7 +145,7 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
         }
 
         bool CanDelete() {
-            return OnDeleteCommand != null && !OnRefreshCommand.IsExecuting && AssociatedObject.CurrentItem != null;
+            return OnDeleteCommand != null && CanChangeCurrentItem();
         }
 
         async Task DoRefresh() {
@@ -143,7 +153,8 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
             await OnRefreshCommand.ExecuteAsync(null);
         }
         bool CanRefresh() {
-            return !Source.IsResetting 
+            return Source != null 
+                && !Source.IsResetting 
                 && !Source.AreRowsFetching 
                 && OnRefreshCommand != null
                 && !OnRefreshCommand.IsExecuting

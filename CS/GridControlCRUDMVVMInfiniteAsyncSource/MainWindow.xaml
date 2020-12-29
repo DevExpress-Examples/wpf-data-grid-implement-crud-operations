@@ -8,7 +8,6 @@
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-        xmlns:data="clr-namespace:DevExpress.Xpf.Data;assembly=DevExpress.Xpf.Grid.v21.1.Extensions"
         xmlns:local="clr-namespace:GridControlCRUDMVVMInfiniteAsyncSource"
         xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
         mc:Ignorable="d"
@@ -52,23 +51,21 @@
         </dxb:ToolBarControl>
         <dxg:GridControl Grid.Row="1" x:Name="grid">
             <dxmvvm:Interaction.Behaviors>
-                <data:InfiniteAsyncSourceBehavior ElementType="{x:Type local:IssueData}" 
-                                                  FilterType="{Binding FilterType}"
-                                                  FetchRowsCommand="{Binding FetchCommand}"
-                                                  KeyProperty="Id"
-                                                       
-                                                  GetTotalSummariesCommand="{Binding GetTotalSummariesCommand}"
-                                                  GetUniqueValuesCommand="{Binding GetUniqueValuesCommand}">
-                    <data:InfiniteAsyncSourceBehavior.FilterConverter>
+                <dxg:InfiniteAsyncSourceBehavior ElementType="{x:Type local:IssueData}" 
+                                                 FilterType="{Binding FilterType}"
+                                                 FetchRowsCommand="{Binding FetchCommand}"
+                                                 KeyProperty="Id"                                  
+                                                 GetTotalSummariesCommand="{Binding GetTotalSummariesCommand}"
+                                                 GetUniqueValuesCommand="{Binding GetUniqueValuesCommand}">
+                    <dxg:InfiniteAsyncSourceBehavior.FilterConverter>
                         <local:ExpressionFilterConverter Type="local:IssueData"/>
-                    </data:InfiniteAsyncSourceBehavior.FilterConverter>
-                </data:InfiniteAsyncSourceBehavior>
+                    </dxg:InfiniteAsyncSourceBehavior.FilterConverter>
+                </dxg:InfiniteAsyncSourceBehavior>
                 <local:GridControlCRUDInfiniteAsyncSourceBehavior x:Name="CRUDBehavior"
                                                   OnCreateCommand="{Binding OnCreateCommand}"
                                                   OnDeleteCommand="{Binding OnDeleteCommand}"
                                                   OnRefreshCommand="{Binding OnRefreshCommand}"
-                                                  OnUpdateCommand="{Binding OnUpdateCommand}">
-                </local:GridControlCRUDInfiniteAsyncSourceBehavior>
+                                                  OnUpdateCommand="{Binding OnUpdateCommand}"/>
             </dxmvvm:Interaction.Behaviors>
             <dxg:GridColumn FieldName="Subject" IsSmart="True" Width="2*"/>
             <dxg:GridColumn FieldName="UserId" IsSmart="True" Width="*"

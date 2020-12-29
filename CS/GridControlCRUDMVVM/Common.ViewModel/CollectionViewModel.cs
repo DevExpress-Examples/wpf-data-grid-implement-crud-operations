@@ -1,7 +1,7 @@
 ﻿using DevExpress.CRUD.DataModel;
 using DevExpress.Mvvm;
+using DevExpress.Mvvm.DataAnnotations;
 using System.Collections.Generic;
-using System.Windows.Input;
 
 namespace DevExpress.CRUD.ViewModel {
     public abstract class CollectionViewModel<T> : ViewModelBase where T : class {
@@ -10,16 +10,7 @@ namespace DevExpress.CRUD.ViewModel {
         protected CollectionViewModel(IDataProvider<T> dataProvider) {
             this.dataProvider = dataProvider;
             OnRefresh();
-            OnRefreshCommand = new DelegateCommand(OnRefresh);
-            OnCreateCommand = new DelegateCommand<T>(this.dataProvider.Create);
-            OnUpdateCommand = new DelegateCommand<T>(this.dataProvider.Update);
-            OnDeleteCommand = new DelegateCommand<T>(this.dataProvider.Delete);
         }
-
-        public ICommand OnRefreshCommand { get; }
-        public ICommand<T> OnCreateCommand { get; }
-        public ICommand<T> OnUpdateCommand { get; }
-        public ICommand<T> OnDeleteCommand { get; }
 
         public IList<T> Entities {
             get => GetValue<IList<T>>();
@@ -30,7 +21,8 @@ namespace DevExpress.CRUD.ViewModel {
             private set => SetValue(value);
         }
 
-        void OnRefresh() {
+        [Command]
+        public void OnRefresh() {
             try {
                 Entities = dataProvider.Read();
                 EntitiesErrorMessage = null;
@@ -42,5 +34,14 @@ namespace DevExpress.CRUD.ViewModel {
         }
         protected virtual void OnRefreshCore() {
         }
+
+        [Command]
+        public void OnCreate(T entity) => dataProvider.Create(entity);
+
+        [Command]
+        public void OnUpdate(T entity) => dataProvider.Update(entity);
+
+        [Command]
+        public void OnDelete(T entity) => dataProvider.Delete(entity);
     }
 }

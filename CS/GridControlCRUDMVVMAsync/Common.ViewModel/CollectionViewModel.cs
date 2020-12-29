@@ -1,5 +1,6 @@
 ﻿using DevExpress.CRUD.DataModel;
 using DevExpress.Mvvm;
+using DevExpress.Mvvm.DataAnnotations;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,16 +11,7 @@ namespace DevExpress.CRUD.ViewModel {
         protected CollectionViewModel(IDataProvider<T> dataProvider) {
             this.dataProvider = dataProvider;
             StartRefresh();
-            OnRefreshCommand = new AsyncCommand(OnRefreshAsync);
-            OnCreateCommand = new AsyncCommand<T>(entity => this.dataProvider.CreateAsync(entity));
-            OnUpdateCommand = new AsyncCommand<T>(entity => this.dataProvider.UpdateAsync(entity));
-            OnDeleteCommand = new DelegateCommand<T>(this.dataProvider.Delete);
         }
-
-        public AsyncCommand OnRefreshCommand { get; }
-        public AsyncCommand<T> OnCreateCommand { get; }
-        public AsyncCommand<T> OnUpdateCommand { get; }
-        public ICommand<T> OnDeleteCommand { get; }
 
         public IList<T> Entities {
             get => GetValue<IList<T>>();
@@ -35,10 +27,11 @@ namespace DevExpress.CRUD.ViewModel {
         }
 
         async void StartRefresh() {
-            await OnRefreshAsync();
+            await OnRefresh();
         }
 
-        async Task OnRefreshAsync() {
+        [AsyncCommand]
+        public async Task OnRefresh() {
             IsLoading = true;
             try {
                 await Task.WhenAll(RefreshEntities(), OnRefreshCoreAsync());
@@ -58,5 +51,14 @@ namespace DevExpress.CRUD.ViewModel {
         protected virtual Task OnRefreshCoreAsync() {
             return Task.CompletedTask;
         }
+
+        [AsyncCommand]
+        public Task OnCreate(T entity) => dataProvider.CreateAsync(entity);
+
+        [AsyncCommand]
+        public Task OnUpdate(T entity) => dataProvider.UpdateAsync(entity);
+
+        [Command]
+        public void OnDelete(T entity) => dataProvider.Delete(entity);
     }
 }

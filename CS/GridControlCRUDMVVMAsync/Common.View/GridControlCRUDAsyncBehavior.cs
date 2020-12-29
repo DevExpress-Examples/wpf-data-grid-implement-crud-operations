@@ -31,12 +31,12 @@ namespace DevExpress.CRUD.View {
         public static readonly DependencyProperty OnDeleteCommandProperty =
             DependencyProperty.Register("OnDeleteCommand", typeof(ICommand), typeof(GridControlCRUDAsyncBehavior), new PropertyMetadata(null));
 
-        public AsyncCommand OnRefreshCommand {
-            get { return (AsyncCommand)GetValue(OnRefreshCommandProperty); }
+        public IAsyncCommand OnRefreshCommand {
+            get { return (IAsyncCommand)GetValue(OnRefreshCommandProperty); }
             set { SetValue(OnRefreshCommandProperty, value); }
         }
         public static readonly DependencyProperty OnRefreshCommandProperty =
-            DependencyProperty.Register("OnRefreshCommand", typeof(AsyncCommand), typeof(GridControlCRUDAsyncBehavior), new PropertyMetadata(null));
+            DependencyProperty.Register("OnRefreshCommand", typeof(IAsyncCommand), typeof(GridControlCRUDAsyncBehavior), new PropertyMetadata(null));
 
         public string NoRecordsErrorMessage {
             get { return (string)GetValue(NoRecordsErrorMessageProperty); }
