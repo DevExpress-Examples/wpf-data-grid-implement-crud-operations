@@ -22,11 +22,11 @@ namespace DevExpress.CRUD.ViewModel {
         IDialogService DialogService => GetService<IDialogService>();
 
         [Command]
-        public void Fetch(FetchRowsAsyncArgs<Expression<Func<T, bool>>> args) {
+        public void Fetch(FetchRowsAsyncArgs args) {
             args.Result = dataProvider.GetQueryableResultAsync<T, FetchRowsResult>(queryable => {
                 return queryable
                     .SortBy(args.SortOrder, defaultUniqueSortPropertyName: dataProvider.KeyProperty)
-                    .Where(args.Filter)
+                    .Where((Expression<Func<T, bool>>)args.Filter)
                     .Skip(args.Skip)
                     .Take(args.Take ?? 30)
                     .ToArray<object>();
@@ -34,19 +34,19 @@ namespace DevExpress.CRUD.ViewModel {
         }
 
         [Command]
-        public void GetTotalSummaries(GetSummariesAsyncArgs<Expression<Func<T, bool>>> args) {
+        public void GetTotalSummaries(GetSummariesAsyncArgs args) {
             args.Result = dataProvider.GetQueryableResultAsync(queryable => {
                 return queryable
-                    .Where(args.Filter)
+                    .Where((Expression<Func<T, bool>>)args.Filter)
                     .GetSummaries(args.Summaries);
             });
         }
 
         [Command]
-        public void GetUniqueValues(GetUniqueValuesAsyncArgs<Expression<Func<T, bool>>> args) {
+        public void GetUniqueValues(GetUniqueValuesAsyncArgs args) {
             args.ResultWithCounts = dataProvider.GetQueryableResultAsync(queryable => {
                 return queryable
-                    .Where(args.Filter)
+                    .Where((Expression<Func<T, bool>>)args.Filter)
                     .DistinctWithCounts(args.PropertyName);
             });
         }

@@ -52,7 +52,6 @@
         <dxg:GridControl Grid.Row="1" x:Name="grid">
             <dxmvvm:Interaction.Behaviors>
                 <dxg:InfiniteAsyncSourceBehavior ElementType="{x:Type local:IssueData}" 
-                                                 FilterType="{Binding FilterType}"
                                                  FetchRowsCommand="{Binding FetchCommand}"
                                                  KeyProperty="Id"                                  
                                                  GetTotalSummariesCommand="{Binding GetTotalSummariesCommand}"
