@@ -2,7 +2,7 @@
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Xpf.Data;
-using DevExpress.Xpf.Data.Mvvm;
+using DevExpress.Mvvm.Xpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
