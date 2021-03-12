@@ -77,21 +77,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="..\Shared\Common.DataModel\DesignTimeDataProvider.cs">
-      <Link>Common.DataModel\DesignTimeDataProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Common.DataModel\EntityFrameworkDataProvider.cs">
-      <Link>Common.DataModel\EntityFrameworkDataProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Common.DataModel\IDataProvider.cs">
-      <Link>Common.DataModel\IDataProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind.DataModel\NorthwindDataStorage.cs">
-      <Link>Northwind.DataModel\NorthwindDataStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind.DataModel\NorthwindDataStorageFactory.cs">
-      <Link>Northwind.DataModel\NorthwindDataStorageFactory.cs</Link>
-    </Compile>
     <Compile Include="Common.View\GridControlCRUDBehavior.cs" />
     <Compile Include="Common.ViewModel\CollectionViewModel.cs" />
     <Compile Include="Northwind.ViewModel\ProductCollectionViewModel.cs" />
@@ -99,24 +84,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="..\Shared\Northwind.DataModel\CategoryInfo.cs">
-      <Link>Northwind.DataModel\CategoryInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind.DataModel\ProductInfo.cs">
-      <Link>Northwind.DataModel\ProductInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind\Category.cs">
-      <Link>Northwind\Category.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind\NorthwindContext.cs">
-      <Link>Northwind\NorthwindContext.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind\NorthwindContextInitializer.cs">
-      <Link>Northwind\NorthwindContextInitializer.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Northwind\Product.cs">
-      <Link>Northwind\Product.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -154,6 +121,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <Import Project="..\GridControlCRUD.Common\GridControlCRUD.Common.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

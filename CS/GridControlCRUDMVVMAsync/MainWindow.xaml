@@ -32,10 +32,13 @@
                 </dxg:GridColumn.EditSettings>
             </dxg:GridColumn>
             <dxg:GridControl.View>
-                <dxg:TableView x:Name="view" AutoWidth="True" ShowUpdateRowButtons="OnCellEditorOpen" NewItemRowPosition="Top">
+                <dxg:TableView x:Name="view" 
+                               AutoWidth="True" 
+                               ShowUpdateRowButtons="OnCellEditorOpen" 
+                               NewItemRowPosition="Top"
+                               ValidateRowCommand="{Binding OnUpdateRowCommand}">
                     <dxmvvm:Interaction.Behaviors>
                         <view:GridControlCRUDAsyncBehavior x:Name="CRUDBehavior" NoRecordsErrorMessage="{Binding EntitiesErrorMessage}"
-                                                       OnCreateCommand="{Binding OnCreateCommand}" OnUpdateCommand="{Binding OnUpdateCommand}"
                                                        OnDeleteCommand="{Binding OnDeleteCommand}" OnRefreshCommand="{Binding OnRefreshCommand}"/>
                     </dxmvvm:Interaction.Behaviors>
                 </dxg:TableView>

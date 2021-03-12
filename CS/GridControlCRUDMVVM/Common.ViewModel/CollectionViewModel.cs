@@ -1,6 +1,7 @@
 ﻿using DevExpress.CRUD.DataModel;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.Xpf;
 using System.Collections.Generic;
 
 namespace DevExpress.CRUD.ViewModel {
@@ -36,10 +37,13 @@ namespace DevExpress.CRUD.ViewModel {
         }
 
         [Command]
-        public void OnCreate(T entity) => dataProvider.Create(entity);
-
-        [Command]
-        public void OnUpdate(T entity) => dataProvider.Update(entity);
+        public void OnUpdateRow(RowValidationArgs args) {
+            var entity = (T)args.Row;
+            if(args.IsNewRow)
+                dataProvider.Create(entity);
+            else
+                dataProvider.Update(entity);
+        }
 
         [Command]
         public void OnDelete(T entity) => dataProvider.Delete(entity);

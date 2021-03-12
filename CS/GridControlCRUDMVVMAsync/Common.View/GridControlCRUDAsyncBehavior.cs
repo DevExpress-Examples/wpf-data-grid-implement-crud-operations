@@ -10,20 +10,6 @@ using System.Windows.Input;
 
 namespace DevExpress.CRUD.View {
     public class GridControlCRUDAsyncBehavior : Behavior<TableView> {
-        public IAsyncCommand OnCreateCommand {
-            get { return (IAsyncCommand)GetValue(OnCreateCommandProperty); }
-            set { SetValue(OnCreateCommandProperty, value); }
-        }
-        public static readonly DependencyProperty OnCreateCommandProperty =
-            DependencyProperty.Register("OnCreateCommand", typeof(IAsyncCommand), typeof(GridControlCRUDAsyncBehavior), new PropertyMetadata(null));
-
-        public IAsyncCommand OnUpdateCommand {
-            get { return (IAsyncCommand)GetValue(OnUpdateCommandProperty); }
-            set { SetValue(OnUpdateCommandProperty, value); }
-        }
-        public static readonly DependencyProperty OnUpdateCommandProperty =
-            DependencyProperty.Register("OnUpdateCommand", typeof(IAsyncCommand), typeof(GridControlCRUDAsyncBehavior), new PropertyMetadata(null));
-
         public ICommand OnDeleteCommand {
             get { return (ICommand)GetValue(OnDeleteCommandProperty); }
             set { SetValue(OnDeleteCommandProperty, value); }
@@ -58,13 +44,11 @@ namespace DevExpress.CRUD.View {
 
         protected override void OnAttached() {
             base.OnAttached();
-            View.ValidateRow += OnValidateRow;
             View.PreviewKeyDown += OnPreviewKeyDown;
             UpdateErrorText();
         }
 
         protected override void OnDetaching() {
-            View.ValidateRow -= OnValidateRow;
             View.PreviewKeyDown -= OnPreviewKeyDown;
             UpdateErrorText();
             base.OnDetaching();
@@ -125,13 +109,6 @@ namespace DevExpress.CRUD.View {
 
         bool IsEditingRowState() {
             return View?.AreUpdateRowButtonsShown == true;
-        }
-
-        void OnValidateRow(object sender, GridRowValidationEventArgs e) {
-            if(View.FocusedRowHandle == DataControlBase.NewItemRowHandle)
-                e.UpdateRowResult = OnCreateCommand.ExecuteAsync(e.Row);
-            else
-                e.UpdateRowResult = OnUpdateCommand.ExecuteAsync(e.Row);
         }
     }
 }

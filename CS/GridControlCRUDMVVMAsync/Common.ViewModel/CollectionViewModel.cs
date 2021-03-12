@@ -1,6 +1,7 @@
 ﻿using DevExpress.CRUD.DataModel;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.Xpf;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -52,11 +53,17 @@ namespace DevExpress.CRUD.ViewModel {
             return Task.CompletedTask;
         }
 
-        [AsyncCommand]
-        public Task OnCreate(T entity) => dataProvider.CreateAsync(entity);
-
-        [AsyncCommand]
-        public Task OnUpdate(T entity) => dataProvider.UpdateAsync(entity);
+        [Command]
+        public void OnUpdateRow(RowValidationArgs args) {
+            args.ResultAsync = OnUpdateRowAsync((T)args.Row, args.IsNewRow);
+        }
+        async Task<ValidationErrorInfo> OnUpdateRowAsync(T entity, bool isNew) {
+            if(isNew)
+                await dataProvider.CreateAsync(entity);
+            else
+                await dataProvider.UpdateAsync(entity);
+            return null;
+        }
 
         [Command]
         public void OnDelete(T entity) => dataProvider.Delete(entity);

@@ -79,18 +79,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="..\Shared\Common.DataModel\DesignTimeDataProvider.cs">
-      <Link>Common.DataModel\DesignTimeDataProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Common.DataModel\DataProviderAsyncExtensions.cs">
-      <Link>Common.DataModel\DataProviderAsyncExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Common.DataModel\EntityFrameworkDataProvider.cs">
-      <Link>Common.DataModel\EntityFrameworkDataProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Shared\Common.DataModel\IDataProvider.cs">
-      <Link>Common.DataModel\IDataProvider.cs</Link>
-    </Compile>
     <Compile Include="Common.ViewModel\CollectionViewModel.cs" />
     <Compile Include="Common.View\ExpressionFilterConverter.cs" />
     <Compile Include="Common.View\GridControlCRUDInfiniteAsyncSourceBehavior.cs" />
@@ -144,6 +132,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <Import Project="..\GridControlCRUD.Common\GridControlCRUD.Common.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

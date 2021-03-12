@@ -8,20 +8,6 @@ using System.Windows.Input;
 
 namespace DevExpress.CRUD.View {
     public class GridControlCRUDBehavior : Behavior<TableView> {
-        public ICommand OnCreateCommand {
-            get { return (ICommand)GetValue(OnCreateCommandProperty); }
-            set { SetValue(OnCreateCommandProperty, value); }
-        }
-        public static readonly DependencyProperty OnCreateCommandProperty =
-            DependencyProperty.Register("OnCreateCommand", typeof(ICommand), typeof(GridControlCRUDBehavior), new PropertyMetadata(null));
-
-        public ICommand OnUpdateCommand {
-            get { return (ICommand)GetValue(OnUpdateCommandProperty); }
-            set { SetValue(OnUpdateCommandProperty, value); }
-        }
-        public static readonly DependencyProperty OnUpdateCommandProperty =
-            DependencyProperty.Register("OnUpdateCommand", typeof(ICommand), typeof(GridControlCRUDBehavior), new PropertyMetadata(null));
-
         public ICommand OnDeleteCommand {
             get { return (ICommand)GetValue(OnDeleteCommandProperty); }
             set { SetValue(OnDeleteCommandProperty, value); }
@@ -55,13 +41,11 @@ namespace DevExpress.CRUD.View {
 
         protected override void OnAttached() {
             base.OnAttached();
-            View.ValidateRow += OnValidateRow;
             View.PreviewKeyDown += OnPreviewKeyDown;
             UpdateErrorText();
         }
 
         protected override void OnDetaching() {
-            View.ValidateRow -= OnValidateRow;
             View.PreviewKeyDown -= OnPreviewKeyDown;
             UpdateErrorText();
             base.OnDetaching();
@@ -119,13 +103,6 @@ namespace DevExpress.CRUD.View {
 
         bool IsEditingRowState() {
             return View?.AreUpdateRowButtonsShown == true;
-        }
-
-        void OnValidateRow(object sender, GridRowValidationEventArgs e) {
-            if(View.FocusedRowHandle == DataControlBase.NewItemRowHandle)
-                OnCreateCommand.Execute(e.Row);
-            else
-                OnUpdateCommand.Execute(e.Row);
         }
     }
 }
