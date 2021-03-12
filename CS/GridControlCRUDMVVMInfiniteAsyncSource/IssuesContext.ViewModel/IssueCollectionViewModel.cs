@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GridControlCRUDMVVMInfiniteAsyncSource {
-    public class IssueCollectionViewModel : CollectionViewModel<IssueData> {
+    public class IssueCollectionViewModel : VirtualCollectionViewModel<IssueData> {
         public IList<User> Users {
             get => GetValue<IList<User>>();
             private set => SetValue(value);

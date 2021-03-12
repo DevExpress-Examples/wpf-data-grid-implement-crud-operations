@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DevExpress.CRUD.ViewModel {
-    public abstract class CollectionViewModel<T> : ViewModelBase where T : class {
+    public abstract class AsyncCollectionViewModel<T> : ViewModelBase where T : class {
         readonly IDataProvider<T> dataProvider;
 
-        protected CollectionViewModel(IDataProvider<T> dataProvider) {
+        protected AsyncCollectionViewModel(IDataProvider<T> dataProvider) {
             this.dataProvider = dataProvider;
             StartRefresh();
         }

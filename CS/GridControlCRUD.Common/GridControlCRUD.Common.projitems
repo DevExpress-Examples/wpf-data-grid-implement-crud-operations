@@ -21,10 +21,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Northwind\NorthwindContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Northwind\NorthwindContextInitializer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Northwind\Product.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AsyncCollectionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CollectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EntityCreateArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EntityUpdateArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\RefreshArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\RowDeleteArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\VirtualCollectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\GridControlDeleteRefreshBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\VirtualSourceEditFormBehavior.cs" />
   </ItemGroup>

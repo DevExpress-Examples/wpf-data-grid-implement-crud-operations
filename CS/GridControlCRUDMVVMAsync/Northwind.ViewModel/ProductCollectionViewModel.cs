@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DevExpress.CRUD.Northwind.ViewModel {
-    public class ProductCollectionViewModel : CollectionViewModel<ProductInfo> {
+    public class ProductCollectionViewModel : AsyncCollectionViewModel<ProductInfo> {
         public IList<CategoryInfo> Categories {
             get => GetValue<IList<CategoryInfo>>();
             private set => SetValue(value);

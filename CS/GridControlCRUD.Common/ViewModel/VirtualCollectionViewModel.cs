@@ -10,10 +10,10 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace DevExpress.CRUD.ViewModel {
-    public abstract class CollectionViewModel<T> : ViewModelBase where T : class, new() {
+    public abstract class VirtualCollectionViewModel<T> : ViewModelBase where T : class, new() {
         readonly IDataProvider<T> dataProvider;
 
-        protected CollectionViewModel(IDataProvider<T> dataProvider) {
+        protected VirtualCollectionViewModel(IDataProvider<T> dataProvider) {
             this.dataProvider = dataProvider;
             StartRefresh();
         }
