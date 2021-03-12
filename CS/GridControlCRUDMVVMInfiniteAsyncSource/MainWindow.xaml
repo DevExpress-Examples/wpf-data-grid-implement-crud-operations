@@ -10,6 +10,7 @@
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
         xmlns:local="clr-namespace:GridControlCRUDMVVMInfiniteAsyncSource"
         xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        xmlns:view="clr-namespace:DevExpress.CRUD.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
@@ -46,8 +47,8 @@
         <dxb:ToolBarControl>
             <dxb:BarButtonItem Content="New (Ctrl+N)" Command="{Binding CreateCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_New.svg}"/>
             <dxb:BarButtonItem Content="Edit (F2)" Command="{Binding UpdateCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Edit.svg}"/>
-            <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding RefreshCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
-            <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding DeleteCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}"/>
+            <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding RefreshCommand, ElementName=DeleteRefreshBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
+            <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding DeleteCommand, ElementName=DeleteRefreshBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}"/>
         </dxb:ToolBarControl>
         <dxg:GridControl Grid.Row="1" x:Name="grid">
             <dxg:GridControl.ItemsSource>
@@ -60,13 +61,6 @@
                     </dx:InfiniteAsyncSource.FilterConverter>
                 </dx:InfiniteAsyncSource>
             </dxg:GridControl.ItemsSource>
-            <dxmvvm:Interaction.Behaviors>
-                <local:GridControlCRUDInfiniteAsyncSourceBehavior x:Name="CRUDBehavior"
-                                                                  OnCreateCommand="{Binding OnCreateCommand}"
-                                                                  OnDeleteCommand="{Binding OnDeleteCommand}"
-                                                                  OnRefreshCommand="{Binding OnRefreshCommand}"
-                                                                  OnUpdateCommand="{Binding OnUpdateCommand}"/>
-            </dxmvvm:Interaction.Behaviors>
             <dxg:GridColumn FieldName="Subject" IsSmart="True" Width="2*"/>
             <dxg:GridColumn FieldName="UserId" IsSmart="True" Width="*"
                                 AllowedBinaryFilters="Equals,DoesNotEqual" AllowedAnyOfFilters="All">
@@ -90,7 +84,15 @@
                 <dxg:GridSummaryItem SummaryType="Max" FieldName="Created" DisplayFormat="{}Last created: {0}" Alignment="Right"/>
             </dxg:GridControl.TotalSummary>
             <dxg:GridControl.View>
-                <dxg:TableView x:Name="view" AutoWidth="True" AllowEditing="False" ShowFixedTotalSummary="True"/>
+                <dxg:TableView x:Name="view" AutoWidth="True" AllowEditing="False" ShowFixedTotalSummary="True">
+                    <dxmvvm:Interaction.Behaviors>
+                        <local:VirtualSourceEditFormBehavior x:Name="CRUDBehavior"
+                                                            OnCreateCommand="{Binding OnCreateCommand}"
+                                                            OnUpdateCommand="{Binding OnUpdateCommand}"/>
+                        <view:GridControlDeleteRefreshBehavior x:Name="DeleteRefreshBehavior"
+                                                               OnDeleteCommand="{Binding OnDeleteCommand}" OnRefreshCommand="{Binding OnRefreshCommand}"/>
+                    </dxmvvm:Interaction.Behaviors>
+                </dxg:TableView>
             </dxg:GridControl.View>
         </dxg:GridControl>
     </Grid>

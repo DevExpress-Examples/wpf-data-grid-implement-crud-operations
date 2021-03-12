@@ -79,7 +79,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common.ViewModel\CollectionViewModel.cs" />
-    <Compile Include="Common.View\GridControlCRUDAsyncBehavior.cs" />
     <Compile Include="Northwind.ViewModel\ProductCollectionViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -121,9 +120,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common.DataModel.EntityFramework\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\GridControlCRUD.Common\GridControlCRUD.Common.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

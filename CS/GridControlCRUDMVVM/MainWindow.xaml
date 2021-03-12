@@ -21,8 +21,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <dxb:ToolBarControl>
-            <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding RefreshCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
-            <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding DeleteCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}"/>
+            <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding RefreshCommand, ElementName=DeleteRefreshBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
+            <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding DeleteCommand, ElementName=DeleteRefreshBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}"/>
         </dxb:ToolBarControl>
         <dxg:GridControl Grid.Row="1" x:Name="grid" ItemsSource="{Binding Entities}">
             <dxg:GridColumn FieldName="Name" Width="2*"/>
@@ -38,8 +38,8 @@
                                NewItemRowPosition="Top" 
                                ValidateRowCommand="{Binding OnUpdateRowCommand}">
                     <dxmvvm:Interaction.Behaviors>
-                        <view:GridControlCRUDBehavior x:Name="CRUDBehavior" NoRecordsErrorMessage="{Binding EntitiesErrorMessage}"
-                                                       OnDeleteCommand="{Binding OnDeleteCommand}" OnRefreshCommand="{Binding OnRefreshCommand}"/>
+                        <view:GridControlDeleteRefreshBehavior x:Name="DeleteRefreshBehavior" NoRecordsErrorMessage="{Binding EntitiesErrorMessage}"
+                                                               OnDeleteCommand="{Binding OnDeleteCommand}" OnRefreshCommand="{Binding OnRefreshCommand}"/>
                     </dxmvvm:Interaction.Behaviors>
                 </dxg:TableView>
             </dxg:GridControl.View>

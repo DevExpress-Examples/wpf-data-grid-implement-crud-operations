@@ -52,16 +52,17 @@ namespace DevExpress.CRUD.ViewModel {
         }
 
         [Command]
-        public void OnUpdate(EntityUpdateArgs<T> args) {
+        public void OnUpdate(EntityUpdateArgs args) {
+            var entity = (T)args.Entity;
             var commands = CreateCommands(() => {
-                dataProvider.Update(args.Entity);
+                dataProvider.Update(entity);
                 args.Updated = true;
             });
-            DialogService.ShowDialog(commands, "Edit " + typeof(T).Name, CreateEntityViewModel(args.Entity));
+            DialogService.ShowDialog(commands, "Edit " + typeof(T).Name, CreateEntityViewModel(entity));
         }
 
         [Command]
-        public void OnCreate(EntityCreateArgs<T> args) {
+        public void OnCreate(EntityCreateArgs args) {
             var entity = new T();
             var commands = CreateCommands(() => {
                 dataProvider.Create(entity);
@@ -80,32 +81,20 @@ namespace DevExpress.CRUD.ViewModel {
         protected abstract EntityViewModel<T> CreateEntityViewModel(T entity);
 
         [Command]
-        public void OnDelete(T entity) {
-            this.dataProvider.Delete(entity);
+        public void OnDelete(RowDeleteArgs args) {
+            this.dataProvider.Delete((T)args.Row);
         }
 
-        [AsyncCommand]
-        public Task OnRefresh() {
-            return OnRefreshCoreAsync();
+        [Command]
+        public void OnRefresh(RefreshArgs args) {
+            args.Result = OnRefreshCoreAsync();
         }
-
         async void StartRefresh() {
-            await OnRefresh();
+            await OnRefreshCoreAsync();
         }
-
         protected virtual Task OnRefreshCoreAsync() {
             return Task.CompletedTask;
         }
-    }
-    public class EntityUpdateArgs<T> {
-        public EntityUpdateArgs(T entity) {
-            Entity = entity;
-        }
-        public T Entity { get; }
-        public bool Updated { get; set; }
-    }
-    public class EntityCreateArgs<T> {
-        public T Entity { get; set; }
     }
     public class EntityViewModel<T> : ViewModelBase {
         public EntityViewModel(T entity) {

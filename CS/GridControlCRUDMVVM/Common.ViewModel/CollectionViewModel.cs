@@ -23,7 +23,10 @@ namespace DevExpress.CRUD.ViewModel {
         }
 
         [Command]
-        public void OnRefresh() {
+        public void OnRefresh(RefreshArgs _) {
+            OnRefresh();
+        }
+        void OnRefresh() {
             try {
                 Entities = dataProvider.Read();
                 EntitiesErrorMessage = null;
@@ -33,6 +36,7 @@ namespace DevExpress.CRUD.ViewModel {
             }
             OnRefreshCore();
         }
+
         protected virtual void OnRefreshCore() {
         }
 
@@ -46,6 +50,6 @@ namespace DevExpress.CRUD.ViewModel {
         }
 
         [Command]
-        public void OnDelete(T entity) => dataProvider.Delete(entity);
+        public void OnDelete(RowDeleteArgs args) => dataProvider.Delete((T)args.Row);
     }
 }

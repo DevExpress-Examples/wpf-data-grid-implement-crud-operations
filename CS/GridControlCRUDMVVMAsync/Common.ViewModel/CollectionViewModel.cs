@@ -28,11 +28,14 @@ namespace DevExpress.CRUD.ViewModel {
         }
 
         async void StartRefresh() {
-            await OnRefresh();
+            await OnRefreshAsync();
         }
 
-        [AsyncCommand]
-        public async Task OnRefresh() {
+        [Command]
+        public void OnRefresh(RefreshArgs args) {
+            args.Result = OnRefreshAsync();
+        }
+        async Task OnRefreshAsync() {
             IsLoading = true;
             try {
                 await Task.WhenAll(RefreshEntities(), OnRefreshCoreAsync());
@@ -66,6 +69,6 @@ namespace DevExpress.CRUD.ViewModel {
         }
 
         [Command]
-        public void OnDelete(T entity) => dataProvider.Delete(entity);
+        public void OnDelete(RowDeleteArgs args) => dataProvider.Delete((T)args.Row);
     }
 }

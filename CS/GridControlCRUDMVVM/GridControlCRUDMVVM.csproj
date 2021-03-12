@@ -77,7 +77,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Common.View\GridControlCRUDBehavior.cs" />
     <Compile Include="Common.ViewModel\CollectionViewModel.cs" />
     <Compile Include="Northwind.ViewModel\ProductCollectionViewModel.cs" />
     <Page Include="MainWindow.xaml">
