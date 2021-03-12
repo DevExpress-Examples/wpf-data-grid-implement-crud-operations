@@ -78,7 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Northwind.ViewModel\ProductCollectionViewModel.cs" />
+    <Compile Include="ProductCollectionViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="..\GridControlCRUD.Common\GridControlCRUD.Common.projitems" Label="Shared" />
+  <Import Project="..\GridControlCRUD.Common.Northwind\GridControlCRUD.Common.Northwind.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

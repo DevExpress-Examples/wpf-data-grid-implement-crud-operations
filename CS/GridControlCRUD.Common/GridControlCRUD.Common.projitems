@@ -13,22 +13,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\DesignTimeDataProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\EntityFrameworkDataProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\IDataProvider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Northwind.DataModel\CategoryInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Northwind.DataModel\NorthwindDataStorage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Northwind.DataModel\NorthwindDataStorageFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Northwind.DataModel\ProductInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Northwind\Category.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Northwind\NorthwindContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Northwind\NorthwindContextInitializer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Northwind\Product.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AsyncCollectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CollectionViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EntityCreateArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EntityUpdateArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\RefreshArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\RowDeleteArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CommandArgs\EntityCreateArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CommandArgs\EntityUpdateArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CommandArgs\RefreshArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CommandArgs\RowDeleteArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\VirtualCollectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\GridControlDeleteRefreshBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\VirtualSourceEditFormBehavior.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModel\CommandArgs\" />
   </ItemGroup>
 </Project>

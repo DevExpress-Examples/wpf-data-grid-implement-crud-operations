@@ -55,10 +55,8 @@
                 <dx:InfiniteAsyncSource ElementType="{x:Type local:IssueData}" KeyProperty="Id"
                                         FetchRowsCommand="{Binding FetchCommand}"
                                         GetTotalSummariesCommand="{Binding GetTotalSummariesCommand}"
-                                        GetUniqueValuesCommand="{Binding GetUniqueValuesCommand}">
-                    <dx:InfiniteAsyncSource.FilterConverter>
-                        <local:ExpressionFilterConverter Type="local:IssueData"/>
-                    </dx:InfiniteAsyncSource.FilterConverter>
+                                        GetUniqueValuesCommand="{Binding GetUniqueValuesCommand}"
+                                        FilterConverter="{local:IssueDataFilterConverter}">
                 </dx:InfiniteAsyncSource>
             </dxg:GridControl.ItemsSource>
             <dxg:GridColumn FieldName="Subject" IsSmart="True" Width="2*"/>

@@ -79,7 +79,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Common.View\ExpressionFilterConverter.cs" />
+    <Compile Include="IssueDataFilterConverter.cs" />
     <Compile Include="IssuesContext.DataModel\IssueData.cs" />
     <Compile Include="IssuesContext.DataModel\IssuesDataStorage.cs" />
     <Compile Include="IssuesContext.DataModel\IssuesDataStorageFactory.cs" />
@@ -88,7 +88,7 @@
     <Compile Include="IssuesContext\IssuesContextInitializer.cs" />
     <Compile Include="IssuesContext\OutlookDataGenerator.cs" />
     <Compile Include="IssuesContext\User.cs" />
-    <Compile Include="IssuesContext.ViewModel\IssueCollectionViewModel.cs" />
+    <Compile Include="IssueCollectionViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
