@@ -44,7 +44,11 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
             AssignUsers(usersTask);
         }
         async void AssignUsers(Task<IList<User>> usersTask) {
-            Users = await usersTask;
+            try {
+                Users = await usersTask;
+            } catch {
+                Users = null;
+            }
         }
         public IList<User> Users {
             get => GetValue<IList<User>>();
