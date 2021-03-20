@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using DevExpress.Xpf.Core;
 
 namespace DevExpress.CRUD.ViewModel {
     public abstract class VirtualCollectionViewModel<T> : ViewModelBase where T : class, new() {
@@ -73,7 +75,14 @@ namespace DevExpress.CRUD.ViewModel {
 
         UICommand[] CreateCommands(Action saveAction) {
             return new[] {
-                new UICommand(null, "Save", new DelegateCommand(saveAction), isDefault: true, isCancel: false),
+                new UICommand(null, "Save", new DelegateCommand<CancelEventArgs>(cancelArgs => {
+                    try {
+                        saveAction();
+                    } catch(Exception e) {
+                        GetService<IMessageBoxService>().ShowMessage(e.Message, "Error", MessageButton.OK);
+                        cancelArgs.Cancel = true;
+                    }
+                }), isDefault: true, isCancel: false),
                 new UICommand(null, "Cancel", null, isDefault: false, isCancel: true),
             };
         }
