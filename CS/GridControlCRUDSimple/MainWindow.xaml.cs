@@ -1,11 +1,11 @@
 ﻿using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Grid;
 using DevExpress.CRUD.Northwind;
-using DevExpress.CRUD.Northwind.DataModel;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using DevExpress.CRUD.Northwind.DataModel;
 
 namespace GridControlCRUDSimple {
     public partial class MainWindow : ThemedWindow {

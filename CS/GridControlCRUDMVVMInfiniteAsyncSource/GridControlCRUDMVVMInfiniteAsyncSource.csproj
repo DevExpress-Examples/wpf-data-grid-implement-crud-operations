@@ -79,6 +79,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\GridControlCRUD.Common\DataModel\DataProviderAsyncExtensions.cs">
+      <Link>Common.DataModel\DataProviderAsyncExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\DataModel\DesignTimeDataProvider.cs">
+      <Link>Common.DataModel\DesignTimeDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\DataModel\EntityFrameworkDataProvider.cs">
+      <Link>Common.DataModel\EntityFrameworkDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\DataModel\IDataProvider.cs">
+      <Link>Common.DataModel\IDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\ViewModel\CommandArgs\EntityCreateArgs.cs">
+      <Link>Common.ViewModel\CommandArgs\EntityCreateArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\ViewModel\CommandArgs\EntityUpdateArgs.cs">
+      <Link>Common.ViewModel\CommandArgs\EntityUpdateArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\ViewModel\VirtualCollectionViewModel.cs">
+      <Link>Common.ViewModel\VirtualCollectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\ViewModel\CommandArgs\RefreshArgs.cs">
+      <Link>Common.ViewModel\CommandArgs\RefreshArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\ViewModel\CommandArgs\RowDeleteArgs.cs">
+      <Link>Common.ViewModel\CommandArgs\RowDeleteArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\View\GridControlDeleteRefreshBehavior.cs">
+      <Link>Common.View\GridControlDeleteRefreshBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\View\VirtualSourceEditFormBehavior.cs">
+      <Link>Common.View\VirtualSourceEditFormBehavior.cs</Link>
+    </Compile>
     <Compile Include="IssueDataFilterConverter.cs" />
     <Compile Include="IssuesContext.DataModel\IssueData.cs" />
     <Compile Include="IssuesContext.DataModel\IssuesDataStorage.cs" />
@@ -130,7 +163,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
-  <Import Project="..\GridControlCRUD.Common\GridControlCRUD.Common.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -11,22 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridControlCRUDMVVMAsync", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridControlCRUDMVVMInfiniteAsyncSource", "GridControlCRUDMVVMInfiniteAsyncSource\GridControlCRUDMVVMInfiniteAsyncSource.csproj", "{99F77CC9-A05A-4064-B0A9-63E0B93ED156}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GridControlCRUD.Common", "GridControlCRUD.Common\GridControlCRUD.Common.shproj", "{54545472-60DD-4558-AB19-0263FCDCF711}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GridControlCRUD.Common.Northwind", "GridControlCRUD.Common.Northwind\GridControlCRUD.Common.Northwind.shproj", "{A38AC39B-E0EE-450A-8E2B-4B561B1CA63C}"
-EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		GridControlCRUD.Common\GridControlCRUD.Common.projitems*{54545472-60dd-4558-ab19-0263fcdcf711}*SharedItemsImports = 13
-		GridControlCRUD.Common.Northwind\GridControlCRUD.Common.Northwind.projitems*{659194a7-745d-4a56-a683-b150b9170f53}*SharedItemsImports = 4
-		GridControlCRUD.Common\GridControlCRUD.Common.projitems*{659194a7-745d-4a56-a683-b150b9170f53}*SharedItemsImports = 4
-		GridControlCRUD.Common.Northwind\GridControlCRUD.Common.Northwind.projitems*{69e85a61-e7d4-4c9d-a433-13e742ae30bc}*SharedItemsImports = 4
-		GridControlCRUD.Common\GridControlCRUD.Common.projitems*{69e85a61-e7d4-4c9d-a433-13e742ae30bc}*SharedItemsImports = 4
-		GridControlCRUD.Common\GridControlCRUD.Common.projitems*{99f77cc9-a05a-4064-b0a9-63e0b93ed156}*SharedItemsImports = 4
-		GridControlCRUD.Common.Northwind\GridControlCRUD.Common.Northwind.projitems*{9e2883b9-744a-48bf-b25a-ea4b2d435c9d}*SharedItemsImports = 4
-		GridControlCRUD.Common\GridControlCRUD.Common.projitems*{9e2883b9-744a-48bf-b25a-ea4b2d435c9d}*SharedItemsImports = 4
-		GridControlCRUD.Common.Northwind\GridControlCRUD.Common.Northwind.projitems*{a38ac39b-e0ee-450a-8e2b-4b561b1ca63c}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

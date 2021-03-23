@@ -78,6 +78,54 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\GridControlCRUD.Common\DataModel\DataProviderAsyncExtensions.cs">
+      <Link>Common.DataModel\DataProviderAsyncExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\DataModel\DesignTimeDataProvider.cs">
+      <Link>Common.DataModel\DesignTimeDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\DataModel\EntityFrameworkDataProvider.cs">
+      <Link>Common.DataModel\EntityFrameworkDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\DataModel\IDataProvider.cs">
+      <Link>Common.DataModel\IDataProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common.Northwind\Northwind.DataModel\CategoryInfo.cs">
+      <Link>Northwind.DataModel\CategoryInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common.Northwind\Northwind.DataModel\NorthwindDataStorage.cs">
+      <Link>Northwind.DataModel\NorthwindDataStorage.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common.Northwind\Northwind.DataModel\NorthwindDataStorageFactory.cs">
+      <Link>Northwind.DataModel\NorthwindDataStorageFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common.Northwind\Northwind.DataModel\ProductInfo.cs">
+      <Link>Northwind.DataModel\ProductInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common.Northwind\Northwind\Category.cs">
+      <Link>Nothwind\Category.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common.Northwind\Northwind\NorthwindContext.cs">
+      <Link>Nothwind\NorthwindContext.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common.Northwind\Northwind\Product.cs">
+      <Link>Nothwind\Product.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common.Northwind\Northwind\NorthwindContextInitializer.cs">
+      <Link>Nothwind\NorthwindContextInitializer.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\ViewModel\AsyncCollectionViewModel.cs">
+      <Link>Common.ViewModel\AsyncCollectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\ViewModel\CommandArgs\RefreshArgs.cs">
+      <Link>Common.ViewModel\CommandArgs\RefreshArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\ViewModel\CommandArgs\RowDeleteArgs.cs">
+      <Link>Common.ViewModel\CommandArgs\RowDeleteArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\GridControlCRUD.Common\View\GridControlDeleteRefreshBehavior.cs">
+      <Link>Common.View\GridControlDeleteRefreshBehavior.cs</Link>
+    </Compile>
     <Compile Include="ProductCollectionViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -120,8 +168,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
-  <Import Project="..\GridControlCRUD.Common\GridControlCRUD.Common.projitems" Label="Shared" />
-  <Import Project="..\GridControlCRUD.Common.Northwind\GridControlCRUD.Common.Northwind.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
