@@ -42,8 +42,8 @@ namespace DevExpress.CRUD.ViewModel {
 
         [Command]
         public void OnUpdateRow(RowValidationArgs args) {
-            var entity = (T)args.Row;
-            if(args.IsNewRow)
+            var entity = (T)args.Item;
+            if(args.IsNewItem)
                 dataProvider.Create(entity);
             else
                 dataProvider.Update(entity);

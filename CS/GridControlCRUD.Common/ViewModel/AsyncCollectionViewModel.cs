@@ -58,7 +58,7 @@ namespace DevExpress.CRUD.ViewModel {
 
         [Command]
         public void OnUpdateRow(RowValidationArgs args) {
-            args.ResultAsync = OnUpdateRowAsync((T)args.Row, args.IsNewRow);
+            args.ResultAsync = OnUpdateRowAsync((T)args.Item, args.IsNewItem);
         }
         async Task<ValidationErrorInfo> OnUpdateRowAsync(T entity, bool isNew) {
             if(isNew)
