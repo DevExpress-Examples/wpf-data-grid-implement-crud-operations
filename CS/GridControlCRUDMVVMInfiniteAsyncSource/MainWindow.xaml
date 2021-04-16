@@ -50,14 +50,12 @@
             <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding RefreshCommand, ElementName=DeleteRefreshBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
             <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding DeleteCommand, ElementName=DeleteRefreshBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}"/>
         </dxb:ToolBarControl>
-        <dxg:GridControl Grid.Row="1" x:Name="grid">
+        <dxg:GridControl Grid.Row="1" x:Name="grid" CriteriaConverter="{local:IssueDataFilterConverter}">
             <dxg:GridControl.ItemsSource>
                 <dx:InfiniteAsyncSource ElementType="{x:Type local:IssueData}" KeyProperty="Id"
                                         FetchRowsCommand="{Binding FetchCommand}"
                                         GetTotalSummariesCommand="{Binding GetTotalSummariesCommand}"
-                                        GetUniqueValuesCommand="{Binding GetUniqueValuesCommand}"
-                                        FilterConverter="{local:IssueDataFilterConverter}">
-                </dx:InfiniteAsyncSource>
+                                        GetUniqueValuesCommand="{Binding GetUniqueValuesCommand}"/>
             </dxg:GridControl.ItemsSource>
             <dxg:GridColumn FieldName="Subject" IsSmart="True" Width="2*"/>
             <dxg:GridColumn FieldName="UserId" IsSmart="True" Width="*"
