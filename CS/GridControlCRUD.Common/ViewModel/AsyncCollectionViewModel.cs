@@ -2,6 +2,7 @@
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.Xpf;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -29,6 +30,22 @@ namespace DevExpress.CRUD.ViewModel {
 
         async void StartRefresh() {
             await OnRefreshAsync();
+        }
+
+        [Command]
+        public void OnDeleteRow(DeleteRowValidationArgs args) => OnDelete(args);
+
+        void OnDelete(DeleteRowValidationArgs args) {
+            try {
+                //TODO: dont delete if data is in refresh state
+                if(IsLoading) {
+                    args.Result = "Data is refrehsing";
+                    return;
+                }
+                dataProvider.Delete((T)args.Item);
+            } catch(Exception ex) {
+                args.Result = ex.Message;
+            }
         }
 
         [Command]
@@ -67,8 +84,5 @@ namespace DevExpress.CRUD.ViewModel {
                 await dataProvider.UpdateAsync(entity);
             return null;
         }
-
-        [Command]
-        public void OnDelete(RowDeleteArgs args) => dataProvider.Delete((T)args.Row);
     }
 }

@@ -2,6 +2,7 @@
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.Xpf;
+using System;
 using System.Collections.Generic;
 
 namespace DevExpress.CRUD.ViewModel {
@@ -20,6 +21,18 @@ namespace DevExpress.CRUD.ViewModel {
         public string EntitiesErrorMessage {
             get => GetValue<string>();
             private set => SetValue(value);
+        }
+
+        [Command]
+        public void OnDeleteRow(DeleteRowValidationArgs args) => OnDelete(args);
+
+        void OnDelete(DeleteRowValidationArgs args) {
+            try {
+                //TODO: dont delete if data is in refresh state
+                dataProvider.Delete((T)args.Item);
+            } catch (Exception ex) {
+                args.Result = ex.Message;
+            }
         }
 
         [Command]
@@ -48,8 +61,5 @@ namespace DevExpress.CRUD.ViewModel {
             else
                 dataProvider.Update(entity);
         }
-
-        [Command]
-        public void OnDelete(RowDeleteArgs args) => dataProvider.Delete((T)args.Row);
     }
 }

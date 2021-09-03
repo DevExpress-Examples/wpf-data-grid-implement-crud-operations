@@ -52,26 +52,19 @@ namespace GridControlCRUDSimple {
             }
         }
 
-        void grid_KeyDown(object sender, KeyEventArgs e) {
-            if(e.Key == Key.Delete) {
-                var productInfo = (ProductInfo)grid.SelectedItem;
-                if(productInfo == null)
-                    return;
-                if(DXMessageBox.Show(this, "Are you sure you want to delete this row?", "Delete Row", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
-                    return;
-                try {
-                    using(var context = new NorthwindContext()) {
-                        var result = context.Products.Find(productInfo.Id);
-                        if(result == null) {
-                            throw new NotImplementedException("The modified row no longer exists in the database. Handle this case according to your requirements.");
-                        }
-                        context.Products.Remove(result);
-                        context.SaveChanges();
-                        view.Commands.DeleteFocusedRow.Execute(null);
+        private void ValidateRowDeletion(object sender, GridDeleteRowValidationEventArgs e) {
+            try {
+                using(var context = new NorthwindContext()) {
+                    var result = context.Products.Find(((ProductInfo)e.Row).Id);
+                    if(result == null) {
+                        e.Result = "The modified row no longer exists in the database. Handle this case according to your requirements.";
+                        return;
                     }
-                } catch(Exception ex) {
-                    DXMessageBox.Show(ex.Message);
+                    context.Products.Remove(result);
+                    context.SaveChanges();
                 }
+            } catch(Exception ex) {
+                e.Result = ex.Message;
             }
         }
     }

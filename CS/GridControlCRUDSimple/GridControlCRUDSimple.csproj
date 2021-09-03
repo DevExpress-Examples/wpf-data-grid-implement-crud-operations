@@ -39,15 +39,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v21.1" />
-    <Reference Include="DevExpress.Data.Desktop.v21.1" />
-    <Reference Include="DevExpress.Mvvm.v21.1" />
-    <Reference Include="DevExpress.Printing.v21.1.Core" />
-    <Reference Include="DevExpress.Xpf.Core.v21.1" />
-    <Reference Include="DevExpress.Xpf.Printing.v21.1" />
-    <Reference Include="DevExpress.Xpf.Grid.v21.1" />
-    <Reference Include="DevExpress.Xpf.Grid.v21.1.Core" />
-    <Reference Include="DevExpress.Xpf.Grid.v21.1.Extensions" />
+    <Reference Include="DevExpress.Data.v21.2" />
+    <Reference Include="DevExpress.Data.Desktop.v21.2" />
+    <Reference Include="DevExpress.Mvvm.v21.2" />
+    <Reference Include="DevExpress.Printing.v21.2.Core" />
+    <Reference Include="DevExpress.Xpf.Core.v21.2" />
+    <Reference Include="DevExpress.Xpf.Printing.v21.2" />
+    <Reference Include="DevExpress.Xpf.Grid.v21.2" />
+    <Reference Include="DevExpress.Xpf.Grid.v21.2.Core" />
+    <Reference Include="DevExpress.Xpf.Grid.v21.2.Extensions" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>

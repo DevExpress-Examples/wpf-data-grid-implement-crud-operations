@@ -90,10 +90,18 @@ namespace DevExpress.CRUD.ViewModel {
         protected abstract EntityViewModel<T> CreateEntityViewModel(T entity);
 
         [Command]
-        public void OnDelete(RowDeleteArgs args) {
-            this.dataProvider.Delete((T)args.Row);
-        }
+        public void OnDeleteRow(DeleteRowValidationArgs args) => OnDelete(args);
 
+        void OnDelete(DeleteRowValidationArgs args) {
+            try {
+                //TODO: dont delete if data is in refresh state
+                dataProvider.Delete((T)args.Item);
+                //args.Result = "error";
+            } catch(Exception ex) {
+                args.Result = ex.Message;
+            }
+        }
+        
         [Command]
         public void OnRefresh(RefreshArgs args) {
             args.Result = OnRefreshCoreAsync();
