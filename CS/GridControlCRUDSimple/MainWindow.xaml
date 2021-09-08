@@ -1,4 +1,4 @@
-<dx:ThemedWindow x:Class="GridControlCRUDSimple.MainWindow"
+﻿<dx:ThemedWindow x:Class="GridControlCRUDSimple.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,6 +9,9 @@
         xmlns:local="clr-namespace:GridControlCRUDSimple"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Commands.DeleteFocusedRow, ElementName=view}" Gesture="Shift+Del"/>
+    </Window.InputBindings>
     <Grid>
         <dxg:GridControl x:Name="grid">
             <dxg:GridColumn FieldName="Name" Width="2*"/>
@@ -19,7 +22,7 @@
             </dxg:GridColumn>
             <dxg:GridControl.View>
                 <dxg:TableView x:Name="view" AutoWidth="True" ShowUpdateRowButtons="OnCellEditorOpen" 
-                               ValidateRow="tableView_ValidateRow" ValidateDeleteRow="ValidateRowDeletion" DeletionMode="FocusedRow" NewItemRowPosition="Top"/>
+                               ValidateRow="tableView_ValidateRow" ValidateDeleteRow="ValidateRowDeletion" NewItemRowPosition="Top"/>
             </dxg:GridControl.View>
         </dxg:GridControl>
     </Grid>

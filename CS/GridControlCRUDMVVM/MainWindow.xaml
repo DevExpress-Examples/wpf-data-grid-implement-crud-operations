@@ -15,6 +15,9 @@
     <Window.DataContext>
         <northwind_viewModel:ProductCollectionViewModel/>
     </Window.DataContext>
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DXMessageBoxService/>
+    </dxmvvm:Interaction.Behaviors>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

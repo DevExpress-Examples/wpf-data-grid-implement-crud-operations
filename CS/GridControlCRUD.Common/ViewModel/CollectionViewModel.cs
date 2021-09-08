@@ -2,8 +2,10 @@
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.Xpf;
+using DevExpress.Xpf.Core;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace DevExpress.CRUD.ViewModel {
     public abstract class CollectionViewModel<T> : ViewModelBase where T : class {
@@ -27,10 +29,15 @@ namespace DevExpress.CRUD.ViewModel {
         public void OnDeleteRow(DeleteRowValidationArgs args) => OnDelete(args);
 
         void OnDelete(DeleteRowValidationArgs args) {
+            if(GetService<IMessageBoxService>().ShowMessage("Are you sure you want to delete this row?", "Delete Row", MessageButton.OKCancel) == MessageResult.Cancel) {
+                args.Result = "Not accepted";
+                return;
+            }
             try {
                 //TODO: dont delete if data is in refresh state
-                dataProvider.Delete((T)args.Item);
+                dataProvider.Delete((T)args.Items[0]);
             } catch (Exception ex) {
+                GetService<IMessageBoxService>().ShowMessage(ex.Message);
                 args.Result = ex.Message;
             }
         }

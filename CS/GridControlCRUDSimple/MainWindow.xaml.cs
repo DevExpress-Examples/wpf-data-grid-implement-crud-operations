@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using DevExpress.CRUD.Northwind.DataModel;
+using DevExpress.Mvvm;
 
 namespace GridControlCRUDSimple {
     public partial class MainWindow : ThemedWindow {
@@ -53,9 +54,13 @@ namespace GridControlCRUDSimple {
         }
 
         private void ValidateRowDeletion(object sender, GridDeleteRowValidationEventArgs e) {
+            if(DXMessageBox.Show(this, "Are you sure you want to delete this row?", "Delete Row", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel) {
+                e.Result = "Not accepted";
+                return;
+            }
             try {
                 using(var context = new NorthwindContext()) {
-                    var result = context.Products.Find(((ProductInfo)e.Row).Id);
+                    var result = context.Products.Find(((ProductInfo)e.Rows[0]).Id);
                     if(result == null) {
                         e.Result = "The modified row no longer exists in the database. Handle this case according to your requirements.";
                         return;
@@ -64,6 +69,7 @@ namespace GridControlCRUDSimple {
                     context.SaveChanges();
                 }
             } catch(Exception ex) {
+                DXMessageBox.Show(ex.Message);
                 e.Result = ex.Message;
             }
         }
