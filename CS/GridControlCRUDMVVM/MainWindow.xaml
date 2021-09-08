@@ -40,8 +40,7 @@
                                ShowUpdateRowButtons="OnCellEditorOpen" 
                                NewItemRowPosition="Top" 
                                ValidateRowCommand="{Binding OnUpdateRowCommand}"
-                               ValidateDeleteRowCommand="{Binding OnDeleteRowCommand}"
-                               DeletionMode="FocusedRow">
+                               ValidateDeleteRowCommand="{Binding OnDeleteRowCommand}">
                     <dxmvvm:Interaction.Behaviors>
                         <view:GridControlDeleteRefreshBehavior x:Name="DeleteRefreshBehavior" NoRecordsErrorMessage="{Binding EntitiesErrorMessage}"
                                                                OnRefreshCommand="{Binding OnRefreshCommand}"/>

@@ -80,7 +80,7 @@
                 <dxg:GridSummaryItem SummaryType="Max" FieldName="Created" DisplayFormat="{}Last created: {0}" Alignment="Right"/>
             </dxg:GridControl.TotalSummary>
             <dxg:GridControl.View>
-                <dxg:TableView x:Name="view" AutoWidth="True" AllowEditing="False" ShowFixedTotalSummary="True" DeletionMode="FocusedRow" ValidateDeleteRowCommand="{Binding OnDeleteRowCommand}">
+                <dxg:TableView x:Name="view" AutoWidth="True" AllowEditing="False" ShowFixedTotalSummary="True" ValidateDeleteRowCommand="{Binding OnDeleteRowCommand}">
                     <dxmvvm:Interaction.Behaviors>
                         <local:VirtualSourceEditFormBehavior x:Name="CRUDBehavior"
                                                             OnCreateCommand="{Binding OnCreateCommand}"
