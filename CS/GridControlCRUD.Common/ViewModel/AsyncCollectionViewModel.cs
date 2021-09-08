@@ -10,6 +10,8 @@ namespace DevExpress.CRUD.ViewModel {
     public abstract class AsyncCollectionViewModel<T> : ViewModelBase where T : class {
         readonly IDataProvider<T> dataProvider;
 
+        IMessageBoxService MessageBoxService => GetService<IMessageBoxService>();
+
         protected AsyncCollectionViewModel(IDataProvider<T> dataProvider) {
             this.dataProvider = dataProvider;
             StartRefresh();
@@ -36,7 +38,7 @@ namespace DevExpress.CRUD.ViewModel {
         public void OnDeleteRow(DeleteRowValidationArgs args) => OnDelete(args);
 
         void OnDelete(DeleteRowValidationArgs args) {
-            if(GetService<IMessageBoxService>().ShowMessage("Are you sure you want to delete this row?", "Delete Row", MessageButton.OKCancel) == MessageResult.Cancel) {
+            if(MessageBoxService.ShowMessage("Are you sure you want to delete this row?", "Delete Row", MessageButton.OKCancel) == MessageResult.Cancel) {
                 args.Result = "Not accepted";
                 return;
             }
@@ -48,7 +50,7 @@ namespace DevExpress.CRUD.ViewModel {
                 }
                 dataProvider.Delete((T)args.Items[0]);
             } catch(Exception ex) {
-                GetService<IMessageBoxService>().ShowMessage(ex.Message);
+                MessageBoxService.ShowMessage(ex.Message);
                 args.Result = ex.Message;
             }
         }
