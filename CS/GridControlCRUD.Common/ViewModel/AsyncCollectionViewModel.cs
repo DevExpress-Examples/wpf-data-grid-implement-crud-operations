@@ -43,7 +43,6 @@ namespace DevExpress.CRUD.ViewModel {
                 return;
             }
             try {
-                //TODO: dont delete if data is in refresh state
                 if(IsLoading) {
                     args.Result = "Data is refrehsing";
                     return;

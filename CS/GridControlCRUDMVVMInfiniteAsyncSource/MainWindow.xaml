@@ -51,6 +51,9 @@
             <dxb:BarButtonItem Content="Delete (Del)" Command="dxg:GridCommands.DeleteFocusedRow" CommandTarget="{Binding ElementName=view}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}"/>
         </dxb:ToolBarControl>
         <dxg:GridControl Grid.Row="1" x:Name="grid" CriteriaConverter="{local:IssueDataFilterConverter}">
+            <dxg:GridControl.InputBindings>
+                <KeyBinding Command="{Binding Commands.DeleteFocusedRow, ElementName=view}" Key="Delete"/>
+            </dxg:GridControl.InputBindings>
             <dxg:GridControl.ItemsSource>
                 <dx:InfiniteAsyncSource ElementType="{x:Type local:IssueData}" KeyProperty="Id"
                                         FetchRowsCommand="{Binding FetchCommand}"

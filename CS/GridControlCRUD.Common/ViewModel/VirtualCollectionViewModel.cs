@@ -100,7 +100,6 @@ namespace DevExpress.CRUD.ViewModel {
                 return;
             }
             try {
-                //TODO: dont delete if data is in refresh state
                 dataProvider.Delete((T)args.Items[0]);
             } catch(Exception ex) {
                 MessageBoxService.ShowMessage(ex.Message);
