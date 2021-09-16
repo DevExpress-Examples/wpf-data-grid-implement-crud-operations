@@ -15,6 +15,9 @@
     <Window.DataContext>
         <northwind_viewModel:ProductCollectionViewModel/>
     </Window.DataContext>
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DXMessageBoxService/>
+    </dxmvvm:Interaction.Behaviors>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,9 +25,12 @@
         </Grid.RowDefinitions>
         <dxb:ToolBarControl>
             <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding RefreshCommand, ElementName=DeleteRefreshBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
-            <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding DeleteCommand, ElementName=DeleteRefreshBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}"/>
+            <dxb:BarButtonItem Content="Delete (Del)" Command="dxg:GridCommands.DeleteFocusedRow" CommandTarget="{Binding ElementName=view}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}"/>
         </dxb:ToolBarControl>
         <dxg:GridControl Grid.Row="1" x:Name="grid" ItemsSource="{Binding Entities}" ShowLoadingPanel="{Binding IsLoading}">
+            <dxg:GridControl.InputBindings>
+                <KeyBinding Command="dxg:GridCommands.DeleteFocusedRow" CommandTarget="{Binding ElementName=view}" Key="Delete"/>
+            </dxg:GridControl.InputBindings>
             <dxg:GridColumn FieldName="Name" Width="2*"/>
             <dxg:GridColumn FieldName="CategoryId" Header="Category" Width="*">
                 <dxg:GridColumn.EditSettings>
@@ -34,12 +40,13 @@
             <dxg:GridControl.View>
                 <dxg:TableView x:Name="view" 
                                AutoWidth="True" 
-                               ShowUpdateRowButtons="OnCellEditorOpen" 
+                               ShowUpdateRowButtons="OnCellEditorOpen"
                                NewItemRowPosition="Top"
-                               ValidateRowCommand="{Binding OnUpdateRowCommand}">
+                               ValidateRowCommand="{Binding OnUpdateRowCommand}"
+                               ValidateDeleteRowsCommand="{Binding OnDeleteRowCommand}">
                     <dxmvvm:Interaction.Behaviors>
                         <view:GridControlDeleteRefreshBehavior x:Name="DeleteRefreshBehavior" NoRecordsErrorMessage="{Binding EntitiesErrorMessage}"
-                                                               OnDeleteCommand="{Binding OnDeleteCommand}" OnRefreshCommand="{Binding OnRefreshCommand}"/>
+                                                               OnRefreshCommand="{Binding OnRefreshCommand}"/>
                     </dxmvvm:Interaction.Behaviors>
                 </dxg:TableView>
             </dxg:GridControl.View>
