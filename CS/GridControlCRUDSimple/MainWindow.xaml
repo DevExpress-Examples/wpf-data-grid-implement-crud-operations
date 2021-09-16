@@ -10,7 +10,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <dxg:GridControl x:Name="grid" KeyDown="grid_KeyDown">
+        <dxg:GridControl x:Name="grid">
+            <dxg:GridControl.InputBindings>
+                <KeyBinding Command="dxg:GridCommands.DeleteFocusedRow" CommandTarget="{Binding ElementName=view}" Key="Delete"/>
+            </dxg:GridControl.InputBindings>
             <dxg:GridColumn FieldName="Name" Width="2*"/>
             <dxg:GridColumn FieldName="CategoryId" Header="Category" Width="*">
                 <dxg:GridColumn.EditSettings>
@@ -19,7 +22,8 @@
             </dxg:GridColumn>
             <dxg:GridControl.View>
                 <dxg:TableView x:Name="view" AutoWidth="True" ShowUpdateRowButtons="OnCellEditorOpen" 
-                               ValidateRow="tableView_ValidateRow" NewItemRowPosition="Top"/>
+                               ValidateRow="OnValidateRow" ValidateDeleteRows="OnValidateDeleteRows"
+                               NewItemRowPosition="Top"/>
             </dxg:GridControl.View>
         </dxg:GridControl>
     </Grid>

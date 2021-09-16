@@ -4,7 +4,6 @@ using DevExpress.CRUD.Northwind;
 using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Input;
 using DevExpress.CRUD.Northwind.DataModel;
 
 namespace GridControlCRUDSimple {
@@ -30,7 +29,7 @@ namespace GridControlCRUDSimple {
             }
         }
 
-        void tableView_ValidateRow(object sender, GridRowValidationEventArgs e) {
+        void OnValidateRow(object sender, GridRowValidationEventArgs e) {
             var productInfo = (ProductInfo)e.Row;
             using(var context = new NorthwindContext()) {
                 Product product;
@@ -52,26 +51,19 @@ namespace GridControlCRUDSimple {
             }
         }
 
-        void grid_KeyDown(object sender, KeyEventArgs e) {
-            if(e.Key == Key.Delete) {
-                var productInfo = (ProductInfo)grid.SelectedItem;
-                if(productInfo == null)
-                    return;
-                if(DXMessageBox.Show(this, "Are you sure you want to delete this row?", "Delete Row", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
-                    return;
-                try {
-                    using(var context = new NorthwindContext()) {
-                        var result = context.Products.Find(productInfo.Id);
-                        if(result == null) {
-                            throw new NotImplementedException("The modified row no longer exists in the database. Handle this case according to your requirements.");
-                        }
-                        context.Products.Remove(result);
-                        context.SaveChanges();
-                        view.Commands.DeleteFocusedRow.Execute(null);
-                    }
-                } catch(Exception ex) {
-                    DXMessageBox.Show(ex.Message);
+        void OnValidateDeleteRows(object sender, GridDeleteRowsValidationEventArgs e) {
+            var productInfo = (ProductInfo)e.Rows[0];
+            if(DXMessageBox.Show(this, "Are you sure you want to delete this row?", "Delete Row", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel) {
+                e.Result = "Canceled";
+                return;
+            }
+            using(var context = new NorthwindContext()) {
+                var result = context.Products.Find(productInfo.Id);
+                if(result == null) {
+                    throw new NotImplementedException("The modified row no longer exists in the database. Handle this case according to your requirements.");
                 }
+                context.Products.Remove(result);
+                context.SaveChanges();
             }
         }
     }
