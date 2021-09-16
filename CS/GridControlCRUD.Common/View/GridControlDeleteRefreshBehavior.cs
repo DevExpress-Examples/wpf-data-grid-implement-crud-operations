@@ -12,13 +12,6 @@ using System.Windows.Input;
 
 namespace DevExpress.CRUD.View {
     public class GridControlDeleteRefreshBehavior : Behavior<TableView> {
-        public ICommand<RowDeleteArgs> OnDeleteCommand {
-            get { return (ICommand<RowDeleteArgs>)GetValue(OnDeleteCommandProperty); }
-            set { SetValue(OnDeleteCommandProperty, value); }
-        }
-        public static readonly DependencyProperty OnDeleteCommandProperty =
-            DependencyProperty.Register("OnDeleteCommand", typeof(ICommand<RowDeleteArgs>), typeof(GridControlDeleteRefreshBehavior), new PropertyMetadata(null));
-
         public ICommand<RefreshArgs> OnRefreshCommand {
             get { return (ICommand<RefreshArgs>)GetValue(OnRefreshCommandProperty); }
             set { SetValue(OnRefreshCommandProperty, value); }
@@ -34,14 +27,12 @@ namespace DevExpress.CRUD.View {
             DependencyProperty.Register("NoRecordsErrorMessage", typeof(string), typeof(GridControlDeleteRefreshBehavior), new PropertyMetadata(null, (d, e) => { ((GridControlDeleteRefreshBehavior)d).UpdateErrorText(); }));
 
 
-        public ICommand DeleteCommand { get; }
         public ICommand RefreshCommand { get; }
 
         TableView View => AssociatedObject;
         VirtualSourceBase VirtualSource => View?.DataControl?.ItemsSource as VirtualSourceBase;
 
         public GridControlDeleteRefreshBehavior() {
-            DeleteCommand = new DelegateCommand(DoDelete, CanDelete);
             RefreshCommand = new AsyncCommand(DoRefresh, CanRefresh);
         }
 
@@ -72,10 +63,6 @@ namespace DevExpress.CRUD.View {
         }
 
         async void OnPreviewKeyDown(object sender, KeyEventArgs e) {
-            if(e.Key == Key.Delete && CanDelete()) {
-                e.Handled = true;
-                DoDelete();
-            }
             if(e.Key == Key.F5 && CanRefresh()) {
                 e.Handled = true;
                 await DoRefresh();
@@ -104,27 +91,6 @@ namespace DevExpress.CRUD.View {
                 && !IsEditingRowState() 
                 && !isRefreshInProgress
                 && (View?.Grid.ItemsSource != null || NoRecordsErrorMessage != null);
-        }
-
-        void DoDelete() {
-            var row = View.Grid.SelectedItem;
-            if(row == null)
-                return;
-            if(DXMessageBox.Show(View, "Are you sure you want to delete this row?", "Delete Row", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
-                return;
-            try {
-                OnDeleteCommand.Execute(new RowDeleteArgs(row));
-                if(VirtualSource != null)
-                    VirtualSource?.RefreshRows();
-                else 
-                    View.Commands.DeleteFocusedRow.Execute(null);
-            } catch(Exception ex) {
-                DXMessageBox.Show(ex.Message);
-            }
-        }
-
-        bool CanDelete() {
-            return OnDeleteCommand != null && !IsEditingRowState() && !isRefreshInProgress && View?.Grid.CurrentItem != null;
         }
 
         bool IsEditingRowState() {

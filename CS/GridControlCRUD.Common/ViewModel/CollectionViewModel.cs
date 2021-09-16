@@ -8,6 +8,8 @@ namespace DevExpress.CRUD.ViewModel {
     public abstract class CollectionViewModel<T> : ViewModelBase where T : class {
         readonly IDataProvider<T> dataProvider;
 
+        IMessageBoxService MessageBoxService { get { return GetService<IMessageBoxService>(); } }
+
         protected CollectionViewModel(IDataProvider<T> dataProvider) {
             this.dataProvider = dataProvider;
             OnRefresh();
@@ -50,6 +52,14 @@ namespace DevExpress.CRUD.ViewModel {
         }
 
         [Command]
-        public void OnDelete(RowDeleteArgs args) => dataProvider.Delete((T)args.Row);
+        public void OnDeleteRow(DeleteRowsValidationArgs args) {
+            var row = (T)args.Items[0];
+            if(row == null)
+                return;
+            if(MessageBoxService.ShowMessage("Are you sure you want to delete this row?", "Delete Row", MessageButton.OKCancel) == MessageResult.Cancel) {
+                args.Result = "Canceled";
+            }
+            dataProvider.Delete(row);
+        }
     }
 }
