@@ -15,6 +15,8 @@ namespace DevExpress.CRUD.ViewModel {
     public abstract class VirtualCollectionViewModel<T> : ViewModelBase where T : class, new() {
         readonly IDataProvider<T> dataProvider;
 
+        public IMessageBoxService MessageBoxService { get { return GetService<IMessageBoxService>(); } }
+
         protected VirtualCollectionViewModel(IDataProvider<T> dataProvider) {
             this.dataProvider = dataProvider;
             StartRefresh();
@@ -90,8 +92,14 @@ namespace DevExpress.CRUD.ViewModel {
         protected abstract EntityViewModel<T> CreateEntityViewModel(T entity);
 
         [Command]
-        public void OnDelete(RowDeleteArgs args) {
-            this.dataProvider.Delete((T)args.Row);
+        public void OnDeleteRow(DeleteRowsValidationArgs args) {
+            var row = (T)args.Items[0];
+            if(row == null)
+                return;
+            if(MessageBoxService.ShowMessage("Are you sure you want to delete this row?", "Delete Row", MessageButton.OKCancel) == MessageResult.Cancel) {
+                args.Result = "Canceled";
+            }
+            this.dataProvider.Delete(row);
         }
 
         [Command]
