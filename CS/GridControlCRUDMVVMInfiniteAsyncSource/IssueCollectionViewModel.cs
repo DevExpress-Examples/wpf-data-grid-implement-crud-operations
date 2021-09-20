@@ -35,9 +35,6 @@ namespace GridControlCRUDMVVMInfiniteAsyncSource {
                 }
             }
         }
-        protected override EntityViewModel<IssueData> CreateEntityViewModel(IssueData entity) {
-            return new IssueDataViewModel(entity, usersDataProvider.ReadAsync());
-        }
     }
     public class IssueDataViewModel : EntityViewModel<IssueData> {
         public IssueDataViewModel(IssueData entity, Task<IList<User>> usersTask) : base(entity) {

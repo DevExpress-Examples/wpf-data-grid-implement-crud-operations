@@ -4,12 +4,9 @@ using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Xpf.Data;
 using DevExpress.Mvvm.Xpf;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using System.ComponentModel;
-using DevExpress.Xpf.Core;
 
 namespace DevExpress.CRUD.ViewModel {
     public abstract class VirtualCollectionViewModel<T> : ViewModelBase where T : class, new() {
@@ -23,7 +20,6 @@ namespace DevExpress.CRUD.ViewModel {
         }
 
         public Type FilterType => typeof(Expression<Func<T, bool>>);
-        IDialogService DialogService => GetService<IDialogService>();
 
         [Command]
         public void Fetch(FetchRowsAsyncArgs args) {
@@ -54,42 +50,6 @@ namespace DevExpress.CRUD.ViewModel {
                     .DistinctWithCounts(args.PropertyName);
             });
         }
-
-        [Command]
-        public void OnUpdate(EntityUpdateArgs args) {
-            var entity = (T)args.Entity;
-            var commands = CreateCommands(() => {
-                dataProvider.Update(entity);
-                args.Updated = true;
-            });
-            DialogService.ShowDialog(commands, "Edit " + typeof(T).Name, CreateEntityViewModel(entity));
-        }
-
-        [Command]
-        public void OnCreate(EntityCreateArgs args) {
-            var entity = new T();
-            var commands = CreateCommands(() => {
-                dataProvider.Create(entity);
-                args.Entity = entity;
-            });
-            DialogService.ShowDialog(commands, "New " + typeof(T).Name, CreateEntityViewModel(entity));
-        }
-
-        UICommand[] CreateCommands(Action saveAction) {
-            return new[] {
-                new UICommand(null, "Save", new DelegateCommand<CancelEventArgs>(cancelArgs => {
-                    try {
-                        saveAction();
-                    } catch(Exception e) {
-                        GetService<IMessageBoxService>().ShowMessage(e.Message, "Error", MessageButton.OK);
-                        cancelArgs.Cancel = true;
-                    }
-                }), isDefault: true, isCancel: false),
-                new UICommand(null, "Cancel", null, isDefault: false, isCancel: true),
-            };
-        }
-
-        protected abstract EntityViewModel<T> CreateEntityViewModel(T entity);
 
         [Command]
         public void OnCreateRow(RowValidationArgs args) {
