@@ -92,6 +92,15 @@ namespace DevExpress.CRUD.ViewModel {
         protected abstract EntityViewModel<T> CreateEntityViewModel(T entity);
 
         [Command]
+        public void OnCreateRow(RowValidationArgs args) {
+            if(args.IsNewItem) {
+                dataProvider.Create((T)args.Item);
+            } else {
+                dataProvider.Update((T)args.Item);
+            }
+        }
+
+        [Command]
         public void OnDeleteRow(DeleteRowsValidationArgs args) {
             var row = (T)args.Items[0];
             if(row == null)

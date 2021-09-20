@@ -45,8 +45,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <dxb:ToolBarControl>
-            <dxb:BarButtonItem Content="New (Ctrl+N)" Command="{Binding CreateCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_New.svg}"/>
-            <dxb:BarButtonItem Content="Edit (F2)" Command="{Binding UpdateCommand, ElementName=CRUDBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Edit.svg}"/>
             <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding RefreshCommand, ElementName=DeleteRefreshBehavior}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}"/>
             <dxb:BarButtonItem Content="Delete (Del)" Command="dxg:GridCommands.DeleteFocusedRow" CommandTarget="{Binding ElementName=view}" BarItemDisplayMode="ContentAndGlyph" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}"/>
         </dxb:ToolBarControl>
@@ -60,34 +58,33 @@
                                         GetTotalSummariesCommand="{Binding GetTotalSummariesCommand}"
                                         GetUniqueValuesCommand="{Binding GetUniqueValuesCommand}"/>
             </dxg:GridControl.ItemsSource>
-            <dxg:GridColumn FieldName="Subject" IsSmart="True" Width="2*"/>
-            <dxg:GridColumn FieldName="UserId" IsSmart="True" Width="*"
+            <dxg:GridColumn FieldName="Subject" IsSmart="True" Width="2*" AllowEditing="True"/>
+            <dxg:GridColumn FieldName="UserId" IsSmart="True" Width="*" AllowEditing="True"
                                 AllowedBinaryFilters="Equals,DoesNotEqual" AllowedAnyOfFilters="All">
                 <dxg:GridColumn.EditSettings>
                     <dxe:ComboBoxEditSettings ItemsSource="{Binding Users}" ValueMember="Id" DisplayMember="FullName" IsTextEditable="False"/>
                 </dxg:GridColumn.EditSettings>
             </dxg:GridColumn>
-            <dxg:GridColumn FieldName="Created" IsSmart="True" Width="*"
+            <dxg:GridColumn FieldName="Created" IsSmart="True" Width="*" AllowEditing="True"
                             AllowSorting="True" DefaultSortOrder="Descending" SortOrder="Descending"
                             AllowedDateTimeFilters="SingleDateRange" FilterPopupMode="DateSmart">
                 <dxg:GridColumn.EditSettings>
                     <dxe:DateEditSettings Mask="MM/dd/yy" MaskUseAsDisplayFormat="True"/>
                 </dxg:GridColumn.EditSettings>
             </dxg:GridColumn>
-            <dxg:GridColumn FieldName="Votes" IsSmart="True" Width="0.5*"
+            <dxg:GridColumn FieldName="Votes" IsSmart="True" Width="0.5*" AllowEditing="True"
                                 AllowSorting="True" DefaultSortOrder="Descending"
                                 AllowedBinaryFilters="GreaterOrEqual,LessOrEqual" FilterPopupMode="Excel"/>
-            <dxg:GridColumn FieldName="Priority" IsSmart="True" Width="*"/>
+            <dxg:GridColumn FieldName="Priority" IsSmart="True" Width="*" AllowEditing="True"/>
             <dxg:GridControl.TotalSummary>
                 <dxg:GridSummaryItem SummaryType="Count" Alignment="Right"/>
                 <dxg:GridSummaryItem SummaryType="Max" FieldName="Created" DisplayFormat="{}Last created: {0}" Alignment="Right"/>
             </dxg:GridControl.TotalSummary>
             <dxg:GridControl.View>
-                <dxg:TableView x:Name="view" AutoWidth="True" AllowEditing="False" ValidateDeleteRowsCommand="{Binding OnDeleteRowCommand}" ShowFixedTotalSummary="True">
+                <dxg:TableView x:Name="view" AutoWidth="True" ValidateDeleteRowsCommand="{Binding OnDeleteRowCommand}" 
+                               ValidateRowCommand="{Binding OnCreateRowCommand}" ShowFixedTotalSummary="True" NewItemRowPosition="Top"
+                               ShowUpdateRowButtons="OnCellEditorOpen">
                     <dxmvvm:Interaction.Behaviors>
-                        <local:VirtualSourceEditFormBehavior x:Name="CRUDBehavior"
-                                                            OnCreateCommand="{Binding OnCreateCommand}"
-                                                            OnUpdateCommand="{Binding OnUpdateCommand}"/>
                         <view:GridControlDeleteRefreshBehavior x:Name="DeleteRefreshBehavior"
                                                                OnRefreshCommand="{Binding OnRefreshCommand}"/>
                     </dxmvvm:Interaction.Behaviors>
