@@ -1,0 +1,44 @@
+<Window x:Class="XPOIssues.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:XPOIssues" xmlns:local_issues="clr-namespace:XPOIssues.Issues" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" mc:Ignorable="d" Title="MainWindow" Height="450" Width="800">
+  <Grid>
+    <dxb:ToolBarControl>
+      <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding View.Commands.Refresh, ElementName=grid}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}" BarItemDisplayMode="ContentAndGlyph" />
+      <dxb:BarButtonItem Content="Edit (F2)" Command="{Binding UpdateCommand, ElementName=EditFormBehavior}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Edit.svg}" BarItemDisplayMode="ContentAndGlyph" />
+      <dxb:BarButtonItem Content="New" Command="{Binding CreateCommand, ElementName=EditFormBehavior}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Add.svg}" BarItemDisplayMode="ContentAndGlyph" />
+      <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding DeleteCommand, ElementName=EditFormBehavior}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}" BarItemDisplayMode="ContentAndGlyph" />
+    </dxb:ToolBarControl>
+    <dxg:GridControl x:Name="grid" ItemsSource="{Binding InstantFeedbackSource}" Grid.Row="1">
+      <dxg:GridControl.View>
+        <dxg:TableView ShowFixedTotalSummary="True" RefreshCommand="{Binding RefreshCommand}" />
+      </dxg:GridControl.View>
+      <dxg:GridColumn FieldName="Oid" IsSmart="True" />
+      <dxg:GridColumn FieldName="Subject" IsSmart="True" />
+      <dxg:GridColumn FieldName="UserId" IsSmart="True" Header="User">
+        <dxg:GridColumn.EditSettings>
+          <dxe:ComboBoxEditSettings DisplayMember="Name" ValueMember="Id" ItemsSource="{Binding Users}" />
+        </dxg:GridColumn.EditSettings>
+      </dxg:GridColumn>
+      <dxg:GridColumn FieldName="Created" IsSmart="True" />
+      <dxg:GridColumn FieldName="Votes" IsSmart="True" />
+      <dxg:GridColumn FieldName="Priority" IsSmart="True" />
+      <dxg:GridControl.TotalSummary>
+        <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
+      </dxg:GridControl.TotalSummary>
+      <dxmvvm:Interaction.Behaviors>
+        <dxg:DialogEditFormBehavior x:Name="EditFormBehavior" KeyProperty="Oid" CreateEditItemViewModelCommand="{Binding CreateEditEntityViewModelCommand}" ValidateRowCommand="{Binding ValidateRowCommand}" ValidateDeleteRowsCommand="{Binding ValidateDeleteRowsCommand}">
+          <dxg:DialogEditFormBehavior.EditTemplate>
+            <DataTemplate>
+              <local:IssueDetailView />
+            </DataTemplate>
+          </dxg:DialogEditFormBehavior.EditTemplate>
+        </dxg:DialogEditFormBehavior>
+      </dxmvvm:Interaction.Behaviors>
+    </dxg:GridControl>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+  </Grid>
+  <Window.DataContext>
+    <local:MainViewModel />
+  </Window.DataContext>
+</Window>
