@@ -39,4 +39,4 @@ Refer to the [How to: Implement CRUD Operations in a Data-Bound Grid](https://do
 |Instant Feedback Mode [?](https://docs.devexpress.com/WPF/6090/controls-and-libraries/data-grid/bind-to-data/server-mode-and-instant-feedback#instant-feedback-mode)|[link](VB/ViewModel/EntityFramework/InstantFeedbackMode)|[link](VB/ViewModel/EFCore/InstantFeedbackMode)|[link](VB/ViewModel/XPO/InstantFeedbackMode)|
 |Server Mode [?](https://docs.devexpress.com/WPF/6090/controls-and-libraries/data-grid/bind-to-data/server-mode-and-instant-feedback#server-mode)|[link](VB/ViewModel/EntityFramework/ServerMode)|[link](VB/ViewModel/EFCore/ServerMode)|[link](VB/ViewModel/XPO/ServerMode)|
 
-<b id="f1"><sup>1</sup></b> New and Delete operations are not available with the Paged Async Source binding. [↩](#a1)
+<b id="f1"><sup>1</sup></b> Create and delete operations are not available with the Paged Async Source binding. [↩](#a1)
