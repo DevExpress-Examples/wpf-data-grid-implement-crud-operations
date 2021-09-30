@@ -1,8 +1,10 @@
 using DevExpress.Mvvm;
+using DevExpress.Xpf.Data;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Data.Entity;
 using EntityFrameworkIssues.Issues;
 using DevExpress.Mvvm.Xpf;
-using System.Data.Entity;
 using System;
 
 namespace EntityFrameworkIssues {

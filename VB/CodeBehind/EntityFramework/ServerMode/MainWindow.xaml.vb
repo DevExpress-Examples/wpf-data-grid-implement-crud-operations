@@ -1,7 +1,9 @@
+Imports DevExpress.Xpf.Data
 Imports System.Linq
+Imports System.Threading.Tasks
+Imports System.Data.Entity
 Imports EntityFrameworkIssues.Issues
 Imports DevExpress.Mvvm.Xpf
-Imports System.Data.Entity
 Imports System
 Imports System.Collections
 Class MainWindow

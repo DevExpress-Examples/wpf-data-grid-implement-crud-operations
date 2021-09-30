@@ -1,5 +1,7 @@
 using DevExpress.Mvvm;
+using DevExpress.Xpf.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using DevExpress.Xpo;
 using XPOIssues.Issues;
 using DevExpress.Mvvm.Xpf;

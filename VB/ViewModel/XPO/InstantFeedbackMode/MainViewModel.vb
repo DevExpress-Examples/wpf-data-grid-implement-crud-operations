@@ -1,5 +1,7 @@
 Imports DevExpress.Mvvm
+Imports DevExpress.Xpf.Data
 Imports System.Linq
+Imports System.Threading.Tasks
 Imports DevExpress.Xpo
 Imports XPOIssues.Issues
 Imports DevExpress.Mvvm.Xpf

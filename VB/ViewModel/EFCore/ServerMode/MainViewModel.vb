@@ -1,8 +1,10 @@
 Imports DevExpress.Mvvm
+Imports DevExpress.Xpf.Data
 Imports System.Linq
+Imports System.Threading.Tasks
+Imports Microsoft.EntityFrameworkCore
 Imports EFCoreIssues.Issues
 Imports DevExpress.Mvvm.Xpf
-Imports Microsoft.EntityFrameworkCore
 Imports System
 
 Public Class MainViewModel

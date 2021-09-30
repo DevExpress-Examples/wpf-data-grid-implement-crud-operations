@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantFeedbackMode", "InstantFeedbackMode.csproj", "{B43E4052-45CD-42BF-AD6F-6A5A0626A222}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantFeedbackMode", "InstantFeedbackMode.csproj", "{2138333B-751D-1786-5AB5-04A2980BC1D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B43E4052-45CD-42BF-AD6F-6A5A0626A222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B43E4052-45CD-42BF-AD6F-6A5A0626A222}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B43E4052-45CD-42BF-AD6F-6A5A0626A222}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B43E4052-45CD-42BF-AD6F-6A5A0626A222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2138333B-751D-1786-5AB5-04A2980BC1D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2138333B-751D-1786-5AB5-04A2980BC1D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2138333B-751D-1786-5AB5-04A2980BC1D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2138333B-751D-1786-5AB5-04A2980BC1D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
