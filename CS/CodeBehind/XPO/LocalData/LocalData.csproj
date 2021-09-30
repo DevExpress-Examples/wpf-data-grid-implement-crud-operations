@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{61B90071-158D-9EFA-22CF-182F8C1F0437}</ProjectGuid>
+    <ProjectGuid>{3541B178-E676-0805-F25F-5A8CD5E3B24D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>XPOIssues</RootNamespace>
     <AssemblyName>XPOIssues</AssemblyName>

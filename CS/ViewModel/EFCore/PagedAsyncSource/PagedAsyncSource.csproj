@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9A21537E-2367-5126-0C5D-D538D829C2A6}</ProjectGuid>
+    <ProjectGuid>{53EE5C14-88F4-CD56-FB51-745A56607087}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>EFCoreIssues</RootNamespace>
     <AssemblyName>EFCoreIssues</AssemblyName>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfiniteAsyncSource", "InfiniteAsyncSource.csproj", "{69D5502E-7323-0B7C-3C96-5324CC792F0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfiniteAsyncSource", "InfiniteAsyncSource.csproj", "{7CA671EC-636D-DCB9-77ED-22E6682697F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{69D5502E-7323-0B7C-3C96-5324CC792F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{69D5502E-7323-0B7C-3C96-5324CC792F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{69D5502E-7323-0B7C-3C96-5324CC792F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{69D5502E-7323-0B7C-3C96-5324CC792F0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CA671EC-636D-DCB9-77ED-22E6682697F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CA671EC-636D-DCB9-77ED-22E6682697F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CA671EC-636D-DCB9-77ED-22E6682697F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CA671EC-636D-DCB9-77ED-22E6682697F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

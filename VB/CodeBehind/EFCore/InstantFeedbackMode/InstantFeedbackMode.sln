@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "InstantFeedbackMode", "InstantFeedbackMode.vbproj", "{4B5A3E95-77ED-9D47-EBBF-11F097392168}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "InstantFeedbackMode", "InstantFeedbackMode.vbproj", "{B0FFA88F-66BA-2F44-85B1-0C5042B5D25D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4B5A3E95-77ED-9D47-EBBF-11F097392168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B5A3E95-77ED-9D47-EBBF-11F097392168}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B5A3E95-77ED-9D47-EBBF-11F097392168}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B5A3E95-77ED-9D47-EBBF-11F097392168}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0FFA88F-66BA-2F44-85B1-0C5042B5D25D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0FFA88F-66BA-2F44-85B1-0C5042B5D25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0FFA88F-66BA-2F44-85B1-0C5042B5D25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0FFA88F-66BA-2F44-85B1-0C5042B5D25D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
