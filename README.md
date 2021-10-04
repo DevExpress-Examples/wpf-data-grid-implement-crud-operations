@@ -4,6 +4,8 @@
 The following examples demonstrate how to implement CRUD operations (create, read, update, and delete) in the [GridControl](https://documentation.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl.class) bound to different data sources.
 
 Refer to the [How to: Implement CRUD Operations in a Data-Bound Grid](https://docs.devexpress.com/WPF/401907/controls-and-libraries/data-grid/examples/data-editing-and-validation/how-to-crud-operations) documentation topic for more information.
+
+See also: [How to: Bind Data Grid control to data](https://github.com/DevExpress-Examples/how-to-bind-wpf-grid-to-data)
 # C#
 ## CodeBehind
 ||Entity Framework 6 [?](https://docs.microsoft.com/en-us/ef/ef6/)|Entity Framework Core [?](https://docs.microsoft.com/en-us/ef/)|DevExpress XPO [?](https://docs.devexpress.com/XPO/1998/express-persistent-objects)|
