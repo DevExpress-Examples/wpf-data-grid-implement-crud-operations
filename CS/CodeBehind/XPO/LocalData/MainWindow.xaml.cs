@@ -5,11 +5,11 @@ namespace XPOIssues {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            Refresh();
+            LoadData();
         }
         DevExpress.Xpo.UnitOfWork _UnitOfWork;
 
-        void Refresh() {
+        void LoadData() {
             _UnitOfWork = new DevExpress.Xpo.UnitOfWork();
             var xpCollection = new DevExpress.Xpo.XPCollection<XPOIssues.Issues.User>(_UnitOfWork);
             xpCollection.Sorting.Add(new DevExpress.Xpo.SortProperty(nameof(XPOIssues.Issues.User.Oid), DevExpress.Xpo.DB.SortingDirection.Ascending));
@@ -27,7 +27,7 @@ namespace XPOIssues {
         }
 
         void OnRefresh(System.Object sender, DevExpress.Xpf.Grid.RefreshEventArgs e) {
-            Refresh();
+            LoadData();
         }
     }
 }

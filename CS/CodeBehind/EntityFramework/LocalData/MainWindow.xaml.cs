@@ -5,11 +5,11 @@ namespace EntityFrameworkIssues {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            Refresh();
+            LoadData();
         }
         EntityFrameworkIssues.Issues.IssuesContext _Context;
 
-        void Refresh() {
+        void LoadData() {
             _Context = new EntityFrameworkIssues.Issues.IssuesContext();
             grid.ItemsSource = _Context.Users.ToList();
         }
@@ -28,7 +28,7 @@ namespace EntityFrameworkIssues {
         }
 
         void OnRefresh(System.Object sender, DevExpress.Xpf.Grid.RefreshEventArgs e) {
-            Refresh();
+            LoadData();
         }
     }
 }

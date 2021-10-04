@@ -2,11 +2,11 @@ Imports System.Linq
 Class MainWindow
     Public Sub New()
         InitializeComponent()
-        Refresh()
+        LoadData()
     End Sub
     Private _Context As Issues.IssuesContext
 
-    Private Sub Refresh()
+    Private Sub LoadData()
         _Context = New Issues.IssuesContext()
         grid.ItemsSource = _Context.Users.ToList()
     End Sub
@@ -24,7 +24,7 @@ Class MainWindow
     End Sub
 
     Private Sub OnRefresh(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.RefreshEventArgs)
-        Refresh()
+        LoadData()
     End Sub
 
 End Class
