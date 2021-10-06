@@ -30,7 +30,7 @@ namespace EFCoreIssues {
             usersLookup.ItemsSource = context.Users.Select(user => new { Id = user.Id, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
 
-        void OnRefresh(System.Object sender, DevExpress.Xpf.Grid.RefreshEventArgs e) {
+        void OnRefreshDataSource(System.Object sender, DevExpress.Xpf.Grid.RefreshDataSourceEventArgs e) {
             LoadLookupData();
         }
 

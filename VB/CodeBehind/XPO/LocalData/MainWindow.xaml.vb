@@ -23,7 +23,7 @@ Class MainWindow
         _UnitOfWork.CommitChanges()
     End Sub
 
-    Private Sub OnRefresh(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.RefreshEventArgs)
+    Private Sub OnRefreshDataSource(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.RefreshDataSourceEventArgs)
         LoadData()
     End Sub
 

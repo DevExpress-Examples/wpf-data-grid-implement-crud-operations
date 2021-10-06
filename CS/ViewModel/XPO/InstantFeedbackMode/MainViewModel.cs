@@ -49,7 +49,7 @@ new DevExpress.Xpo.ServerViewProperty("Priority", DevExpress.Xpo.SortDirection.N
             }
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void Refresh(DevExpress.Mvvm.Xpf.RefreshArgs args) {
+        public void RefreshDataSource(DevExpress.Mvvm.Xpf.RefreshDataSourceArgs args) {
             _Users = null;
             RaisePropertyChanged(nameof(Users));
         }

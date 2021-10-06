@@ -32,7 +32,7 @@ new DevExpress.Xpo.ServerViewProperty("Priority", DevExpress.Xpo.SortDirection.N
             usersLookup.ItemsSource = session.Query<XPOIssues.Issues.User>().OrderBy(user => user.Oid).Select(user => new { Id = user.Oid, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
 
-        void OnRefresh(System.Object sender, DevExpress.Xpf.Grid.RefreshEventArgs e) {
+        void OnRefreshDataSource(System.Object sender, DevExpress.Xpf.Grid.RefreshDataSourceEventArgs e) {
             LoadLookupData();
         }
 

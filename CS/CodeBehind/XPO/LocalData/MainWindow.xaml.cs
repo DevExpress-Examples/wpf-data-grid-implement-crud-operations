@@ -26,7 +26,7 @@ namespace XPOIssues {
             _UnitOfWork.CommitChanges();
         }
 
-        void OnRefresh(System.Object sender, DevExpress.Xpf.Grid.RefreshEventArgs e) {
+        void OnRefreshDataSource(System.Object sender, DevExpress.Xpf.Grid.RefreshDataSourceEventArgs e) {
             LoadData();
         }
     }

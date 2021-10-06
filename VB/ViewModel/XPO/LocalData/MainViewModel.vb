@@ -28,7 +28,7 @@ Public Class MainViewModel
         _UnitOfWork.CommitChanges()
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub Refresh(ByVal args As DevExpress.Mvvm.Xpf.RefreshArgs)
+    Public Sub RefreshDataSource(ByVal args As DevExpress.Mvvm.Xpf.RefreshDataSourceArgs)
         _ItemsSource = Nothing
         _UnitOfWork = Nothing
         RaisePropertyChanged(Nameof(ItemsSource))

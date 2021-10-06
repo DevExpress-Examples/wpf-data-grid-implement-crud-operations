@@ -1,12 +1,12 @@
 <Window x:Class="EntityFrameworkIssues.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:EntityFrameworkIssues" xmlns:local_issues="clr-namespace:EntityFrameworkIssues.Issues" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" mc:Ignorable="d" Title="MainWindow" Height="450" Width="800">
   <Grid>
     <dxb:ToolBarControl>
-      <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding View.Commands.Refresh, ElementName=grid}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}" BarItemDisplayMode="ContentAndGlyph" />
+      <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding View.Commands.RefreshDataSource, ElementName=grid}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}" BarItemDisplayMode="ContentAndGlyph" />
       <dxb:BarButtonItem Content="Edit (F2)" Command="{Binding View.Commands.EditFocusedRow, ElementName=grid}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Edit.svg}" BarItemDisplayMode="ContentAndGlyph" />
     </dxb:ToolBarControl>
     <dxg:GridControl x:Name="grid" Grid.Row="1">
       <dxg:GridControl.View>
-        <dxg:TableView ShowUpdateRowButtons="OnCellEditorOpen" ValidateRow="OnValidateRow" ShowFixedTotalSummary="True" Refresh="OnRefresh" />
+        <dxg:TableView ShowUpdateRowButtons="OnCellEditorOpen" ValidateRow="OnValidateRow" ShowFixedTotalSummary="True" RefreshDataSource="OnRefreshDataSource" />
       </dxg:GridControl.View>
       <dxg:GridColumn FieldName="Id" IsSmart="True" AllowEditing="True" />
       <dxg:GridColumn FieldName="Subject" IsSmart="True" AllowEditing="True" />

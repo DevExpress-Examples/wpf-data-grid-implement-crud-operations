@@ -30,7 +30,7 @@ namespace XPOIssues {
             _UnitOfWork.CommitChanges();
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void Refresh(DevExpress.Mvvm.Xpf.RefreshArgs args) {
+        public void RefreshDataSource(DevExpress.Mvvm.Xpf.RefreshDataSourceArgs args) {
             _ItemsSource = null;
             _UnitOfWork = null;
             RaisePropertyChanged(nameof(ItemsSource));

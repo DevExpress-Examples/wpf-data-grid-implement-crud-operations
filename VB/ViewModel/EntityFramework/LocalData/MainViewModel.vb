@@ -28,7 +28,7 @@ Public Class MainViewModel
         _Context.SaveChanges()
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub Refresh(ByVal args As DevExpress.Mvvm.Xpf.RefreshArgs)
+    Public Sub RefreshDataSource(ByVal args As DevExpress.Mvvm.Xpf.RefreshDataSourceArgs)
         _ItemsSource = Nothing
         _Context = Nothing
         RaisePropertyChanged(Nameof(ItemsSource))
