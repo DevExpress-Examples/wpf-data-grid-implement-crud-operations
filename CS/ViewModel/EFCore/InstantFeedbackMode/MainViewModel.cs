@@ -43,7 +43,7 @@ namespace EFCoreIssues {
             }
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void RefreshDataSource(DevExpress.Mvvm.Xpf.RefreshDataSourceArgs args) {
+        public void DataSourceRefresh(DevExpress.Mvvm.Xpf.DataSourceRefreshArgs args) {
             _Users = null;
             RaisePropertyChanged(nameof(Users));
         }
@@ -65,7 +65,7 @@ namespace EFCoreIssues {
             context.SaveChanges();
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateDeleteRows(DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs args) {
+        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs args) {
             var key = (int)args.Keys.Single();
             var item = new Issue() { Id = key };
             var context = new IssuesContext();

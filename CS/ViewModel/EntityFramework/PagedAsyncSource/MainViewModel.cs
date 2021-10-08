@@ -57,7 +57,7 @@ namespace EntityFrameworkIssues {
             }
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void RefreshDataSource(DevExpress.Mvvm.Xpf.RefreshDataSourceArgs args) {
+        public void DataSourceRefresh(DevExpress.Mvvm.Xpf.DataSourceRefreshArgs args) {
             _Users = null;
             RaisePropertyChanged(nameof(Users));
         }

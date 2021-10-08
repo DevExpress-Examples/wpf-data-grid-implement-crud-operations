@@ -24,13 +24,13 @@ namespace XPOIssues {
             _UnitOfWork.CommitChanges();
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateDeleteRows(DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs args) {
+        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs args) {
             var item = (XPOIssues.Issues.User)args.Items.Single();
             _UnitOfWork.Delete(item);
             _UnitOfWork.CommitChanges();
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void RefreshDataSource(DevExpress.Mvvm.Xpf.RefreshDataSourceArgs args) {
+        public void DataSourceRefresh(DevExpress.Mvvm.Xpf.DataSourceRefreshArgs args) {
             _ItemsSource = null;
             _UnitOfWork = null;
             RaisePropertyChanged(nameof(ItemsSource));

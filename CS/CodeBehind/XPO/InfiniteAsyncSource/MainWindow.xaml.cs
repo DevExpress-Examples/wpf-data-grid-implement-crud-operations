@@ -66,7 +66,7 @@ namespace XPOIssues {
             }
         }
 
-        void OnValidateDeleteRows(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
+        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
             using(var unitOfWork = new DevExpress.Xpo.UnitOfWork()) {
                 var key = _DetachedObjectsHelper.GetKey(e.Rows.Single());
                 var item = unitOfWork.GetObjectByKey<XPOIssues.Issues.Issue>(key);
@@ -80,7 +80,7 @@ namespace XPOIssues {
             usersLookup.ItemsSource = session.Query<XPOIssues.Issues.User>().OrderBy(user => user.Oid).Select(user => new { Id = user.Oid, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
 
-        void OnRefreshDataSource(System.Object sender, DevExpress.Xpf.Grid.RefreshDataSourceEventArgs e) {
+        void OnDataSourceRefresh(System.Object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }
     }

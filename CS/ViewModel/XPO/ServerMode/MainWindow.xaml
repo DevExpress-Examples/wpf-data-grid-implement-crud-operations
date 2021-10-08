@@ -8,7 +8,7 @@
     </dxb:ToolBarControl>
     <dxg:GridControl x:Name="grid" ItemsSource="{Binding InstantFeedbackSource}" Grid.Row="1">
       <dxg:GridControl.View>
-        <dxg:TableView ShowFixedTotalSummary="True" RefreshDataSourceCommand="{Binding RefreshDataSourceCommand}" />
+        <dxg:TableView ShowFixedTotalSummary="True" DataSourceRefreshCommand="{Binding DataSourceRefreshCommand}" />
       </dxg:GridControl.View>
       <dxg:GridColumn FieldName="Oid" IsSmart="True" />
       <dxg:GridColumn FieldName="Subject" IsSmart="True" />
@@ -24,7 +24,7 @@
         <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
       </dxg:GridControl.TotalSummary>
       <dxmvvm:Interaction.Behaviors>
-        <dxg:DialogEditFormBehavior x:Name="EditFormBehavior" KeyProperty="Oid" CreateEditItemViewModelCommand="{Binding CreateEditEntityViewModelCommand}" ValidateRowCommand="{Binding ValidateRowCommand}" ValidateDeleteRowsCommand="{Binding ValidateDeleteRowsCommand}">
+        <dxg:DialogEditFormBehavior x:Name="EditFormBehavior" KeyProperty="Oid" CreateEditItemViewModelCommand="{Binding CreateEditEntityViewModelCommand}" ValidateRowCommand="{Binding ValidateRowCommand}" ValidateRowDeletionCommand="{Binding ValidateRowDeletionCommand}">
           <dxg:DialogEditFormBehavior.EditTemplate>
             <DataTemplate>
               <local:IssueDetailView />

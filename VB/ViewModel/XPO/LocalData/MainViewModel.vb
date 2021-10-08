@@ -22,13 +22,13 @@ Public Class MainViewModel
         _UnitOfWork.CommitChanges()
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub ValidateDeleteRows(ByVal args As DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs)
+    Public Sub ValidateRowDeletion(ByVal args As DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs)
         Dim item = CType(args.Items.Single(), Issues.User)
         _UnitOfWork.Delete(item)
         _UnitOfWork.CommitChanges()
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub RefreshDataSource(ByVal args As DevExpress.Mvvm.Xpf.RefreshDataSourceArgs)
+    Public Sub DataSourceRefresh(ByVal args As DevExpress.Mvvm.Xpf.DataSourceRefreshArgs)
         _ItemsSource = Nothing
         _UnitOfWork = Nothing
         RaisePropertyChanged(Nameof(ItemsSource))

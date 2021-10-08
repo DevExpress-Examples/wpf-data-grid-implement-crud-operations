@@ -57,7 +57,7 @@ namespace EFCoreIssues {
             }
         }
 
-        void OnValidateDeleteRows(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
+        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
             var row = (EFCoreIssues.Issues.Issue)e.Rows.Single();
             var context = new EFCoreIssues.Issues.IssuesContext();
             context.Entry(row).State = EntityState.Deleted;
@@ -69,7 +69,7 @@ namespace EFCoreIssues {
             usersLookup.ItemsSource = context.Users.Select(user => new { Id = user.Id, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
 
-        void OnRefreshDataSource(System.Object sender, DevExpress.Xpf.Grid.RefreshDataSourceEventArgs e) {
+        void OnDataSourceRefresh(System.Object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }
     }

@@ -8,7 +8,7 @@
     </dxb:ToolBarControl>
     <dxg:GridControl x:Name="grid" Grid.Row="1">
       <dxg:GridControl.View>
-        <dxg:TableView NewItemRowPosition="Top" ShowUpdateRowButtons="OnCellEditorOpen" ValidateRowCommand="{Binding ValidateRowCommand}" ValidateDeleteRowsCommand="{Binding ValidateDeleteRowsCommand}" ShowFixedTotalSummary="True" RefreshDataSourceCommand="{Binding RefreshDataSourceCommand}" />
+        <dxg:TableView NewItemRowPosition="Top" ShowUpdateRowButtons="OnCellEditorOpen" ValidateRowCommand="{Binding ValidateRowCommand}" ValidateRowDeletionCommand="{Binding ValidateRowDeletionCommand}" ShowFixedTotalSummary="True" DataSourceRefreshCommand="{Binding DataSourceRefreshCommand}" />
       </dxg:GridControl.View>
       <dxg:GridControl.ItemsSource>
         <dx:InfiniteAsyncSource ElementType="local_issues:Issue" KeyProperty="Id" FetchRowsCommand="{Binding FetchRowsCommand}" GetTotalSummariesCommand="{Binding GetTotalSummariesCommand}" />

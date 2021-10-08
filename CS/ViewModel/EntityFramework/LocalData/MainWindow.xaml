@@ -8,7 +8,7 @@
     </dxb:ToolBarControl>
     <dxg:GridControl x:Name="grid" ItemsSource="{Binding ItemsSource}" RestoreStateKeyFieldName="Id" RestoreStateOnSourceChange="True" Grid.Row="1">
       <dxg:GridControl.View>
-        <dxg:TableView NewItemRowPosition="Top" ShowUpdateRowButtons="OnCellEditorOpen" ValidateRowCommand="{Binding ValidateRowCommand}" ValidateDeleteRowsCommand="{Binding ValidateDeleteRowsCommand}" RefreshDataSourceCommand="{Binding RefreshDataSourceCommand}" ShowFixedTotalSummary="True" />
+        <dxg:TableView NewItemRowPosition="Top" ShowUpdateRowButtons="OnCellEditorOpen" ValidateRowCommand="{Binding ValidateRowCommand}" ValidateRowDeletionCommand="{Binding ValidateRowDeletionCommand}" DataSourceRefreshCommand="{Binding DataSourceRefreshCommand}" ShowFixedTotalSummary="True" />
       </dxg:GridControl.View>
       <dxg:GridColumn FieldName="Id" IsSmart="True" />
       <dxg:GridColumn FieldName="FirstName" IsSmart="True" />

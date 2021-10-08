@@ -54,7 +54,7 @@ Public Class MainViewModel
         End Get
     End Property
     <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub RefreshDataSource(ByVal args As DevExpress.Mvvm.Xpf.RefreshDataSourceArgs)
+    Public Sub DataSourceRefresh(ByVal args As DevExpress.Mvvm.Xpf.DataSourceRefreshArgs)
         _Users = Nothing
         RaisePropertyChanged(Nameof(Users))
     End Sub

@@ -72,7 +72,7 @@ namespace XPOIssues {
             }
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateDeleteRows(DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs args) {
+        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs args) {
             using(var unitOfWork = new DevExpress.Xpo.UnitOfWork()) {
                 var key = DetachedObjectsHelper.GetKey(args.Items.Single());
                 var item = unitOfWork.GetObjectByKey<XPOIssues.Issues.Issue>(key);
@@ -96,7 +96,7 @@ namespace XPOIssues {
             }
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void RefreshDataSource(DevExpress.Mvvm.Xpf.RefreshDataSourceArgs args) {
+        public void DataSourceRefresh(DevExpress.Mvvm.Xpf.DataSourceRefreshArgs args) {
             _Users = null;
             RaisePropertyChanged(nameof(Users));
         }

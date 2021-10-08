@@ -59,7 +59,7 @@ Class MainWindow
         }).ToArray()
     End Sub
 
-    Private Sub OnRefreshDataSource(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.RefreshDataSourceEventArgs)
+    Private Sub OnDataSourceRefresh(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.DataSourceRefreshEventArgs)
         LoadLookupData()
     End Sub
 

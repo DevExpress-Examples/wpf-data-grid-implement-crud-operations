@@ -17,13 +17,13 @@ Class MainWindow
         _UnitOfWork.CommitChanges()
     End Sub
 
-    Private Sub OnValidateDeleteRows(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs)
+    Private Sub OnValidateRowDeletion(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs)
         Dim row = CType(e.Rows.Single(), Issues.User)
         _UnitOfWork.Delete(row)
         _UnitOfWork.CommitChanges()
     End Sub
 
-    Private Sub OnRefreshDataSource(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.RefreshDataSourceEventArgs)
+    Private Sub OnDataSourceRefresh(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.DataSourceRefreshEventArgs)
         LoadData()
     End Sub
 

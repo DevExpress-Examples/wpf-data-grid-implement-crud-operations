@@ -49,7 +49,7 @@ new DevExpress.Xpo.ServerViewProperty("Priority", DevExpress.Xpo.SortDirection.N
             }
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void RefreshDataSource(DevExpress.Mvvm.Xpf.RefreshDataSourceArgs args) {
+        public void DataSourceRefresh(DevExpress.Mvvm.Xpf.DataSourceRefreshArgs args) {
             _Users = null;
             RaisePropertyChanged(nameof(Users));
         }
@@ -71,7 +71,7 @@ new DevExpress.Xpo.ServerViewProperty("Priority", DevExpress.Xpo.SortDirection.N
             unitOfWork.CommitChanges();
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateDeleteRows(DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs args) {
+        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs args) {
             using(var unitOfWork = new UnitOfWork()) {
                 var key = (int)args.Keys.Single();
                 var item = unitOfWork.GetObjectByKey<Issue>(key);

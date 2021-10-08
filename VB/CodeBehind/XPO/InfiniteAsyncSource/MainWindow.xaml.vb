@@ -56,7 +56,7 @@ Class MainWindow
         End Using
     End Sub
 
-    Private Sub OnValidateDeleteRows(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs)
+    Private Sub OnValidateRowDeletion(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs)
         Using unitOfWork = New DevExpress.Xpo.UnitOfWork()
             Dim key = _DetachedObjectsHelper.GetKey(e.Rows.[Single]())
             Dim item = unitOfWork.GetObjectByKey(Of Issues.Issue)(key)
@@ -73,7 +73,7 @@ Class MainWindow
         }).ToArray()
     End Sub
 
-    Private Sub OnRefreshDataSource(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.RefreshDataSourceEventArgs)
+    Private Sub OnDataSourceRefresh(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.DataSourceRefreshEventArgs)
         LoadLookupData()
     End Sub
 

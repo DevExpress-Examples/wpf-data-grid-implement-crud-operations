@@ -30,7 +30,7 @@ namespace EntityFrameworkIssues {
             usersLookup.ItemsSource = context.Users.Select(user => new { Id = user.Id, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
 
-        void OnRefreshDataSource(System.Object sender, DevExpress.Xpf.Grid.RefreshDataSourceEventArgs e) {
+        void OnDataSourceRefresh(System.Object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }
 
@@ -51,7 +51,7 @@ namespace EntityFrameworkIssues {
             context.SaveChanges();
         }
 
-        void OnValidateDeleteRows(System.Object sender, DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs e) {
+        void OnValidateRowDeletion(System.Object sender, DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs e) {
             var key = (int)e.Keys.Single();
             var item = new Issue() { Id = key };
             var context = new IssuesContext();

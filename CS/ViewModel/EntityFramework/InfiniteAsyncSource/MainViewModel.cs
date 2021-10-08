@@ -43,7 +43,7 @@ namespace EntityFrameworkIssues {
             }
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateDeleteRows(DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs args) {
+        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs args) {
             var item = (EntityFrameworkIssues.Issues.Issue)args.Items.Single();
             var context = new EntityFrameworkIssues.Issues.IssuesContext();
             context.Entry(item).State = EntityState.Deleted;
@@ -63,7 +63,7 @@ namespace EntityFrameworkIssues {
             }
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void RefreshDataSource(DevExpress.Mvvm.Xpf.RefreshDataSourceArgs args) {
+        public void DataSourceRefresh(DevExpress.Mvvm.Xpf.DataSourceRefreshArgs args) {
             _Users = null;
             RaisePropertyChanged(nameof(Users));
         }

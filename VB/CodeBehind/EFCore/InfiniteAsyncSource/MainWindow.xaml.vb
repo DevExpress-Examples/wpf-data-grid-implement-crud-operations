@@ -49,7 +49,7 @@ Class MainWindow
 
     End Sub
 
-    Private Sub OnValidateDeleteRows(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs)
+    Private Sub OnValidateRowDeletion(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs)
         Dim row = CType(e.Rows.Single(), Issues.Issue)
         Dim context = New Issues.IssuesContext()
         context.Entry(row).State = EntityState.Deleted
@@ -64,7 +64,7 @@ Class MainWindow
         }).ToArray()
     End Sub
 
-    Private Sub OnRefreshDataSource(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.RefreshDataSourceEventArgs)
+    Private Sub OnDataSourceRefresh(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.DataSourceRefreshEventArgs)
         LoadLookupData()
     End Sub
 

@@ -21,13 +21,13 @@ namespace EFCoreIssues {
             _Context.SaveChanges();
         }
 
-        void OnValidateDeleteRows(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
+        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
             var row = (EFCoreIssues.Issues.User)e.Rows.Single();
             _Context.Users.Remove(row);
             _Context.SaveChanges();
         }
 
-        void OnRefreshDataSource(System.Object sender, DevExpress.Xpf.Grid.RefreshDataSourceEventArgs e) {
+        void OnDataSourceRefresh(System.Object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadData();
         }
     }

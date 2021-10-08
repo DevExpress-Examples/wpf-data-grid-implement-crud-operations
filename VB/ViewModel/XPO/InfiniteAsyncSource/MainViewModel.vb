@@ -62,7 +62,7 @@ Public Class MainViewModel
         End Using
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub ValidateDeleteRows(ByVal args As DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs)
+    Public Sub ValidateRowDeletion(ByVal args As DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs)
         Using unitOfWork = New DevExpress.Xpo.UnitOfWork()
             Dim key = DetachedObjectsHelper.GetKey(args.Items.[Single]())
             Dim item = unitOfWork.GetObjectByKey(Of Issues.Issue)(key)
@@ -85,7 +85,7 @@ Public Class MainViewModel
         End Get
     End Property
     <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub RefreshDataSource(ByVal args As DevExpress.Mvvm.Xpf.RefreshDataSourceArgs)
+    Public Sub DataSourceRefresh(ByVal args As DevExpress.Mvvm.Xpf.DataSourceRefreshArgs)
         _Users = Nothing
         RaisePropertyChanged(Nameof(Users))
     End Sub

@@ -6,7 +6,7 @@
     </dxb:ToolBarControl>
     <dxg:GridControl x:Name="grid" Grid.Row="1">
       <dxg:GridControl.View>
-        <dxg:TableView ShowUpdateRowButtons="OnCellEditorOpen" ValidateRowCommand="{Binding ValidateRowCommand}" ShowFixedTotalSummary="True" RefreshDataSourceCommand="{Binding RefreshDataSourceCommand}" />
+        <dxg:TableView ShowUpdateRowButtons="OnCellEditorOpen" ValidateRowCommand="{Binding ValidateRowCommand}" ShowFixedTotalSummary="True" DataSourceRefreshCommand="{Binding DataSourceRefreshCommand}" />
       </dxg:GridControl.View>
       <dxg:GridControl.ItemsSource>
         <dx:PagedAsyncSource CustomProperties="{Binding Properties}" KeyProperty="Oid" PageNavigationMode="ArbitraryWithTotalPageCount" FetchPageCommand="{Binding FetchPageCommand}" GetTotalSummariesCommand="{Binding GetTotalSummariesCommand}" />

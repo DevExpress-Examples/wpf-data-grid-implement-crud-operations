@@ -20,13 +20,13 @@ namespace XPOIssues {
             _UnitOfWork.CommitChanges();
         }
 
-        void OnValidateDeleteRows(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
+        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
             var row = (XPOIssues.Issues.User)e.Rows.Single();
             _UnitOfWork.Delete(row);
             _UnitOfWork.CommitChanges();
         }
 
-        void OnRefreshDataSource(System.Object sender, DevExpress.Xpf.Grid.RefreshDataSourceEventArgs e) {
+        void OnDataSourceRefresh(System.Object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadData();
         }
     }

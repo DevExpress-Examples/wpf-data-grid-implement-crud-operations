@@ -28,7 +28,7 @@ Class MainWindow
         }).ToArray()
     End Sub
 
-    Private Sub OnRefreshDataSource(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.RefreshDataSourceEventArgs)
+    Private Sub OnDataSourceRefresh(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.DataSourceRefreshEventArgs)
         LoadLookupData()
     End Sub
 
@@ -53,7 +53,7 @@ Class MainWindow
         context.SaveChanges()
     End Sub
 
-    Private Sub OnValidateDeleteRows(ByVal sender As System.Object, ByVal e As DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs)
+    Private Sub OnValidateRowDeletion(ByVal sender As System.Object, ByVal e As DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs)
         Dim key = CInt(e.Keys.[Single]())
         Dim item = New Issue() With {
             .Id = key

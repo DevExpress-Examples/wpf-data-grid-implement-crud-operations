@@ -6,7 +6,7 @@
     </dxb:ToolBarControl>
     <dxg:GridControl x:Name="grid" Grid.Row="1">
       <dxg:GridControl.View>
-        <dxg:TableView ShowUpdateRowButtons="OnCellEditorOpen" ValidateRow="OnValidateRow" ShowFixedTotalSummary="True" RefreshDataSource="OnRefreshDataSource" />
+        <dxg:TableView ShowUpdateRowButtons="OnCellEditorOpen" ValidateRow="OnValidateRow" ShowFixedTotalSummary="True" DataSourceRefresh="OnDataSourceRefresh" />
       </dxg:GridControl.View>
       <dxg:GridColumn FieldName="Oid" IsSmart="True" AllowEditing="True" />
       <dxg:GridColumn FieldName="Subject" IsSmart="True" AllowEditing="True" />
