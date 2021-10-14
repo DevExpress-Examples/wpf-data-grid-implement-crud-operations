@@ -1,0 +1,25 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfiniteAsyncSource", "InfiniteAsyncSource.csproj", "{15015E00-900F-7BBE-4987-3CFC3042F716}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15015E00-900F-7BBE-4987-3CFC3042F716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15015E00-900F-7BBE-4987-3CFC3042F716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15015E00-900F-7BBE-4987-3CFC3042F716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15015E00-900F-7BBE-4987-3CFC3042F716}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8E8433C-CD55-4F5F-AB3A-BFF61AF74889}
+	EndGlobalSection
+EndGlobal
