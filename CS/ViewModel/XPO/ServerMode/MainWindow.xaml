@@ -8,7 +8,7 @@
     </dxb:ToolBarControl>
     <dxg:GridControl x:Name="grid" ItemsSource="{Binding InstantFeedbackSource}" Grid.Row="1">
       <dxg:GridControl.View>
-        <dxg:TableView ShowFixedTotalSummary="True" DataSourceRefreshCommand="{Binding DataSourceRefreshCommand}" />
+        <dxg:TableView ShowFixedTotalSummary="True" DataSourceRefreshCommand="{Binding DataSourceRefreshCommand}" RowDoubleClickCommand="{Binding RowDoubleClickCommand, ElementName=EditFormBehavior}" NavigationStyle="Row" />
       </dxg:GridControl.View>
       <dxg:GridColumn FieldName="Oid" IsSmart="True" />
       <dxg:GridColumn FieldName="Subject" IsSmart="True" />
@@ -32,6 +32,11 @@
           </dxg:DialogEditFormBehavior.EditTemplate>
         </dxg:DialogEditFormBehavior>
       </dxmvvm:Interaction.Behaviors>
+      <dxg:GridControl.InputBindings>
+        <KeyBinding Command="{Binding DeleteCommand, ElementName=EditFormBehavior}" Key="Delete" />
+        <KeyBinding Command="{Binding UpdateCommand, ElementName=EditFormBehavior}" Key="F2" />
+        <KeyBinding Command="{Binding CreateCommand, ElementName=EditFormBehavior}" Key="N" Modifiers="Control" />
+      </dxg:GridControl.InputBindings>
     </dxg:GridControl>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
