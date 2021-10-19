@@ -65,7 +65,7 @@ namespace EntityFrameworkIssues {
             context.SaveChanges();
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs args) {
+        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs args) {
             var key = (int)args.Keys.Single();
             var item = new Issue() { Id = key };
             var context = new IssuesContext();

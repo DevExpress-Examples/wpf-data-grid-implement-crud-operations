@@ -57,7 +57,7 @@ namespace EntityFrameworkIssues {
             }
         }
 
-        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
+        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridValidateRowDeletionEventArgs e) {
             var row = (EntityFrameworkIssues.Issues.Issue)e.Rows.Single();
             var context = new EntityFrameworkIssues.Issues.IssuesContext();
             context.Entry(row).State = EntityState.Deleted;

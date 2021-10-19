@@ -43,7 +43,7 @@ namespace EntityFrameworkIssues {
             }
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs args) {
+        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.ValidateRowDeletionArgs args) {
             var item = (EntityFrameworkIssues.Issues.Issue)args.Items.Single();
             var context = new EntityFrameworkIssues.Issues.IssuesContext();
             context.Entry(item).State = EntityState.Deleted;

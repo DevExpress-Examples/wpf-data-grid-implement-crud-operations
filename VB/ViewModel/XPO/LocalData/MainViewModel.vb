@@ -22,7 +22,7 @@ Public Class MainViewModel
         _UnitOfWork.CommitChanges()
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub ValidateRowDeletion(ByVal args As DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs)
+    Public Sub ValidateRowDeletion(ByVal args As DevExpress.Mvvm.Xpf.ValidateRowDeletionArgs)
         Dim item = CType(args.Items.Single(), Issues.User)
         _UnitOfWork.Delete(item)
         _UnitOfWork.CommitChanges()

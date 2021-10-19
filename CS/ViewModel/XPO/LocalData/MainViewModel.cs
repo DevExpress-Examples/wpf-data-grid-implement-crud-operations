@@ -24,7 +24,7 @@ namespace XPOIssues {
             _UnitOfWork.CommitChanges();
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs args) {
+        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.ValidateRowDeletionArgs args) {
             var item = (XPOIssues.Issues.User)args.Items.Single();
             _UnitOfWork.Delete(item);
             _UnitOfWork.CommitChanges();

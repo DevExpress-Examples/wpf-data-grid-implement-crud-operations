@@ -20,7 +20,7 @@ namespace XPOIssues {
             _UnitOfWork.CommitChanges();
         }
 
-        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
+        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridValidateRowDeletionEventArgs e) {
             var row = (XPOIssues.Issues.User)e.Rows.Single();
             _UnitOfWork.Delete(row);
             _UnitOfWork.CommitChanges();

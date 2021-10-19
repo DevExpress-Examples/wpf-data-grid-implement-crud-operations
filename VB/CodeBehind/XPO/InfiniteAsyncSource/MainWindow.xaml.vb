@@ -56,7 +56,7 @@ Class MainWindow
         End Using
     End Sub
 
-    Private Sub OnValidateRowDeletion(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs)
+    Private Sub OnValidateRowDeletion(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.GridValidateRowDeletionEventArgs)
         Using unitOfWork = New DevExpress.Xpo.UnitOfWork()
             Dim key = _DetachedObjectsHelper.GetKey(e.Rows.[Single]())
             Dim item = unitOfWork.GetObjectByKey(Of Issues.Issue)(key)

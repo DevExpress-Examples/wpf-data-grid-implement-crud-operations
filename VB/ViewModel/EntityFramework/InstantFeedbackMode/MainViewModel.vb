@@ -66,7 +66,7 @@ Public Class MainViewModel
         context.SaveChanges()
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub ValidateRowDeletion(ByVal args As DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs)
+    Public Sub ValidateRowDeletion(ByVal args As DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs)
         Dim key = CInt(args.Keys.[Single]())
         Dim item = New Issue() With {
             .Id = key

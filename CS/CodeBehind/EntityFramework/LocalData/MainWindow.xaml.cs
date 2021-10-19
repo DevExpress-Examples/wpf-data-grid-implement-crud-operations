@@ -21,7 +21,7 @@ namespace EntityFrameworkIssues {
             _Context.SaveChanges();
         }
 
-        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
+        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridValidateRowDeletionEventArgs e) {
             var row = (EntityFrameworkIssues.Issues.User)e.Rows.Single();
             _Context.Users.Remove(row);
             _Context.SaveChanges();

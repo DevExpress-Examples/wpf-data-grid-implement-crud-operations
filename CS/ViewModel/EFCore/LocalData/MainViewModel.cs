@@ -25,7 +25,7 @@ namespace EFCoreIssues {
             _Context.SaveChanges();
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs args) {
+        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.ValidateRowDeletionArgs args) {
             var item = (EFCoreIssues.Issues.User)args.Items.Single();
             _Context.Users.Remove(item);
             _Context.SaveChanges();

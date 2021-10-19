@@ -47,7 +47,7 @@ Class MainWindow
         unitOfWork.CommitChanges()
     End Sub
 
-    Private Sub OnValidateRowDeletion(ByVal sender As System.Object, ByVal e As DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs)
+    Private Sub OnValidateRowDeletion(ByVal sender As System.Object, ByVal e As DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs)
         Using unitOfWork = New UnitOfWork()
             Dim key = CInt(e.Keys.[Single]())
             Dim item = unitOfWork.GetObjectByKey(Of Issue)(key)

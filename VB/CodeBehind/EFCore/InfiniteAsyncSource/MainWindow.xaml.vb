@@ -49,7 +49,7 @@ Class MainWindow
 
     End Sub
 
-    Private Sub OnValidateRowDeletion(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs)
+    Private Sub OnValidateRowDeletion(ByVal sender As System.Object, ByVal e As DevExpress.Xpf.Grid.GridValidateRowDeletionEventArgs)
         Dim row = CType(e.Rows.Single(), Issues.Issue)
         Dim context = New Issues.IssuesContext()
         context.Entry(row).State = EntityState.Deleted

@@ -69,7 +69,7 @@ new DevExpress.Xpo.ServerViewProperty("Priority", DevExpress.Xpo.SortDirection.N
             unitOfWork.CommitChanges();
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs args) {
+        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs args) {
             using(var unitOfWork = new UnitOfWork()) {
                 var key = (int)args.Keys.Single();
                 var item = unitOfWork.GetObjectByKey<Issue>(key);

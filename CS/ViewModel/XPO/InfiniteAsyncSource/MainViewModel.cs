@@ -72,7 +72,7 @@ namespace XPOIssues {
             }
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs args) {
+        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.ValidateRowDeletionArgs args) {
             using(var unitOfWork = new DevExpress.Xpo.UnitOfWork()) {
                 var key = DetachedObjectsHelper.GetKey(args.Items.Single());
                 var item = unitOfWork.GetObjectByKey<XPOIssues.Issues.Issue>(key);

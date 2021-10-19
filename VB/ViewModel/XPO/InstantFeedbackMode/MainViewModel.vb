@@ -59,7 +59,7 @@ Public Class MainViewModel
         unitOfWork.CommitChanges()
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub ValidateRowDeletion(ByVal args As DevExpress.Mvvm.Xpf.EditFormDeleteRowsValidationArgs)
+    Public Sub ValidateRowDeletion(ByVal args As DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs)
         Using unitOfWork = New UnitOfWork()
             Dim key = CInt(args.Keys.[Single]())
             Dim item = unitOfWork.GetObjectByKey(Of Issue)(key)

@@ -62,7 +62,7 @@ Public Class MainViewModel
         End Using
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub ValidateRowDeletion(ByVal args As DevExpress.Mvvm.Xpf.DeleteRowsValidationArgs)
+    Public Sub ValidateRowDeletion(ByVal args As DevExpress.Mvvm.Xpf.ValidateRowDeletionArgs)
         Using unitOfWork = New DevExpress.Xpo.UnitOfWork()
             Dim key = DetachedObjectsHelper.GetKey(args.Items.[Single]())
             Dim item = unitOfWork.GetObjectByKey(Of Issues.Issue)(key)

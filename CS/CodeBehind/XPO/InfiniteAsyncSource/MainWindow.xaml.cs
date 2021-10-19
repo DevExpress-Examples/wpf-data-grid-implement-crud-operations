@@ -66,7 +66,7 @@ namespace XPOIssues {
             }
         }
 
-        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridDeleteRowsValidationEventArgs e) {
+        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridValidateRowDeletionEventArgs e) {
             using(var unitOfWork = new DevExpress.Xpo.UnitOfWork()) {
                 var key = _DetachedObjectsHelper.GetKey(e.Rows.Single());
                 var item = unitOfWork.GetObjectByKey<XPOIssues.Issues.Issue>(key);
