@@ -10,7 +10,7 @@
       <dxg:GridControl.View>
         <dxg:TableView ShowFixedTotalSummary="True" DataSourceRefresh="OnDataSourceRefresh" RowDoubleClickCommand="{Binding RowDoubleClickCommand, ElementName=EditFormBehavior}" NavigationStyle="Row" />
       </dxg:GridControl.View>
-      <dxg:GridColumn FieldName="Oid" IsSmart="True" />
+      <dxg:GridColumn FieldName="Oid" IsSmart="True" ReadOnly="True" />
       <dxg:GridColumn FieldName="Subject" IsSmart="True" />
       <dxg:GridColumn FieldName="UserId" IsSmart="True" Header="User">
         <dxg:GridColumn.EditSettings>

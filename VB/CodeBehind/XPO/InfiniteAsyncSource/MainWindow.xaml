@@ -10,7 +10,7 @@
       <dxg:GridControl.View>
         <dxg:TableView NewItemRowPosition="Top" ShowUpdateRowButtons="OnCellEditorOpen" ValidateRow="OnValidateRow" ValidateRowDeletion="OnValidateRowDeletion" ShowFixedTotalSummary="True" DataSourceRefresh="OnDataSourceRefresh" />
       </dxg:GridControl.View>
-      <dxg:GridColumn FieldName="Oid" IsSmart="True" AllowEditing="True" />
+      <dxg:GridColumn FieldName="Oid" IsSmart="True" AllowEditing="True" ReadOnly="True" />
       <dxg:GridColumn FieldName="Subject" IsSmart="True" AllowEditing="True" />
       <dxg:GridColumn FieldName="UserId" IsSmart="True" AllowEditing="True" Header="User">
         <dxg:GridColumn.EditSettings>

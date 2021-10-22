@@ -10,7 +10,7 @@
       <dxg:GridControl.View>
         <dxg:TableView NewItemRowPosition="Top" ShowUpdateRowButtons="OnCellEditorOpen" ValidateRowCommand="{Binding ValidateRowCommand}" ValidateRowDeletionCommand="{Binding ValidateRowDeletionCommand}" DataSourceRefreshCommand="{Binding DataSourceRefreshCommand}" ShowFixedTotalSummary="True" />
       </dxg:GridControl.View>
-      <dxg:GridColumn FieldName="Id" IsSmart="True" />
+      <dxg:GridColumn FieldName="Id" IsSmart="True" ReadOnly="True" />
       <dxg:GridColumn FieldName="FirstName" IsSmart="True" />
       <dxg:GridColumn FieldName="LastName" IsSmart="True" />
       <dxg:GridControl.InputBindings>

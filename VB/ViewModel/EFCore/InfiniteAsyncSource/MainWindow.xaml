@@ -13,7 +13,7 @@
       <dxg:GridControl.ItemsSource>
         <dx:InfiniteAsyncSource ElementType="local_issues:Issue" KeyProperty="Id" FetchRowsCommand="{Binding FetchRowsCommand}" GetTotalSummariesCommand="{Binding GetTotalSummariesCommand}" />
       </dxg:GridControl.ItemsSource>
-      <dxg:GridColumn FieldName="Id" IsSmart="True" AllowEditing="True" />
+      <dxg:GridColumn FieldName="Id" IsSmart="True" AllowEditing="True" ReadOnly="True" />
       <dxg:GridColumn FieldName="Subject" IsSmart="True" AllowEditing="True" />
       <dxg:GridColumn FieldName="UserId" IsSmart="True" AllowEditing="True" Header="User">
         <dxg:GridColumn.EditSettings>

@@ -11,7 +11,7 @@
       <dxg:GridControl.ItemsSource>
         <dx:PagedAsyncSource CustomProperties="{Binding Properties}" KeyProperty="Oid" PageNavigationMode="ArbitraryWithTotalPageCount" FetchPageCommand="{Binding FetchPageCommand}" GetTotalSummariesCommand="{Binding GetTotalSummariesCommand}" />
       </dxg:GridControl.ItemsSource>
-      <dxg:GridColumn FieldName="Oid" IsSmart="True" AllowEditing="True" />
+      <dxg:GridColumn FieldName="Oid" IsSmart="True" AllowEditing="True" ReadOnly="True" />
       <dxg:GridColumn FieldName="Subject" IsSmart="True" AllowEditing="True" />
       <dxg:GridColumn FieldName="UserId" IsSmart="True" AllowEditing="True" Header="User">
         <dxg:GridColumn.EditSettings>

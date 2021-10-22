@@ -8,7 +8,7 @@
       <dxg:GridControl.View>
         <dxg:TableView ShowUpdateRowButtons="OnCellEditorOpen" ValidateRow="OnValidateRow" ShowFixedTotalSummary="True" DataSourceRefresh="OnDataSourceRefresh" />
       </dxg:GridControl.View>
-      <dxg:GridColumn FieldName="Id" IsSmart="True" AllowEditing="True" />
+      <dxg:GridColumn FieldName="Id" IsSmart="True" AllowEditing="True" ReadOnly="True" />
       <dxg:GridColumn FieldName="Subject" IsSmart="True" AllowEditing="True" />
       <dxg:GridColumn FieldName="UserId" IsSmart="True" AllowEditing="True" Header="User">
         <dxg:GridColumn.EditSettings>
