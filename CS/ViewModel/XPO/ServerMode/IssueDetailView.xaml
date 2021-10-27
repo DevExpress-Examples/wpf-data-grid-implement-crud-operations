@@ -12,7 +12,7 @@ xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
 <dxlc:LayoutControl x:Name="layoutControl" Orientation="Vertical" VerticalAlignment="Top" Width="300">
     <dxlc:DataLayoutItem Binding="{Binding Item.Subject}"/>
     <dxlc:LayoutItem Label="User">
-        <dxe:ComboBoxEdit EditValue="{Binding Item.UserId}" ItemsSource="{Binding Tag.Users}" ValueMember="Id" DisplayMember="Name" IsTextEditable="False"/>
+        <dxe:ComboBoxEdit EditValue="{Binding Item.UserId}" ItemsSource="{Binding EditOperationContext.Users}" ValueMember="Id" DisplayMember="Name" IsTextEditable="False"/>
     </dxlc:LayoutItem>
     <dxlc:DataLayoutItem Binding="{Binding Item.Created}"/>
     <dxlc:DataLayoutItem Binding="{Binding Item.Votes}"/>

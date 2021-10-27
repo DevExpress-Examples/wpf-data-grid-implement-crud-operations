@@ -6,7 +6,7 @@
       <dxb:BarButtonItem Content="New" Command="{Binding CreateCommand, ElementName=EditFormBehavior}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Add.svg}" BarItemDisplayMode="ContentAndGlyph" />
       <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding DeleteCommand, ElementName=EditFormBehavior}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}" BarItemDisplayMode="ContentAndGlyph" />
     </dxb:ToolBarControl>
-    <dxg:GridControl x:Name="grid" ItemsSource="{Binding InstantFeedbackSource}" Grid.Row="1">
+    <dxg:GridControl x:Name="grid" ItemsSource="{Binding ServerModeSource}" Grid.Row="1">
       <dxg:GridControl.View>
         <dxg:TableView ShowFixedTotalSummary="True" DataSourceRefreshCommand="{Binding DataSourceRefreshCommand}" RowDoubleClickCommand="{Binding RowDoubleClickCommand, ElementName=EditFormBehavior}" NavigationStyle="Row" />
       </dxg:GridControl.View>
