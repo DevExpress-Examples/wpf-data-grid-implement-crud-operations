@@ -49,7 +49,7 @@ new DevExpress.Xpo.ServerViewProperty("Priority", DevExpress.Xpo.SortDirection.N
         }
 
         void OnValidateRow(System.Object sender, DevExpress.Mvvm.Xpf.EditFormRowValidationArgs e) {
-            var unitOfWork = ((EditIssueInfo)e.EditOperationContext).UnitOfWork;
+            var unitOfWork = ((EditIssueInfo)e.Tag).UnitOfWork;
             unitOfWork.CommitChanges();
         }
 

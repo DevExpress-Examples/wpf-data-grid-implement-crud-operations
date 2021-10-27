@@ -44,7 +44,7 @@ namespace EFCoreIssues {
         }
 
         void OnValidateRow(System.Object sender, DevExpress.Mvvm.Xpf.EditFormRowValidationArgs e) {
-            var context = ((EditIssueInfo)e.EditOperationContext).Context;
+            var context = ((EditIssueInfo)e.Tag).Context;
             context.SaveChanges();
         }
 
