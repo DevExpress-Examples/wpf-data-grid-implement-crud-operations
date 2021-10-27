@@ -49,7 +49,7 @@ Class MainWindow
     End Sub
 
     Private Sub OnValidateRow(ByVal sender As System.Object, ByVal e As DevExpress.Mvvm.Xpf.EditFormRowValidationArgs)
-        Dim context = CType(e.Tag, EditIssueInfo).Context
+        Dim context = CType(e.EditOperationContext, EditIssueInfo).Context
         context.SaveChanges()
     End Sub
 

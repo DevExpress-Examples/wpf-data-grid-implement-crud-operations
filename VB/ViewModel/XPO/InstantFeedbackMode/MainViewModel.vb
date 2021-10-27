@@ -55,7 +55,7 @@ Public Class MainViewModel
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
     Public Sub ValidateRow(ByVal args As DevExpress.Mvvm.Xpf.EditFormRowValidationArgs)
-        Dim unitOfWork = CType(args.Tag, EditIssueInfo).UnitOfWork
+        Dim unitOfWork = CType(args.EditOperationContext, EditIssueInfo).UnitOfWork
         unitOfWork.CommitChanges()
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>

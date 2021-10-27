@@ -42,7 +42,7 @@ Class MainWindow
     End Sub
 
     Private Sub OnValidateRow(ByVal sender As System.Object, ByVal e As DevExpress.Mvvm.Xpf.EditFormRowValidationArgs)
-        Dim unitOfWork = CType(e.Tag, EditIssueInfo).UnitOfWork
+        Dim unitOfWork = CType(e.EditOperationContext, EditIssueInfo).UnitOfWork
         unitOfWork.CommitChanges()
     End Sub
 
