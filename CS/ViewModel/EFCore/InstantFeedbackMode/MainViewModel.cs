@@ -61,7 +61,7 @@ namespace EFCoreIssues {
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
         public void ValidateRow(DevExpress.Mvvm.Xpf.EditFormRowValidationArgs args) {
-            var context = ((EditIssueInfo)args.Tag).Context;
+            var context = ((EditIssueInfo)args.EditOperationContext).Context;
             context.SaveChanges();
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
