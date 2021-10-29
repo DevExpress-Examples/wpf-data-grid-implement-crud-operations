@@ -4,11 +4,11 @@ using EntityFrameworkIssues.Issues;
 
 namespace EntityFrameworkIssues {
     public class EditIssueInfo : BindableBase {
-        public EditIssueInfo(IssuesContext context, IList users) {
-            Context = context;
+        public EditIssueInfo(IssuesContext dbContext, IList users) {
+            DbContext = dbContext;
             Users = users;
         }
-        public IssuesContext Context { get; }
+        public IssuesContext DbContext { get; }
         public IList Users { get; }
     }
 }

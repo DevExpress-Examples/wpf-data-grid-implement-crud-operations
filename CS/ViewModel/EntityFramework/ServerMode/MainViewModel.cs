@@ -58,7 +58,7 @@ namespace EntityFrameworkIssues {
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
         public void ValidateRow(DevExpress.Mvvm.Xpf.EditFormRowValidationArgs args) {
-            var context = ((EditIssueInfo)args.EditOperationContext).Context;
+            var context = ((EditIssueInfo)args.EditOperationContext).DbContext;
             context.SaveChanges();
         }
         [DevExpress.Mvvm.DataAnnotations.Command]

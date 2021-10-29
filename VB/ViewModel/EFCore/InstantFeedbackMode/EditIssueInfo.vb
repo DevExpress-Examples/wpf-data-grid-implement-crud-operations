@@ -5,11 +5,11 @@ Imports EFCoreIssues.Issues
 Public Class EditIssueInfo
     Inherits BindableBase
 
-    Public Sub New(ByVal context As IssuesContext, ByVal users As IList)
-        Me.Context = context
+    Public Sub New(ByVal dbContext As IssuesContext, ByVal users As IList)
+        Me.DbContext = dbContext
         Me.Users = users
     End Sub
 
-    Public ReadOnly Property Context As IssuesContext
+    Public ReadOnly Property DbContext As IssuesContext
     Public ReadOnly Property Users As IList
 End Class

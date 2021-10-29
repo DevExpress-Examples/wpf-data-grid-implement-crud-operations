@@ -62,7 +62,7 @@ Public Class MainViewModel
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
     Public Sub ValidateRow(ByVal args As DevExpress.Mvvm.Xpf.EditFormRowValidationArgs)
-        Dim context = CType(args.EditOperationContext, EditIssueInfo).Context
+        Dim context = CType(args.EditOperationContext, EditIssueInfo).DbContext
         context.SaveChanges()
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
