@@ -5,16 +5,18 @@
       <dxb:BarButtonItem Content="Edit (F2)" Command="{Binding View.Commands.EditFocusedRow, ElementName=grid}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Edit.svg}" BarItemDisplayMode="ContentAndGlyph" />
       <dxb:BarButtonItem Content="New" Command="{Binding View.Commands.AddNewRow, ElementName=grid}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Add.svg}" BarItemDisplayMode="ContentAndGlyph" />
       <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding View.Commands.DeleteFocusedRow, ElementName=grid}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}" BarItemDisplayMode="ContentAndGlyph" />
+      <dxb:BarButtonItem Content="Undo (Ctrl+Z)" Command="{Binding UndoCommand}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Undo.svg}" BarItemDisplayMode="ContentAndGlyph" />
     </dxb:ToolBarControl>
     <dxg:GridControl x:Name="grid" ItemsSource="{Binding ItemsSource}" RestoreStateKeyFieldName="Id" RestoreStateOnSourceChange="True" Grid.Row="1">
       <dxg:GridControl.View>
-        <dxg:TableView NewItemRowPosition="Top" ShowUpdateRowButtons="OnCellEditorOpen" ValidateRowCommand="{Binding ValidateRowCommand}" ValidateRowDeletionCommand="{Binding ValidateRowDeletionCommand}" DataSourceRefreshCommand="{Binding DataSourceRefreshCommand}" ShowFixedTotalSummary="True" />
+          <dxg:TableView NewItemRowPosition="Top" ShowUpdateRowButtons="OnCellEditorOpen" RowEditStartedCommand="{Binding StartRowEditCommand}" ValidateRowCommand="{Binding ValidateRowCommand}" ValidateRowDeletionCommand="{Binding ValidateRowDeletionCommand}" DataSourceRefreshCommand="{Binding DataSourceRefreshCommand}" ShowFixedTotalSummary="True" />
       </dxg:GridControl.View>
       <dxg:GridColumn FieldName="Id" IsSmart="True" ReadOnly="True" />
       <dxg:GridColumn FieldName="FirstName" IsSmart="True" />
       <dxg:GridColumn FieldName="LastName" IsSmart="True" />
       <dxg:GridControl.InputBindings>
         <KeyBinding Command="{Binding View.Commands.DeleteFocusedRow, ElementName=grid}" Key="Delete" />
+        <KeyBinding Command="{Binding UndoCommand}" Key="Z" Modifiers="Ctrl" />
       </dxg:GridControl.InputBindings>
       <dxg:GridControl.TotalSummary>
         <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
