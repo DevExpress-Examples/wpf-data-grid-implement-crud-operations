@@ -1,18 +1,29 @@
 using DevExpress.Mvvm;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace EFCoreIssues {
     public class MainViewModel : ViewModelBase {
         EFCoreIssues.Issues.IssuesContext _Context;
-        System.Collections.Generic.IList<EFCoreIssues.Issues.User> _ItemsSource;
+        ObservableCollection<EFCoreIssues.Issues.User> _ItemsSource;
 
-        public System.Collections.Generic.IList<EFCoreIssues.Issues.User> ItemsSource
+        UserCopyOperationsSupporter _CopyOperationsSupporter;
+        public UserCopyOperationsSupporter CopyOperationsSupporter {
+            get {
+                if(_CopyOperationsSupporter == null) {
+                    _CopyOperationsSupporter = new UserCopyOperationsSupporter();
+                }
+                return _CopyOperationsSupporter;
+            }
+        }
+
+        public ObservableCollection<EFCoreIssues.Issues.User> ItemsSource
         {
             get
             {
                 if(_ItemsSource == null && !IsInDesignMode) {
                     _Context = new EFCoreIssues.Issues.IssuesContext();
-                    _ItemsSource = _Context.Users.ToList();
+                    _ItemsSource = new ObservableCollection<Issues.User>(_Context.Users);
                 }
                 return _ItemsSource;
             }
