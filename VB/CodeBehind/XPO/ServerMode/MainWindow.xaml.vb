@@ -38,8 +38,8 @@ Class MainWindow
 
     Private Sub OnCreateEditEntityViewModel(ByVal sender As System.Object, ByVal e As DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs)
         Dim unitOfWork = New UnitOfWork()
-        Dim item = If(e.Key IsNot Nothing, unitOfWork.GetObjectByKey(Of Issue)(e.Key), New Issue(unitOfWork))
-        e.ViewModel = New EditItemViewModel(item, New EditIssueInfo(unitOfWork, CType(usersLookup.ItemsSource, IList)), dispose:=Sub() unitOfWork.Dispose())
+        Dim item = If(e.IsNewItem, New Issue(unitOfWork), unitOfWork.GetObjectByKey(Of Issue)(e.Key))
+        e.ViewModel = New EditItemViewModel(item, New EditIssueInfo(unitOfWork, CType(usersLookup.ItemsSource, IList)), dispose:=Sub() unitOfWork.Dispose(), title:=If(e.IsNewItem, "New ", "Edit ") & NameOf(Issue))
     End Sub
 
     Private Sub OnValidateRow(ByVal sender As System.Object, ByVal e As DevExpress.Mvvm.Xpf.EditFormRowValidationArgs)

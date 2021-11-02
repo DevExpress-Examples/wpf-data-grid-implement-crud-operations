@@ -48,13 +48,17 @@ namespace EntityFrameworkIssues {
         public void CreateEditEntityViewModel(DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs args) {
             var context = new IssuesContext();
             Issue item;
-            if(args.Key != null)
-                item = context.Issues.Find(args.Key);
-            else {
+            if(args.IsNewItem) {
                 item = new Issue() { Created = DateTime.Now };
                 context.Entry(item).State = EntityState.Added;
+            } else {
+                item = context.Issues.Find(args.Key);
             }
-            args.ViewModel = new EditItemViewModel(item, new EditIssueInfo(context, Users));
+            args.ViewModel = new EditItemViewModel(
+                item,
+                new EditIssueInfo(context, Users),
+                title: (args.IsNewItem ? "New " : "Edit ") + nameof(Issue)
+            );
         }
         [DevExpress.Mvvm.DataAnnotations.Command]
         public void ValidateRow(DevExpress.Mvvm.Xpf.EditFormRowValidationArgs args) {

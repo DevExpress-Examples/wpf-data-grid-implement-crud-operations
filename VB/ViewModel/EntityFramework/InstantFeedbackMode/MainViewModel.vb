@@ -49,16 +49,16 @@ Public Class MainViewModel
         Dim context = New IssuesContext()
         Dim item As Issue
 
-        If args.Key IsNot Nothing Then
-            item = context.Issues.Find(args.Key)
-        Else
+        If args.IsNewItem Then
             item = New Issue() With {
                 .Created = Date.Now
             }
             context.Entry(item).State = EntityState.Added
+        Else
+            item = context.Issues.Find(args.Key)
         End If
 
-        args.ViewModel = New EditItemViewModel(item, New EditIssueInfo(context, Users))
+        args.ViewModel = New EditItemViewModel(item, New EditIssueInfo(context, Users), title:=If(args.IsNewItem, "New ", "Edit ") & NameOf(Issue))
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
     Public Sub ValidateRow(ByVal args As DevExpress.Mvvm.Xpf.EditFormRowValidationArgs)

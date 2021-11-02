@@ -56,13 +56,14 @@ new DevExpress.Xpo.ServerViewProperty("Priority", DevExpress.Xpo.SortDirection.N
         [DevExpress.Mvvm.DataAnnotations.Command]
         public void CreateEditEntityViewModel(DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs args) {
             var unitOfWork = new UnitOfWork();
-            var item = args.Key != null
-                ? unitOfWork.GetObjectByKey<Issue>(args.Key)
-                : new Issue(unitOfWork);
+            var item = args.IsNewItem
+                ? new Issue(unitOfWork)
+                : unitOfWork.GetObjectByKey<Issue>(args.Key);
             args.ViewModel = new EditItemViewModel(
                 item,
                 new EditIssueInfo(unitOfWork, Users),
-                dispose: () => unitOfWork.Dispose()
+                dispose: () => unitOfWork.Dispose(),
+                title: (args.IsNewItem ? "New " : "Edit ") + nameof(Issue)
             );
         }
         [DevExpress.Mvvm.DataAnnotations.Command]

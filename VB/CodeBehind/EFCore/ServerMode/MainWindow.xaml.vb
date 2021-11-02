@@ -34,16 +34,16 @@ Class MainWindow
         Dim context = New IssuesContext()
         Dim item As Issue
 
-        If e.Key IsNot Nothing Then
-            item = context.Issues.Find(e.Key)
-        Else
+        If e.IsNewItem Then
             item = New Issue() With {
                 .Created = Date.Now
             }
             context.Entry(item).State = EntityState.Added
+        Else
+            item = context.Issues.Find(e.Key)
         End If
 
-        e.ViewModel = New EditItemViewModel(item, New EditIssueInfo(context, CType(usersLookup.ItemsSource, IList)))
+        e.ViewModel = New EditItemViewModel(item, New EditIssueInfo(context, CType(usersLookup.ItemsSource, IList)), title:=If(e.IsNewItem, "New ", "Edit ") & NameOf(Issue))
     End Sub
 
     Private Sub OnValidateRow(ByVal sender As System.Object, ByVal e As DevExpress.Mvvm.Xpf.EditFormRowValidationArgs)

@@ -37,13 +37,17 @@ namespace EntityFrameworkIssues {
         void OnCreateEditEntityViewModel(System.Object sender, DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs e) {
             var context = new IssuesContext();
             Issue item;
-            if(e.Key != null)
-                item = context.Issues.Find(e.Key);
-            else {
+            if(e.IsNewItem) {
                 item = new Issue() { Created = DateTime.Now };
                 context.Entry(item).State = EntityState.Added;
+            } else {
+                item = context.Issues.Find(e.Key);
             }
-            e.ViewModel = new EditItemViewModel(item, new EditIssueInfo(context, (IList)usersLookup.ItemsSource));
+            e.ViewModel = new EditItemViewModel(
+                item,
+                new EditIssueInfo(context, (IList)usersLookup.ItemsSource),
+                title: (e.IsNewItem ? "New " : "Edit ") + nameof(Issue)
+            );
         }
 
         void OnValidateRow(System.Object sender, DevExpress.Mvvm.Xpf.EditFormRowValidationArgs e) {

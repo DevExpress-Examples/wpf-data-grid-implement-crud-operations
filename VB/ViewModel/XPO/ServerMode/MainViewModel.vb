@@ -52,8 +52,8 @@ Public Class MainViewModel
     <DevExpress.Mvvm.DataAnnotations.Command>
     Public Sub CreateEditEntityViewModel(ByVal args As DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs)
         Dim unitOfWork = New UnitOfWork()
-        Dim item = If(args.Key IsNot Nothing, unitOfWork.GetObjectByKey(Of Issue)(args.Key), New Issue(unitOfWork))
-        args.ViewModel = New EditItemViewModel(item, New EditIssueInfo(unitOfWork, Users), dispose:=Sub() unitOfWork.Dispose())
+        Dim item = If(args.IsNewItem, New Issue(unitOfWork), unitOfWork.GetObjectByKey(Of Issue)(args.Key))
+        args.ViewModel = New EditItemViewModel(item, New EditIssueInfo(unitOfWork, Users), dispose:=Sub() unitOfWork.Dispose(), title:=If(args.IsNewItem, "New ", "Edit ") & NameOf(Issue))
     End Sub
     <DevExpress.Mvvm.DataAnnotations.Command>
     Public Sub ValidateRow(ByVal args As DevExpress.Mvvm.Xpf.EditFormRowValidationArgs)
