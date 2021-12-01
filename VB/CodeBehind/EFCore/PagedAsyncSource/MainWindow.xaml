@@ -1,30 +1,51 @@
-<Window x:Class="MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:EFCoreIssues" xmlns:local_issues="clr-namespace:EFCoreIssues.Issues" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" mc:Ignorable="d" Title="MainWindow" Height="450" Width="800">
-  <Grid>
-    <dxb:ToolBarControl>
-      <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding View.Commands.RefreshDataSource, ElementName=grid}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}" BarItemDisplayMode="ContentAndGlyph" />
-      <dxb:BarButtonItem Content="Edit (F2)" Command="{Binding View.Commands.EditFocusedRow, ElementName=grid}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Edit.svg}" BarItemDisplayMode="ContentAndGlyph" />
-    </dxb:ToolBarControl>
-    <dxg:GridControl x:Name="grid" Grid.Row="1">
-      <dxg:GridControl.View>
-        <dxg:TableView ShowUpdateRowButtons="OnCellEditorOpen" ValidateRow="OnValidateRow" ShowFixedTotalSummary="True" DataSourceRefresh="OnDataSourceRefresh" />
-      </dxg:GridControl.View>
-      <dxg:GridColumn FieldName="Id" IsSmart="True" AllowEditing="True" ReadOnly="True" />
-      <dxg:GridColumn FieldName="Subject" IsSmart="True" AllowEditing="True" />
-      <dxg:GridColumn FieldName="UserId" IsSmart="True" AllowEditing="True" Header="User">
-        <dxg:GridColumn.EditSettings>
-          <dxe:ComboBoxEditSettings DisplayMember="Name" ValueMember="Id" x:Name="usersLookup" />
-        </dxg:GridColumn.EditSettings>
-      </dxg:GridColumn>
-      <dxg:GridColumn FieldName="Created" IsSmart="True" AllowEditing="True" />
-      <dxg:GridColumn FieldName="Votes" IsSmart="True" AllowEditing="True" />
-      <dxg:GridColumn FieldName="Priority" IsSmart="True" AllowEditing="True" />
-      <dxg:GridControl.TotalSummary>
-        <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
-      </dxg:GridControl.TotalSummary>
-    </dxg:GridControl>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition />
-    </Grid.RowDefinitions>
-  </Grid>
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EFCoreIssues"
+        xmlns:local_issues="clr-namespace:EFCoreIssues.Issues" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450"
+        Width="800">
+    <Grid>
+        <dxb:ToolBarControl>
+            <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding View.Commands.RefreshDataSource, ElementName=grid}"
+                               Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}" BarItemDisplayMode="ContentAndGlyph" />
+            <dxb:BarButtonItem Content="Edit (F2)" Command="{Binding View.Commands.EditFocusedRow, ElementName=grid}"
+                               Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Edit.svg}" BarItemDisplayMode="ContentAndGlyph" />
+        </dxb:ToolBarControl>
+        <dxg:GridControl x:Name="grid" Grid.Row="1">
+            <dxg:GridControl.View>
+                <dxg:TableView ShowUpdateRowButtons="OnCellEditorOpen" ValidateRow="OnValidateRow"
+                               ShowFixedTotalSummary="True" DataSourceRefresh="OnDataSourceRefresh" />
+            </dxg:GridControl.View>
+            <dxg:GridColumn FieldName="Id"
+                            IsSmart="True" AllowEditing="True"
+                            ReadOnly="True" />
+            <dxg:GridColumn FieldName="Subject"
+                            IsSmart="True" AllowEditing="True" />
+            <dxg:GridColumn FieldName="UserId"
+                            IsSmart="True" AllowEditing="True"
+                            Header="User">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:ComboBoxEditSettings x:Name="usersLookup"
+                                              DisplayMember="Name" ValueMember="Id" />
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+            <dxg:GridColumn FieldName="Created"
+                            IsSmart="True" AllowEditing="True" />
+            <dxg:GridColumn FieldName="Votes"
+                            IsSmart="True" AllowEditing="True" />
+            <dxg:GridColumn FieldName="Priority"
+                            IsSmart="True" AllowEditing="True" />
+            <dxg:GridControl.TotalSummary>
+                <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
+            </dxg:GridControl.TotalSummary>
+        </dxg:GridControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+    </Grid>
 </Window>
