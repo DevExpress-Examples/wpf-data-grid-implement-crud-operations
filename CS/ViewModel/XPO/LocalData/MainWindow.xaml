@@ -5,7 +5,14 @@
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         mc:Ignorable="d" Title="MainWindow"
         Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <dxb:ToolBarControl>
             <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding View.Commands.RefreshDataSource, ElementName=grid}"
                                Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}" BarItemDisplayMode="ContentAndGlyph" />
@@ -35,12 +42,5 @@
                 <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
             </dxg:GridControl.TotalSummary>
         </dxg:GridControl>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
     </Grid>
-    <Window.DataContext>
-        <local:MainViewModel />
-    </Window.DataContext>
 </Window>
