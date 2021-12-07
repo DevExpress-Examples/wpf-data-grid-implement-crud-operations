@@ -309,3 +309,10 @@ TesterMetadata.xml
 *.vbproj.old
 *.bak
 obj.Net5
+
+
+# ProjectUpdrade & TryConvert files
+*.csproj.old
+*.vbproj.old
+*.bak
+obj.Net5

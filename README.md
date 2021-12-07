@@ -18,6 +18,12 @@ The example includes multiple solutions that demonstrate:
 
 **See also**: [How to Bind the WPF Data Grid to Data](https://github.com/DevExpress-Examples/how-to-bind-wpf-grid-to-data)
 
+## Building Issues
+
+If you build the .NET 5 app and then try to build the .NET Framework app, the error below occurs. To fix this issue, remove the obj folder from the app.
+
+``Your project does not reference '.NETFramework, Version = v4.7.2' framework. Add a reference to '.NETFramework,Version = v4.7.2' in the 'TargetFrameworks' property of your project file and then re-run NuGet restore.``
+
 ## Files to Look At
 
 ### C#
