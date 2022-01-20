@@ -2,6 +2,7 @@ Imports DevExpress.Xpf.Data
 Imports System.Linq
 Imports System.Threading.Tasks
 Imports DevExpress.Xpo
+Imports DevExpress.Data.Filtering
 Class MainWindow
     Private _DetachedObjectsHelper As DetachedObjectsHelper(Of XPOIssues.Issues.Issue)
     Public Sub New()

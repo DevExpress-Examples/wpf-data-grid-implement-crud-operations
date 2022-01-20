@@ -3,6 +3,7 @@ Imports DevExpress.Xpf.Data
 Imports System.Linq
 Imports System.Threading.Tasks
 Imports DevExpress.Xpo
+Imports DevExpress.Data.Filtering
 
 Public Class MainViewModel
     Inherits ViewModelBase

@@ -3,6 +3,7 @@ using DevExpress.Xpf.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using DevExpress.Xpo;
+using DevExpress.Data.Filtering;
 
 namespace XPOIssues {
     public partial class MainWindow : Window {
