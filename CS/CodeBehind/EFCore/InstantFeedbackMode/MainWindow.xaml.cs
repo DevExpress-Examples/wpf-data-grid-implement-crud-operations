@@ -1,9 +1,9 @@
 using System.Windows;
+using EFCoreIssues.Issues;
+using Microsoft.EntityFrameworkCore;
 using DevExpress.Xpf.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using EFCoreIssues.Issues;
 using DevExpress.Mvvm.Xpf;
 using System;
 using System.Collections;
@@ -14,11 +14,11 @@ namespace EFCoreIssues {
             InitializeComponent();
             var source = new DevExpress.Data.Linq.EntityInstantFeedbackSource
             {
-                KeyExpression = nameof(EFCoreIssues.Issues.Issue.Id)
+                KeyExpression = nameof(Issue.Id)
             };
             source.GetQueryable += (sender, e) =>
             {
-                var context = new EFCoreIssues.Issues.IssuesContext();
+                var context = new IssuesContext();
                 e.QueryableSource = context.Issues.AsNoTracking();
             };
             grid.ItemsSource = source;
@@ -29,12 +29,10 @@ namespace EFCoreIssues {
             var context = new EFCoreIssues.Issues.IssuesContext();
             usersLookup.ItemsSource = context.Users.Select(user => new { Id = user.Id, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
-
-        void OnDataSourceRefresh(System.Object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
+        void OnDataSourceRefresh(object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }
-
-        void OnCreateEditEntityViewModel(System.Object sender, DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs e) {
+        void OnCreateEditEntityViewModel(object sender, DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs e) {
             var context = new IssuesContext();
             Issue item;
             if(e.IsNewItem) {
@@ -49,13 +47,11 @@ namespace EFCoreIssues {
                 title: (e.IsNewItem ? "New " : "Edit ") + nameof(Issue)
             );
         }
-
-        void OnValidateRow(System.Object sender, DevExpress.Mvvm.Xpf.EditFormRowValidationArgs e) {
+        void OnValidateRow(object sender, DevExpress.Mvvm.Xpf.EditFormRowValidationArgs e) {
             var context = ((EditIssueInfo)e.EditOperationContext).DbContext;
             context.SaveChanges();
         }
-
-        void OnValidateRowDeletion(System.Object sender, DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs e) {
+        void OnValidateRowDeletion(object sender, DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs e) {
             var key = (int)e.Keys.Single();
             var item = new Issue() { Id = key };
             var context = new IssuesContext();

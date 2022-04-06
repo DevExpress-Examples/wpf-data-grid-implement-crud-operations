@@ -1,33 +1,32 @@
 Imports DevExpress.Mvvm
+Imports EFCoreIssues.Issues
+Imports Microsoft.EntityFrameworkCore
+Imports DevExpress.Mvvm.DataAnnotations
 Imports DevExpress.Xpf.Data
 Imports System.Linq
 Imports System.Threading.Tasks
-Imports Microsoft.EntityFrameworkCore
-Imports EFCoreIssues.Issues
 Imports DevExpress.Mvvm.Xpf
 Imports System
 
 Public Class MainViewModel
     Inherits ViewModelBase
-    Private _ServerModeSource As DevExpress.Data.Linq.EntityServerModeSource
-
-    Public ReadOnly Property ServerModeSource As DevExpress.Data.Linq.EntityServerModeSource
+    Private _ItemsSource As DevExpress.Data.Linq.EntityServerModeSource
+    Public ReadOnly Property ItemsSource As DevExpress.Data.Linq.EntityServerModeSource
         Get
-            If _ServerModeSource Is Nothing Then
-                Dim context = New Issues.IssuesContext()
-                _ServerModeSource = New DevExpress.Data.Linq.EntityServerModeSource With {
-                    .KeyExpression = NameOf(Issues.Issue.Id),
+            If _ItemsSource Is Nothing Then
+                Dim context = New IssuesContext()
+                _ItemsSource = New DevExpress.Data.Linq.EntityServerModeSource With {
+                    .KeyExpression = NameOf(Issue.Id),
                     .QueryableSource = context.Issues.AsNoTracking()
                 }
             End If
-            Return _ServerModeSource
+            Return _ItemsSource
         End Get
     End Property
     Private _Users As System.Collections.IList
-
     Public ReadOnly Property Users As System.Collections.IList
         Get
-            If _Users Is Nothing AndAlso Not IsInDesignMode Then
+            If _Users Is Nothing AndAlso Not DevExpress.Mvvm.ViewModelBase.IsInDesignMode Then
                 Dim context = New EFCoreIssues.Issues.IssuesContext()
                 _Users = context.Users.[Select](Function(user) New With {
                     .Id = user.Id,

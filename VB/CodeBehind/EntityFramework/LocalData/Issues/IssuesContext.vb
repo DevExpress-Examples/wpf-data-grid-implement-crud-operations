@@ -1,4 +1,4 @@
-Imports System.Data.Entity
+﻿Imports System.Data.Entity
 
 Namespace Issues
     Public Class IssuesContext

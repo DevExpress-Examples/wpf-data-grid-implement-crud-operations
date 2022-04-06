@@ -1,4 +1,4 @@
-Imports XPOIssues.Issues
+﻿Imports XPOIssues.Issues
 
 Class Application
 

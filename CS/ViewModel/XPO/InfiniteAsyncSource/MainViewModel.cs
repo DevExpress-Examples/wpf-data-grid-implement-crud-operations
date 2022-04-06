@@ -1,32 +1,32 @@
 using DevExpress.Mvvm;
+using XPOIssues.Issues;
+using DevExpress.Xpo;
+using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Xpf.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using DevExpress.Xpo;
-using DevExpress.Data.Filtering;
+using DevExpress.Mvvm.Xpf;
 
 namespace XPOIssues {
     public class MainViewModel : ViewModelBase {
-        DetachedObjectsHelper<XPOIssues.Issues.Issue> _DetachedObjectsHelper;
-
-        public DetachedObjectsHelper<XPOIssues.Issues.Issue> DetachedObjectsHelper
+        DetachedObjectsHelper<Issue> _DetachedObjectsHelper;
+        public DetachedObjectsHelper<Issue> DetachedObjectsHelper
         {
             get
             {
                 if(_DetachedObjectsHelper == null) {
                     using(var session = new Session()) {
-                        var classInfo = session.GetClassInfo<XPOIssues.Issues.Issue>();
+                        var classInfo = session.GetClassInfo<Issue>();
                         var properties = classInfo.Members
                             .Where(member => member.IsPublic && member.IsPersistent)
                             .Select(member => member.Name)
                             .ToArray();
-                        _DetachedObjectsHelper = DetachedObjectsHelper<XPOIssues.Issues.Issue>.Create(classInfo.KeyProperty.Name, properties);
+                        _DetachedObjectsHelper = DetachedObjectsHelper<Issue>.Create(classInfo.KeyProperty.Name, properties);
                     }
                 }
                 return _DetachedObjectsHelper;
             }
         }
-
         public System.ComponentModel.PropertyDescriptorCollection Properties
         {
             get
@@ -34,37 +34,36 @@ namespace XPOIssues {
                 return DetachedObjectsHelper.Properties;
             }
         }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void FetchRows(DevExpress.Mvvm.Xpf.FetchRowsAsyncArgs args) {
+        System.Linq.Expressions.Expression<System.Func<Issue, bool>> MakeFilterExpression(DevExpress.Data.Filtering.CriteriaOperator filter) {
+            var converter = new DevExpress.Xpf.Data.GridFilterCriteriaToExpressionConverter<Issue>();
+            return converter.Convert(filter);
+        }
+        [Command]
+        public void FetchRows(FetchRowsAsyncArgs args) {
             args.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() =>
             {
-                using(var session = new DevExpress.Xpo.Session()) {
-                    var queryable = session.Query<XPOIssues.Issues.Issue>().SortBy(args.SortOrder, defaultUniqueSortPropertyName: nameof(XPOIssues.Issues.Issue.Oid)).Where(MakeFilterExpression((DevExpress.Data.Filtering.CriteriaOperator)args.Filter));
+                using(var session = new Session()) {
+                    var queryable = session.Query<Issue>().SortBy(args.SortOrder, defaultUniqueSortPropertyName: nameof(Issue.Oid)).Where(MakeFilterExpression((DevExpress.Data.Filtering.CriteriaOperator)args.Filter));
                     var items = queryable.Skip(args.Skip).Take(args.Take ?? 100).ToArray();
                     return DetachedObjectsHelper.ConvertToDetachedObjects(items);
                 }
             });
         }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void GetTotalSummaries(DevExpress.Mvvm.Xpf.GetSummariesAsyncArgs args) {
+        [Command]
+        public void GetTotalSummaries(GetSummariesAsyncArgs args) {
             args.Result = Task.Run(() =>
             {
-                using(var session = new DevExpress.Xpo.Session()) {
-                    return session.Query<XPOIssues.Issues.Issue>().Where(MakeFilterExpression((DevExpress.Data.Filtering.CriteriaOperator)args.Filter)).GetSummaries(args.Summaries);
+                using(var session = new Session()) {
+                    return session.Query<Issue>().Where(MakeFilterExpression((DevExpress.Data.Filtering.CriteriaOperator)args.Filter)).GetSummaries(args.Summaries);
                 }
             });
         }
-
-        System.Linq.Expressions.Expression<System.Func<XPOIssues.Issues.Issue, bool>> MakeFilterExpression(DevExpress.Data.Filtering.CriteriaOperator filter) {
-            var converter = new DevExpress.Xpf.Data.GridFilterCriteriaToExpressionConverter<XPOIssues.Issues.Issue>();
-            return converter.Convert(filter);
-        }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRow(DevExpress.Mvvm.Xpf.RowValidationArgs args) {
-            using(var unitOfWork = new DevExpress.Xpo.UnitOfWork()) {
+        [Command]
+        public void ValidateRow(RowValidationArgs args) {
+            using(var unitOfWork = new UnitOfWork()) {
                 var item = args.IsNewItem
-                    ? new XPOIssues.Issues.Issue(unitOfWork)
-                    : unitOfWork.GetObjectByKey<XPOIssues.Issues.Issue>(DetachedObjectsHelper.GetKey(args.Item));
+                    ? new Issue(unitOfWork)
+                    : unitOfWork.GetObjectByKey<Issue>(DetachedObjectsHelper.GetKey(args.Item));
                 DetachedObjectsHelper.ApplyProperties(item, args.Item);
                 unitOfWork.CommitChanges();
                 if(args.IsNewItem) {
@@ -72,22 +71,21 @@ namespace XPOIssues {
                 }
             }
         }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.ValidateRowDeletionArgs args) {
-            using(var unitOfWork = new DevExpress.Xpo.UnitOfWork()) {
+        [Command]
+        public void ValidateRowDeletion(ValidateRowDeletionArgs args) {
+            using(var unitOfWork = new UnitOfWork()) {
                 var key = DetachedObjectsHelper.GetKey(args.Items.Single());
-                var item = unitOfWork.GetObjectByKey<XPOIssues.Issues.Issue>(key);
+                var item = unitOfWork.GetObjectByKey<Issue>(key);
                 unitOfWork.Delete(item);
                 unitOfWork.CommitChanges();
             }
         }
         System.Collections.IList _Users;
-
         public System.Collections.IList Users
         {
             get
             {
-                if(_Users == null && !IsInDesignMode) {
+                if(_Users == null && !DevExpress.Mvvm.ViewModelBase.IsInDesignMode) {
                     {
                         var session = new DevExpress.Xpo.Session();
                         _Users = session.Query<XPOIssues.Issues.User>().OrderBy(user => user.Oid).Select(user => new { Id = user.Oid, Name = user.FirstName + " " + user.LastName }).ToArray();

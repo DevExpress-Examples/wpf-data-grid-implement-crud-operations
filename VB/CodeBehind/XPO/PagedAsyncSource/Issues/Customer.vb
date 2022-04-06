@@ -1,4 +1,4 @@
-Imports DevExpress.Xpo
+﻿Imports DevExpress.Xpo
 
 Namespace Issues
     Public Class User

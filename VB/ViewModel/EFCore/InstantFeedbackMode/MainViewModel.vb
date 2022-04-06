@@ -1,35 +1,34 @@
 Imports DevExpress.Mvvm
+Imports EFCoreIssues.Issues
+Imports Microsoft.EntityFrameworkCore
+Imports DevExpress.Mvvm.DataAnnotations
 Imports DevExpress.Xpf.Data
 Imports System.Linq
 Imports System.Threading.Tasks
-Imports Microsoft.EntityFrameworkCore
-Imports EFCoreIssues.Issues
 Imports DevExpress.Mvvm.Xpf
 Imports System
 
 Public Class MainViewModel
     Inherits ViewModelBase
-    Private _InstantFeedbackSource As DevExpress.Data.Linq.EntityInstantFeedbackSource
-
-    Public ReadOnly Property InstantFeedbackSource As DevExpress.Data.Linq.EntityInstantFeedbackSource
+    Private _ItemsSource As DevExpress.Data.Linq.EntityInstantFeedbackSource
+    Public ReadOnly Property ItemsSource As DevExpress.Data.Linq.EntityInstantFeedbackSource
         Get
-            If _InstantFeedbackSource Is Nothing Then
-                _InstantFeedbackSource = New DevExpress.Data.Linq.EntityInstantFeedbackSource With {
-                    .KeyExpression = NameOf(Issues.Issue.Id)
+            If _ItemsSource Is Nothing Then
+                _ItemsSource = New DevExpress.Data.Linq.EntityInstantFeedbackSource With {
+                    .KeyExpression = NameOf(Issue.Id)
                 }
-                AddHandler _InstantFeedbackSource.GetQueryable, Sub(sender, e)
-                                                                    Dim context = New Issues.IssuesContext()
-                                                                    e.QueryableSource = context.Issues.AsNoTracking()
-                                                                End Sub
+                AddHandler _ItemsSource.GetQueryable, Sub(sender, e)
+                                                          Dim context = New IssuesContext()
+                                                          e.QueryableSource = context.Issues.AsNoTracking()
+                                                      End Sub
             End If
-            Return _InstantFeedbackSource
+            Return _ItemsSource
         End Get
     End Property
     Private _Users As System.Collections.IList
-
     Public ReadOnly Property Users As System.Collections.IList
         Get
-            If _Users Is Nothing AndAlso Not IsInDesignMode Then
+            If _Users Is Nothing AndAlso Not DevExpress.Mvvm.ViewModelBase.IsInDesignMode Then
                 Dim context = New EFCoreIssues.Issues.IssuesContext()
                 _Users = context.Users.[Select](Function(user) New With {
                     .Id = user.Id,

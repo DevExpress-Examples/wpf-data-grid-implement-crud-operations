@@ -1,41 +1,39 @@
 Imports DevExpress.Mvvm
+Imports XPOIssues.Issues
+Imports DevExpress.Xpo
+Imports DevExpress.Mvvm.DataAnnotations
 Imports DevExpress.Xpf.Data
 Imports System.Linq
 Imports System.Threading.Tasks
-Imports DevExpress.Xpo
-Imports DevExpress.Data.Filtering
-Imports XPOIssues.Issues
 Imports DevExpress.Mvvm.Xpf
 Imports System
 
 Public Class MainViewModel
     Inherits ViewModelBase
-    Private _ServerModeSource As XPServerModeView
-
-    Public ReadOnly Property ServerModeSource As XPServerModeView
+    Private _ItemsSource As XPServerModeView
+    Public ReadOnly Property ItemsSource As XPServerModeView
         Get
-            If _ServerModeSource Is Nothing Then
+            If _ItemsSource Is Nothing Then
                 Dim properties = New ServerViewProperty() {
-            New ServerViewProperty("Oid", SortDirection.Ascending, New OperandProperty("Oid")),
-            New ServerViewProperty("Subject", SortDirection.None, New OperandProperty("Subject")),
-            New ServerViewProperty("UserId", SortDirection.None, New OperandProperty("UserId")),
-            New ServerViewProperty("Created", SortDirection.None, New OperandProperty("Created")),
-            New ServerViewProperty("Votes", SortDirection.None, New OperandProperty("Votes")),
-            New ServerViewProperty("Priority", SortDirection.None, New OperandProperty("Priority"))
+            New ServerViewProperty("Subject", SortDirection.None, New DevExpress.Data.Filtering.OperandProperty("Subject")),
+            New ServerViewProperty("UserId", SortDirection.None, New DevExpress.Data.Filtering.OperandProperty("UserId")),
+            New ServerViewProperty("Created", SortDirection.None, New DevExpress.Data.Filtering.OperandProperty("Created")),
+            New ServerViewProperty("Votes", SortDirection.None, New DevExpress.Data.Filtering.OperandProperty("Votes")),
+            New ServerViewProperty("Priority", SortDirection.None, New DevExpress.Data.Filtering.OperandProperty("Priority")),
+            New ServerViewProperty("Oid", SortDirection.Ascending, New DevExpress.Data.Filtering.OperandProperty("Oid"))
                 }
                 Dim session = New Session()
-                _ServerModeSource = New XPServerModeView(session, GetType(Issues.Issue), Nothing)
-                _ServerModeSource.Properties.AddRange(properties)
+                _ItemsSource = New XPServerModeView(session, GetType(Issue), Nothing)
+                _ItemsSource.Properties.AddRange(properties)
             End If
 
-            Return _ServerModeSource
+            Return _ItemsSource
         End Get
     End Property
     Private _Users As System.Collections.IList
-
     Public ReadOnly Property Users As System.Collections.IList
         Get
-            If _Users Is Nothing AndAlso Not IsInDesignMode Then
+            If _Users Is Nothing AndAlso Not DevExpress.Mvvm.ViewModelBase.IsInDesignMode Then
                 Dim session = New DevExpress.Xpo.Session()
                 _Users = session.Query(Of XPOIssues.Issues.User).OrderBy(Function(user) user.Oid).[Select](Function(user) New With {
                     .Id = user.Oid,

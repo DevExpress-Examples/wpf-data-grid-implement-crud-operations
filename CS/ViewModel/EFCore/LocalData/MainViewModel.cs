@@ -1,37 +1,41 @@
 using DevExpress.Mvvm;
+using EFCoreIssues.Issues;
+using Microsoft.EntityFrameworkCore;
+using DevExpress.Mvvm.DataAnnotations;
 using System.Linq;
+using System.Collections.Generic;
+using DevExpress.Mvvm.Xpf;
 
 namespace EFCoreIssues {
     public class MainViewModel : ViewModelBase {
-        EFCoreIssues.Issues.IssuesContext _Context;
-        System.Collections.Generic.IList<EFCoreIssues.Issues.User> _ItemsSource;
-
-        public System.Collections.Generic.IList<EFCoreIssues.Issues.User> ItemsSource
+        IssuesContext _Context;
+        IList<User> _ItemsSource;
+        public IList<User> ItemsSource
         {
             get
             {
-                if(_ItemsSource == null && !IsInDesignMode) {
-                    _Context = new EFCoreIssues.Issues.IssuesContext();
+                if(_ItemsSource == null && !DevExpress.Mvvm.ViewModelBase.IsInDesignMode) {
+                    _Context = new IssuesContext();
                     _ItemsSource = _Context.Users.ToList();
                 }
                 return _ItemsSource;
             }
         }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRow(DevExpress.Mvvm.Xpf.RowValidationArgs args) {
-            var item = (EFCoreIssues.Issues.User)args.Item;
+        [Command]
+        public void ValidateRow(RowValidationArgs args) {
+            var item = (User)args.Item;
             if(args.IsNewItem)
                 _Context.Users.Add(item);
             _Context.SaveChanges();
         }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.ValidateRowDeletionArgs args) {
-            var item = (EFCoreIssues.Issues.User)args.Items.Single();
+        [Command]
+        public void ValidateRowDeletion(ValidateRowDeletionArgs args) {
+            var item = (User)args.Items.Single();
             _Context.Users.Remove(item);
             _Context.SaveChanges();
         }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void DataSourceRefresh(DevExpress.Mvvm.Xpf.DataSourceRefreshArgs args) {
+        [Command]
+        public void DataSourceRefresh(DataSourceRefreshArgs args) {
             _ItemsSource = null;
             _Context = null;
             RaisePropertyChanged(nameof(ItemsSource));

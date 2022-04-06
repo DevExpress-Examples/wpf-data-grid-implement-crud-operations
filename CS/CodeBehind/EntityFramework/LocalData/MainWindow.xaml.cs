@@ -1,5 +1,8 @@
 using System.Windows;
+using EntityFrameworkIssues.Issues;
+using System.Data.Entity;
 using System.Linq;
+using DevExpress.Xpf.Grid;
 
 namespace EntityFrameworkIssues {
     public partial class MainWindow : Window {
@@ -7,27 +10,24 @@ namespace EntityFrameworkIssues {
             InitializeComponent();
             LoadData();
         }
-        EntityFrameworkIssues.Issues.IssuesContext _Context;
+        IssuesContext _Context;
 
         void LoadData() {
-            _Context = new EntityFrameworkIssues.Issues.IssuesContext();
+            _Context = new IssuesContext();
             grid.ItemsSource = _Context.Users.ToList();
         }
-
-        void OnValidateRow(System.Object sender, DevExpress.Xpf.Grid.GridRowValidationEventArgs e) {
-            var row = (EntityFrameworkIssues.Issues.User)e.Row;
+        void OnValidateRow(object sender, GridRowValidationEventArgs e) {
+            var row = (User)e.Row;
             if(e.IsNewItem)
                 _Context.Users.Add(row);
             _Context.SaveChanges();
         }
-
-        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridValidateRowDeletionEventArgs e) {
-            var row = (EntityFrameworkIssues.Issues.User)e.Rows.Single();
+        void OnValidateRowDeletion(object sender, GridValidateRowDeletionEventArgs e) {
+            var row = (User)e.Rows.Single();
             _Context.Users.Remove(row);
             _Context.SaveChanges();
         }
-
-        void OnDataSourceRefresh(System.Object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
+        void OnDataSourceRefresh(object sender, DataSourceRefreshEventArgs e) {
             LoadData();
         }
     }

@@ -1,4 +1,4 @@
-Imports EFCoreIssues.Issues
+﻿Imports EFCoreIssues.Issues
 
 Class Application
 

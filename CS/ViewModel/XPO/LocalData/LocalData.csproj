@@ -63,37 +63,34 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Mvvm.v21.2">
+    <Reference Include="DevExpress.Mvvm.v22.1">
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Data.v21.2">
+    <Reference Include="DevExpress.Data.v22.1">
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.XPO.v21.2">
+    <Reference Include="DevExpress.XPO.v22.1">
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Printing.v21.2.Core">
+    <Reference Include="DevExpress.Printing.v22.1.Core">
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v21.2">
+    <Reference Include="DevExpress.Data.Desktop.v22.1">
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Images.v21.2">
+    <Reference Include="DevExpress.Images.v22.1">
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v21.2">
+    <Reference Include="DevExpress.Xpf.Core.v22.1">
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.LayoutControl.v21.2">
+    <Reference Include="DevExpress.Xpf.LayoutControl.v22.1">
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v21.2">
+    <Reference Include="DevExpress.Xpf.Grid.v22.1">
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v21.2.Core">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v21.2.Extensions">
+    <Reference Include="DevExpress.Xpf.Grid.v22.1.Core">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -106,7 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="MainViewModel.cs"/>
+    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\CS\ViewModel\XPO\LocalData\MainViewModel.cs"/>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

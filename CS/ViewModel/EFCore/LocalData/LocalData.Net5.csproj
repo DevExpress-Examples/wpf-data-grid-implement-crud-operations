@@ -9,10 +9,39 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
-    <DefaultItemExcludes>obj*/**</DefaultItemExcludes>
-    <BaseIntermediateOutputPath>obj.Net5</BaseIntermediateOutputPath>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Mvvm.v22.1">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v22.1">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v22.1.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.Desktop.v22.1">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Images.v22.1">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v22.1">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v22.1">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v22.1">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v22.1.Core">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\CS\ViewModel\EFCore\LocalData\MainViewModel.cs" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.1" />
     <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
@@ -42,9 +71,8 @@
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.1" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-    <PackageReference Include="DevExpress.Wpf.Themes.All" Version="21.2.*-*" />
-    <PackageReference Include="DevExpress.Images" Version="21.2.*-*" />
-    <PackageReference Include="DevExpress.Wpf.LayoutControl" Version="21.2.*-*" />
-    <PackageReference Include="DevExpress.Wpf.Grid.Core" Version="21.2.*-*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="MainViewModel.cs" />
   </ItemGroup>
 </Project>

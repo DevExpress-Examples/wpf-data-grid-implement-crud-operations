@@ -1,4 +1,4 @@
-Namespace Issues
+﻿Namespace Issues
     Public Class Issue
         Public Property Id As Integer
         Public Property Subject As String

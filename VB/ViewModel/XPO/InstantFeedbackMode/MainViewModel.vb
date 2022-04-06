@@ -1,39 +1,37 @@
 Imports DevExpress.Mvvm
+Imports XPOIssues.Issues
+Imports DevExpress.Xpo
+Imports DevExpress.Mvvm.DataAnnotations
 Imports DevExpress.Xpf.Data
 Imports System.Linq
 Imports System.Threading.Tasks
-Imports DevExpress.Xpo
-Imports DevExpress.Data.Filtering
-Imports XPOIssues.Issues
 Imports DevExpress.Mvvm.Xpf
 Imports System
 
 Public Class MainViewModel
     Inherits ViewModelBase
-    Private _InstantFeedbackSource As XPInstantFeedbackView
-
-    Public ReadOnly Property InstantFeedbackSource As XPInstantFeedbackView
+    Private _ItemsSource As XPInstantFeedbackView
+    Public ReadOnly Property ItemsSource As XPInstantFeedbackView
         Get
-            If _InstantFeedbackSource Is Nothing Then
+            If _ItemsSource Is Nothing Then
                 Dim properties = New ServerViewProperty() {
-            New ServerViewProperty("Oid", SortDirection.Ascending, New OperandProperty("Oid")),
-            New ServerViewProperty("Subject", SortDirection.None, New OperandProperty("Subject")),
-            New ServerViewProperty("UserId", SortDirection.None, New OperandProperty("UserId")),
-            New ServerViewProperty("Created", SortDirection.None, New OperandProperty("Created")),
-            New ServerViewProperty("Votes", SortDirection.None, New OperandProperty("Votes")),
-            New ServerViewProperty("Priority", SortDirection.None, New OperandProperty("Priority"))
+            New ServerViewProperty("Subject", SortDirection.None, New DevExpress.Data.Filtering.OperandProperty("Subject")),
+            New ServerViewProperty("UserId", SortDirection.None, New DevExpress.Data.Filtering.OperandProperty("UserId")),
+            New ServerViewProperty("Created", SortDirection.None, New DevExpress.Data.Filtering.OperandProperty("Created")),
+            New ServerViewProperty("Votes", SortDirection.None, New DevExpress.Data.Filtering.OperandProperty("Votes")),
+            New ServerViewProperty("Priority", SortDirection.None, New DevExpress.Data.Filtering.OperandProperty("Priority")),
+            New ServerViewProperty("Oid", SortDirection.Ascending, New DevExpress.Data.Filtering.OperandProperty("Oid"))
                 }
-                _InstantFeedbackSource = New XPInstantFeedbackView(GetType(Issues.Issue), properties, Nothing)
-                AddHandler _InstantFeedbackSource.ResolveSession, Sub(o, e) e.Session = New Session()
+                _ItemsSource = New XPInstantFeedbackView(GetType(Issue), properties, Nothing)
+                AddHandler _ItemsSource.ResolveSession, Sub(o, e) e.Session = New Session()
             End If
-            Return _InstantFeedbackSource
+            Return _ItemsSource
         End Get
     End Property
     Private _Users As System.Collections.IList
-
     Public ReadOnly Property Users As System.Collections.IList
         Get
-            If _Users Is Nothing AndAlso Not IsInDesignMode Then
+            If _Users Is Nothing AndAlso Not DevExpress.Mvvm.ViewModelBase.IsInDesignMode Then
                 Dim session = New DevExpress.Xpo.Session()
                 _Users = session.Query(Of XPOIssues.Issues.User).OrderBy(Function(user) user.Oid).[Select](Function(user) New With {
                     .Id = user.Oid,

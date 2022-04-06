@@ -1,4 +1,4 @@
-using EFCoreIssues.Issues;
+﻿using EFCoreIssues.Issues;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

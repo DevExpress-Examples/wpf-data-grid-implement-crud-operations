@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace XPOIssues.Issues {
     public static class OutlookDataGenerator {

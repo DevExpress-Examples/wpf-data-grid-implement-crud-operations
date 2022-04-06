@@ -1,5 +1,8 @@
 using System.Windows;
+using XPOIssues.Issues;
+using DevExpress.Xpo;
 using System.Linq;
+using DevExpress.Xpf.Grid;
 
 namespace XPOIssues {
     public partial class MainWindow : Window {
@@ -7,26 +10,23 @@ namespace XPOIssues {
             InitializeComponent();
             LoadData();
         }
-        DevExpress.Xpo.UnitOfWork _UnitOfWork;
+        UnitOfWork _UnitOfWork;
 
         void LoadData() {
-            _UnitOfWork = new DevExpress.Xpo.UnitOfWork();
-            var xpCollection = new DevExpress.Xpo.XPCollection<XPOIssues.Issues.User>(_UnitOfWork);
-            xpCollection.Sorting.Add(new DevExpress.Xpo.SortProperty(nameof(XPOIssues.Issues.User.Oid), DevExpress.Xpo.DB.SortingDirection.Ascending));
+            _UnitOfWork = new UnitOfWork();
+            var xpCollection = new XPCollection<User>(_UnitOfWork);
+            xpCollection.Sorting.Add(new SortProperty(nameof(User.Oid), DevExpress.Xpo.DB.SortingDirection.Ascending));
             grid.ItemsSource = xpCollection;
         }
-
-        void OnValidateRow(System.Object sender, DevExpress.Xpf.Grid.GridRowValidationEventArgs e) {
+        void OnValidateRow(object sender, GridRowValidationEventArgs e) {
             _UnitOfWork.CommitChanges();
         }
-
-        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridValidateRowDeletionEventArgs e) {
-            var row = (XPOIssues.Issues.User)e.Rows.Single();
+        void OnValidateRowDeletion(object sender, GridValidateRowDeletionEventArgs e) {
+            var row = (User)e.Rows.Single();
             _UnitOfWork.Delete(row);
             _UnitOfWork.CommitChanges();
         }
-
-        void OnDataSourceRefresh(System.Object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
+        void OnDataSourceRefresh(object sender, DataSourceRefreshEventArgs e) {
             LoadData();
         }
     }

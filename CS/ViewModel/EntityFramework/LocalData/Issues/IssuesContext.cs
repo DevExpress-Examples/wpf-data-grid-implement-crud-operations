@@ -1,4 +1,4 @@
-using System.Data.Entity;
+﻿using System.Data.Entity;
 
 namespace EntityFrameworkIssues.Issues {
     public class IssuesContext : DbContext {

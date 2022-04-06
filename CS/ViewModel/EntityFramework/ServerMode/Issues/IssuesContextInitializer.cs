@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data.Entity;
 using System.Linq;
 
@@ -23,11 +23,9 @@ namespace EntityFrameworkIssues.Issues {
 
         static void CreateData(IssuesContext context) {
             var users = OutlookDataGenerator.Users
-                .Select(x =>
-                {
+                .Select(x => {
                     var split = x.Split(' ');
-                    return new User()
-                    {
+                    return new User() {
                         FirstName = split[0],
                         LastName = split[1]
                     };
@@ -38,8 +36,7 @@ namespace EntityFrameworkIssues.Issues {
 
             var rnd = new Random(0);
             var issues = Enumerable.Range(0, 1000)
-                .Select(i => new Issue()
-                {
+                .Select(i => new Issue() {
                     Subject = OutlookDataGenerator.GetSubject(),
                     UserId = users[rnd.Next(users.Length)].Id,
                     Created = DateTime.Today.AddDays(-rnd.Next(30)),

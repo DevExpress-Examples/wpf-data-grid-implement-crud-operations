@@ -1,8 +1,10 @@
 using System.Windows;
+using EntityFrameworkIssues.Issues;
+using System.Data.Entity;
 using DevExpress.Xpf.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Data.Entity;
+using DevExpress.Xpf.Grid;
 
 namespace EntityFrameworkIssues {
     public partial class MainWindow : Window {
@@ -10,8 +12,8 @@ namespace EntityFrameworkIssues {
             InitializeComponent();
             var source = new InfiniteAsyncSource
             {
-                ElementType = typeof(EntityFrameworkIssues.Issues.Issue),
-                KeyProperty = nameof(EntityFrameworkIssues.Issues.Issue.Id)
+                ElementType = typeof(Issue),
+                KeyProperty = nameof(Issue.Id)
             };
             source.FetchRows += OnFetchRows;
             source.GetTotalSummaries += OnGetTotalSummaries;
@@ -19,34 +21,31 @@ namespace EntityFrameworkIssues {
             LoadLookupData();
         }
 
-        void OnFetchRows(System.Object sender, DevExpress.Xpf.Data.FetchRowsAsyncEventArgs e) {
+        System.Linq.Expressions.Expression<System.Func<Issue, bool>> MakeFilterExpression(DevExpress.Data.Filtering.CriteriaOperator filter) {
+            var converter = new DevExpress.Xpf.Data.GridFilterCriteriaToExpressionConverter<Issue>();
+            return converter.Convert(filter);
+        }
+        void OnFetchRows(object sender, FetchRowsAsyncEventArgs e) {
             e.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() =>
             {
-                var context = new EntityFrameworkIssues.Issues.IssuesContext();
+                var context = new IssuesContext();
                 var queryable = context.Issues.AsNoTracking()
-                    .SortBy(e.SortOrder, defaultUniqueSortPropertyName: nameof(EntityFrameworkIssues.Issues.Issue.Id))
+                    .SortBy(e.SortOrder, defaultUniqueSortPropertyName: nameof(Issue.Id))
                     .Where(MakeFilterExpression(e.Filter));
                 return queryable.Skip(e.Skip).Take(e.Take ?? 100).ToArray();
             });
         }
-
-        void OnGetTotalSummaries(System.Object sender, DevExpress.Xpf.Data.GetSummariesAsyncEventArgs e) {
+        void OnGetTotalSummaries(object sender, GetSummariesAsyncEventArgs e) {
             e.Result = Task.Run(() =>
             {
-                var context = new EntityFrameworkIssues.Issues.IssuesContext();
+                var context = new IssuesContext();
                 var queryable = context.Issues.Where(MakeFilterExpression(e.Filter));
                 return queryable.GetSummaries(e.Summaries);
             });
         }
-
-        System.Linq.Expressions.Expression<System.Func<EntityFrameworkIssues.Issues.Issue, bool>> MakeFilterExpression(DevExpress.Data.Filtering.CriteriaOperator filter) {
-            var converter = new DevExpress.Xpf.Data.GridFilterCriteriaToExpressionConverter<EntityFrameworkIssues.Issues.Issue>();
-            return converter.Convert(filter);
-        }
-
-        void OnValidateRow(System.Object sender, DevExpress.Xpf.Grid.GridRowValidationEventArgs e) {
-            var row = (EntityFrameworkIssues.Issues.Issue)e.Row;
-            var context = new EntityFrameworkIssues.Issues.IssuesContext();
+        void OnValidateRow(object sender, GridRowValidationEventArgs e) {
+            var row = (Issue)e.Row;
+            var context = new IssuesContext();
             context.Entry(row).State = e.IsNewItem
                 ? EntityState.Added
                 : EntityState.Modified;
@@ -56,20 +55,17 @@ namespace EntityFrameworkIssues {
                 context.Entry(row).State = EntityState.Detached;
             }
         }
-
-        void OnValidateRowDeletion(System.Object sender, DevExpress.Xpf.Grid.GridValidateRowDeletionEventArgs e) {
-            var row = (EntityFrameworkIssues.Issues.Issue)e.Rows.Single();
-            var context = new EntityFrameworkIssues.Issues.IssuesContext();
+        void OnValidateRowDeletion(object sender, GridValidateRowDeletionEventArgs e) {
+            var row = (Issue)e.Rows.Single();
+            var context = new IssuesContext();
             context.Entry(row).State = EntityState.Deleted;
             context.SaveChanges();
         }
-
         void LoadLookupData() {
             var context = new EntityFrameworkIssues.Issues.IssuesContext();
             usersLookup.ItemsSource = context.Users.Select(user => new { Id = user.Id, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
-
-        void OnDataSourceRefresh(System.Object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
+        void OnDataSourceRefresh(object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }
     }
