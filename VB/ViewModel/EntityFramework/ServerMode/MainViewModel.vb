@@ -1,4 +1,4 @@
-Imports DevExpress.Mvvm
+﻿Imports DevExpress.Mvvm
 Imports EntityFrameworkIssues.Issues
 Imports System.Data.Entity
 Imports DevExpress.Mvvm.DataAnnotations

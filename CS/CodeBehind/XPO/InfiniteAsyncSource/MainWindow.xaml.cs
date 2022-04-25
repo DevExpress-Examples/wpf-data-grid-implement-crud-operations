@@ -1,4 +1,4 @@
-using System.Windows;
+﻿using System.Windows;
 using XPOIssues.Issues;
 using DevExpress.Xpo;
 using DevExpress.Xpf.Data;
@@ -18,8 +18,7 @@ namespace XPOIssues {
                     .ToArray();
                 _DetachedObjectsHelper = DetachedObjectsHelper<Issue>.Create(classInfo.KeyProperty.Name, properties);
             }
-            var source = new InfiniteAsyncSource
-            {
+            var source = new InfiniteAsyncSource {
                 CustomProperties = _DetachedObjectsHelper.Properties,
                 KeyProperty = nameof(Issue.Oid)
             };
@@ -36,8 +35,7 @@ namespace XPOIssues {
         DetachedObjectsHelper<Issue> _DetachedObjectsHelper;
 
         void OnFetchRows(object sender, FetchRowsAsyncEventArgs e) {
-            e.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() =>
-            {
+            e.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() => {
                 using(var session = new Session()) {
                     var queryable = session.Query<Issue>().SortBy(e.SortOrder, defaultUniqueSortPropertyName: nameof(Issue.Oid)).Where(MakeFilterExpression(e.Filter));
                     var items = queryable.Skip(e.Skip).Take(e.Take ?? 100).ToArray();
@@ -45,14 +43,15 @@ namespace XPOIssues {
                 }
             });
         }
+
         void OnGetTotalSummaries(object sender, GetSummariesAsyncEventArgs e) {
-            e.Result = Task.Run(() =>
-            {
+            e.Result = Task.Run(() => {
                 using(var session = new Session()) {
                     return session.Query<Issue>().Where(MakeFilterExpression(e.Filter)).GetSummaries(e.Summaries);
                 }
             });
         }
+
         void OnValidateRow(object sender, GridRowValidationEventArgs e) {
             using(var unitOfWork = new UnitOfWork()) {
                 var item = e.IsNewItem
@@ -65,6 +64,7 @@ namespace XPOIssues {
                 }
             }
         }
+
         void OnValidateRowDeletion(object sender, GridValidateRowDeletionEventArgs e) {
             using(var unitOfWork = new UnitOfWork()) {
                 var key = _DetachedObjectsHelper.GetKey(e.Rows.Single());
@@ -73,10 +73,12 @@ namespace XPOIssues {
                 unitOfWork.CommitChanges();
             }
         }
+
         void LoadLookupData() {
             var session = new DevExpress.Xpo.Session();
             usersLookup.ItemsSource = session.Query<XPOIssues.Issues.User>().OrderBy(user => user.Oid).Select(user => new { Id = user.Oid, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
+
         void OnDataSourceRefresh(object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }

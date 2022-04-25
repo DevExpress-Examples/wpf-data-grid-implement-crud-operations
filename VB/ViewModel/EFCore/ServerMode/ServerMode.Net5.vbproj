@@ -9,6 +9,9 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <DefaultItemExcludes>obj*/**</DefaultItemExcludes>
+    <BaseIntermediateOutputPath>obj.Net5</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <IncrementalBuild>true</IncrementalBuild>
@@ -21,42 +24,6 @@
     <DocumentationFile>EFCoreIssues.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1.Extensions, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="DevExpress.Mvvm.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Data.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v22.1.Core">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Images.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.LayoutControl.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1.Core">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\VB\ViewModel\EFCore\ServerMode\EditIssueInfo.vb" />
-    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\VB\ViewModel\EFCore\ServerMode\MainViewModel.vb" />
-  </ItemGroup>
   <ItemGroup>
     <Import Include="System.Windows" />
     <Import Include="System.Windows.Controls" />
@@ -112,11 +79,9 @@
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.1" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="EditIssueInfo.vb" />
-    <Compile Remove="IssueDetailView.vb" />
-    <Compile Remove="MainViewModel.vb" />
-    <Page Remove="IssueDetailView.xaml" />
+    <PackageReference Include="DevExpress.Wpf.Themes.All" Version="22.1.*-*" />
+    <PackageReference Include="DevExpress.Wpf.Grid.Core" Version="22.1.*-*" />
+    <PackageReference Include="DevExpress.Images" Version="22.1.*-*" />
+    <PackageReference Include="DevExpress.Wpf.LayoutControl" Version="22.1.*-*" />
   </ItemGroup>
 </Project>

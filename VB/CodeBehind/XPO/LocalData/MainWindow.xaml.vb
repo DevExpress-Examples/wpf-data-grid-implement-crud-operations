@@ -1,4 +1,4 @@
-Imports XPOIssues.Issues
+﻿Imports XPOIssues.Issues
 Imports DevExpress.Xpo
 Imports System.Linq
 Imports DevExpress.Xpf.Grid

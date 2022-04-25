@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Xpf.Grid.v22.1.Extensions, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
+    <Reference Include="DevExpress.Xpo.v22.1, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -104,18 +105,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\CS\ViewModel\XPO\ServerMode\IssueDetailView.xaml">
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="IssueDetailView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\CS\ViewModel\XPO\ServerMode\EditIssueInfo.cs"/>
-    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\CS\ViewModel\XPO\ServerMode\IssueDetailView.cs" >
-      <DependentUpon>C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\CS\ViewModel\XPO\ServerMode\IssueDetailView.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\CS\ViewModel\XPO\ServerMode\MainViewModel.cs" />
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
+    <Compile Include="EditIssueInfo.cs" />
+    <Compile Include="IssueDetailView.cs">
+      <DependentUpon>IssueDetailView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Issues\ConnectionHelper.cs" />
@@ -123,6 +123,7 @@
     <Compile Include="Issues\DemoDataHelper.cs" />
     <Compile Include="Issues\Issue.cs" />
     <Compile Include="Issues\OutlookDataGenerator.cs" />
+    <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

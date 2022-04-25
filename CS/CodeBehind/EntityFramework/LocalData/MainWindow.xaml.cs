@@ -1,4 +1,4 @@
-using System.Windows;
+﻿using System.Windows;
 using EntityFrameworkIssues.Issues;
 using System.Data.Entity;
 using System.Linq;
@@ -16,17 +16,20 @@ namespace EntityFrameworkIssues {
             _Context = new IssuesContext();
             grid.ItemsSource = _Context.Users.ToList();
         }
+
         void OnValidateRow(object sender, GridRowValidationEventArgs e) {
             var row = (User)e.Row;
             if(e.IsNewItem)
                 _Context.Users.Add(row);
             _Context.SaveChanges();
         }
+
         void OnValidateRowDeletion(object sender, GridValidateRowDeletionEventArgs e) {
             var row = (User)e.Rows.Single();
             _Context.Users.Remove(row);
             _Context.SaveChanges();
         }
+
         void OnDataSourceRefresh(object sender, DataSourceRefreshEventArgs e) {
             LoadData();
         }

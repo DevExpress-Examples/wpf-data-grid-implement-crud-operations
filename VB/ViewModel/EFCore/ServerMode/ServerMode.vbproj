@@ -177,18 +177,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\VB\ViewModel\EFCore\ServerMode\IssueDetailView.xaml">
+    <Compile Include="Application.xaml.vb">
+      <DependentUpon>Application.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="IssueDetailView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\VB\ViewModel\EFCore\ServerMode\EditIssueInfo.vb"/>
-    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\VB\ViewModel\EFCore\ServerMode\IssueDetailView.vb" >
-      <DependentUpon>C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\VB\ViewModel\EFCore\ServerMode\IssueDetailView.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\VB\ViewModel\EFCore\ServerMode\MainViewModel.vb" />
-    <Compile Include="Application.xaml.vb">
-      <DependentUpon>Application.xaml</DependentUpon>
+    <Compile Include="EditIssueInfo.vb" />
+    <Compile Include="IssueDetailView.vb">
+      <DependentUpon>IssueDetailView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Issues\Issue.vb" />
@@ -196,6 +195,7 @@
     <Compile Include="Issues\IssuesContextInitializer.vb" />
     <Compile Include="Issues\OutlookDataGenerator.vb" />
     <Compile Include="Issues\User.vb" />
+    <Compile Include="MainViewModel.vb" />
     <Compile Include="MainWindow.xaml.vb">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

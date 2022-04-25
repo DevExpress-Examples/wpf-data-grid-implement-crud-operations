@@ -1,4 +1,4 @@
-using System.Windows;
+﻿using System.Windows;
 using EFCoreIssues.Issues;
 using Microsoft.EntityFrameworkCore;
 using DevExpress.Xpf.Data;
@@ -13,8 +13,7 @@ namespace EFCoreIssues {
         public MainWindow() {
             InitializeComponent();
             var context = new IssuesContext();
-            var source = new DevExpress.Data.Linq.EntityServerModeSource
-            {
+            var source = new DevExpress.Data.Linq.EntityServerModeSource {
                 KeyExpression = nameof(Issue.Id),
                 QueryableSource = context.Issues.AsNoTracking()
             };
@@ -26,9 +25,11 @@ namespace EFCoreIssues {
             var context = new EFCoreIssues.Issues.IssuesContext();
             usersLookup.ItemsSource = context.Users.Select(user => new { Id = user.Id, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
+
         void OnDataSourceRefresh(object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }
+
         void OnCreateEditEntityViewModel(object sender, DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs e) {
             var context = new IssuesContext();
             Issue item;
@@ -44,10 +45,12 @@ namespace EFCoreIssues {
                 title: (e.IsNewItem ? "New " : "Edit ") + nameof(Issue)
             );
         }
+
         void OnValidateRow(object sender, DevExpress.Mvvm.Xpf.EditFormRowValidationArgs e) {
             var context = ((EditIssueInfo)e.EditOperationContext).DbContext;
             context.SaveChanges();
         }
+
         void OnValidateRowDeletion(object sender, DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs e) {
             var key = (int)e.Keys.Single();
             var item = new Issue() { Id = key };

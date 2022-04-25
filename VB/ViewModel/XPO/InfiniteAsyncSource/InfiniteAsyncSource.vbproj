@@ -51,7 +51,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Xpf.Grid.v22.1.Extensions, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
-    <Reference Include="DevExpress.Xpf.Grid.v22.1.Extensions, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
+    <Reference Include="DevExpress.Xpo.v22.1, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -108,7 +108,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\VB\ViewModel\XPO\InfiniteAsyncSource\MainViewModel.vb" />
     <Compile Include="Application.xaml.vb">
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -118,6 +117,7 @@
     <Compile Include="Issues\DemoDataHelper.vb" />
     <Compile Include="Issues\Issue.vb" />
     <Compile Include="Issues\OutlookDataGenerator.vb" />
+    <Compile Include="MainViewModel.vb" />
     <Compile Include="MainWindow.xaml.vb">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

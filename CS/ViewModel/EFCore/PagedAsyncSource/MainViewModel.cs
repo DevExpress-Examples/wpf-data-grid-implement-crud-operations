@@ -1,4 +1,4 @@
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm;
 using EFCoreIssues.Issues;
 using Microsoft.EntityFrameworkCore;
 using DevExpress.Mvvm.DataAnnotations;
@@ -17,8 +17,7 @@ namespace EFCoreIssues {
         [Command]
         public void FetchPage(FetchPageAsyncArgs args) {
             const int pageTakeCount = 5;
-            args.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() =>
-            {
+            args.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() => {
                 var context = new IssuesContext();
                 var queryable = context.Issues.AsNoTracking()
                     .SortBy(args.SortOrder, defaultUniqueSortPropertyName: nameof(Issue.Id))
@@ -28,8 +27,7 @@ namespace EFCoreIssues {
         }
         [Command]
         public void GetTotalSummaries(GetSummariesAsyncArgs args) {
-            args.Result = Task.Run(() =>
-            {
+            args.Result = Task.Run(() => {
                 var context = new IssuesContext();
                 var queryable = context.Issues.Where(MakeFilterExpression((DevExpress.Data.Filtering.CriteriaOperator)args.Filter));
                 return queryable.GetSummaries(args.Summaries);
@@ -47,8 +45,7 @@ namespace EFCoreIssues {
             }
         }
         System.Collections.IList _Users;
-        public System.Collections.IList Users
-        {
+        public System.Collections.IList Users {
             get
             {
                 if(_Users == null && !DevExpress.Mvvm.ViewModelBase.IsInDesignMode) {

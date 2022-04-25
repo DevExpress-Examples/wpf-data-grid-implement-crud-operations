@@ -1,4 +1,4 @@
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm;
 using XPOIssues.Issues;
 using DevExpress.Xpo;
 using DevExpress.Mvvm.DataAnnotations;
@@ -10,8 +10,7 @@ namespace XPOIssues {
     public class MainViewModel : ViewModelBase {
         UnitOfWork _UnitOfWork;
         IList<User> _ItemsSource;
-        public IList<User> ItemsSource
-        {
+        public IList<User> ItemsSource {
             get
             {
                 if(_ItemsSource == null && !DevExpress.Mvvm.ViewModelBase.IsInDesignMode) {

@@ -1,4 +1,4 @@
-Imports EntityFrameworkIssues.Issues
+﻿Imports EntityFrameworkIssues.Issues
 Imports System.Data.Entity
 Imports DevExpress.Xpf.Data
 Imports System.Linq

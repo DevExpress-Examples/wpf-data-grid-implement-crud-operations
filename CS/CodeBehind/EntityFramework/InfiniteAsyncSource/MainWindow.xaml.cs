@@ -1,4 +1,4 @@
-using System.Windows;
+﻿using System.Windows;
 using EntityFrameworkIssues.Issues;
 using System.Data.Entity;
 using DevExpress.Xpf.Data;
@@ -10,8 +10,7 @@ namespace EntityFrameworkIssues {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            var source = new InfiniteAsyncSource
-            {
+            var source = new InfiniteAsyncSource {
                 ElementType = typeof(Issue),
                 KeyProperty = nameof(Issue.Id)
             };
@@ -25,9 +24,9 @@ namespace EntityFrameworkIssues {
             var converter = new DevExpress.Xpf.Data.GridFilterCriteriaToExpressionConverter<Issue>();
             return converter.Convert(filter);
         }
+
         void OnFetchRows(object sender, FetchRowsAsyncEventArgs e) {
-            e.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() =>
-            {
+            e.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() => {
                 var context = new IssuesContext();
                 var queryable = context.Issues.AsNoTracking()
                     .SortBy(e.SortOrder, defaultUniqueSortPropertyName: nameof(Issue.Id))
@@ -35,14 +34,15 @@ namespace EntityFrameworkIssues {
                 return queryable.Skip(e.Skip).Take(e.Take ?? 100).ToArray();
             });
         }
+
         void OnGetTotalSummaries(object sender, GetSummariesAsyncEventArgs e) {
-            e.Result = Task.Run(() =>
-            {
+            e.Result = Task.Run(() => {
                 var context = new IssuesContext();
                 var queryable = context.Issues.Where(MakeFilterExpression(e.Filter));
                 return queryable.GetSummaries(e.Summaries);
             });
         }
+
         void OnValidateRow(object sender, GridRowValidationEventArgs e) {
             var row = (Issue)e.Row;
             var context = new IssuesContext();
@@ -55,16 +55,19 @@ namespace EntityFrameworkIssues {
                 context.Entry(row).State = EntityState.Detached;
             }
         }
+
         void OnValidateRowDeletion(object sender, GridValidateRowDeletionEventArgs e) {
             var row = (Issue)e.Rows.Single();
             var context = new IssuesContext();
             context.Entry(row).State = EntityState.Deleted;
             context.SaveChanges();
         }
+
         void LoadLookupData() {
             var context = new EntityFrameworkIssues.Issues.IssuesContext();
             usersLookup.ItemsSource = context.Users.Select(user => new { Id = user.Id, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
+
         void OnDataSourceRefresh(object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }

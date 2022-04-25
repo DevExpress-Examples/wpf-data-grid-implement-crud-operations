@@ -1,4 +1,4 @@
-Imports DevExpress.Mvvm
+﻿Imports DevExpress.Mvvm
 Imports XPOIssues.Issues
 Imports DevExpress.Xpo
 Imports DevExpress.Mvvm.DataAnnotations

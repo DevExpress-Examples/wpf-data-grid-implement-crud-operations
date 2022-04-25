@@ -1,4 +1,4 @@
-using System.Windows;
+﻿using System.Windows;
 using XPOIssues.Issues;
 using DevExpress.Xpo;
 using DevExpress.Xpf.Data;
@@ -31,9 +31,11 @@ new ServerViewProperty("Oid", SortDirection.Ascending, new DevExpress.Data.Filte
             var session = new DevExpress.Xpo.Session();
             usersLookup.ItemsSource = session.Query<XPOIssues.Issues.User>().OrderBy(user => user.Oid).Select(user => new { Id = user.Oid, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
+
         void OnDataSourceRefresh(object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }
+
         void OnCreateEditEntityViewModel(object sender, DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs e) {
             var unitOfWork = new UnitOfWork();
             var item = e.IsNewItem
@@ -46,10 +48,12 @@ new ServerViewProperty("Oid", SortDirection.Ascending, new DevExpress.Data.Filte
                 title: (e.IsNewItem ? "New " : "Edit ") + nameof(Issue)
             );
         }
+
         void OnValidateRow(object sender, DevExpress.Mvvm.Xpf.EditFormRowValidationArgs e) {
             var unitOfWork = ((EditIssueInfo)e.EditOperationContext).UnitOfWork;
             unitOfWork.CommitChanges();
         }
+
         void OnValidateRowDeletion(object sender, DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs e) {
             using(var unitOfWork = new UnitOfWork()) {
                 var key = (int)e.Keys.Single();

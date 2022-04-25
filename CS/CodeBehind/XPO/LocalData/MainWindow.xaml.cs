@@ -1,4 +1,4 @@
-using System.Windows;
+﻿using System.Windows;
 using XPOIssues.Issues;
 using DevExpress.Xpo;
 using System.Linq;
@@ -18,14 +18,17 @@ namespace XPOIssues {
             xpCollection.Sorting.Add(new SortProperty(nameof(User.Oid), DevExpress.Xpo.DB.SortingDirection.Ascending));
             grid.ItemsSource = xpCollection;
         }
+
         void OnValidateRow(object sender, GridRowValidationEventArgs e) {
             _UnitOfWork.CommitChanges();
         }
+
         void OnValidateRowDeletion(object sender, GridValidateRowDeletionEventArgs e) {
             var row = (User)e.Rows.Single();
             _UnitOfWork.Delete(row);
             _UnitOfWork.CommitChanges();
         }
+
         void OnDataSourceRefresh(object sender, DataSourceRefreshEventArgs e) {
             LoadData();
         }

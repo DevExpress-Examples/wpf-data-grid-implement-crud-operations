@@ -1,4 +1,4 @@
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm;
 using EFCoreIssues.Issues;
 using Microsoft.EntityFrameworkCore;
 using DevExpress.Mvvm.DataAnnotations;
@@ -10,8 +10,7 @@ namespace EFCoreIssues {
     public class MainViewModel : ViewModelBase {
         IssuesContext _Context;
         IList<User> _ItemsSource;
-        public IList<User> ItemsSource
-        {
+        public IList<User> ItemsSource {
             get
             {
                 if(_ItemsSource == null && !DevExpress.Mvvm.ViewModelBase.IsInDesignMode) {

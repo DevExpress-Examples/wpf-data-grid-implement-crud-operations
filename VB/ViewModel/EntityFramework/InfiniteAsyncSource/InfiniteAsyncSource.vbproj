@@ -54,7 +54,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Xpf.Grid.v22.1.Extensions, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
-    <Reference Include="DevExpress.Xpf.Grid.v22.1.Extensions, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -114,7 +113,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\VB\ViewModel\EntityFramework\InfiniteAsyncSource\MainViewModel.vb" />
     <Compile Include="Application.xaml.vb">
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -124,6 +122,7 @@
     <Compile Include="Issues\IssuesContextInitializer.vb" />
     <Compile Include="Issues\OutlookDataGenerator.vb" />
     <Compile Include="Issues\User.vb" />
+    <Compile Include="MainViewModel.vb" />
     <Compile Include="MainWindow.xaml.vb">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

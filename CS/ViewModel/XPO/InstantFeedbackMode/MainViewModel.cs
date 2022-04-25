@@ -1,4 +1,4 @@
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm;
 using XPOIssues.Issues;
 using DevExpress.Xpo;
 using DevExpress.Mvvm.DataAnnotations;
@@ -11,8 +11,7 @@ using System;
 namespace XPOIssues {
     public class MainViewModel : ViewModelBase {
         XPInstantFeedbackView _ItemsSource;
-        public XPInstantFeedbackView ItemsSource
-        {
+        public XPInstantFeedbackView ItemsSource {
             get
             {
                 if(_ItemsSource == null) {
@@ -25,8 +24,7 @@ new ServerViewProperty("Priority", SortDirection.None, new DevExpress.Data.Filte
 new ServerViewProperty("Oid", SortDirection.Ascending, new DevExpress.Data.Filtering.OperandProperty("Oid"))
     };
                     _ItemsSource = new XPInstantFeedbackView(typeof(Issue), properties, null);
-                    _ItemsSource.ResolveSession += (o, e) =>
-                    {
+                    _ItemsSource.ResolveSession += (o, e) => {
                         e.Session = new Session();
                     };
                 }
@@ -34,8 +32,7 @@ new ServerViewProperty("Oid", SortDirection.Ascending, new DevExpress.Data.Filte
             }
         }
         System.Collections.IList _Users;
-        public System.Collections.IList Users
-        {
+        public System.Collections.IList Users {
             get
             {
                 if(_Users == null && !DevExpress.Mvvm.ViewModelBase.IsInDesignMode) {

@@ -1,4 +1,4 @@
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm;
 using XPOIssues.Issues;
 using DevExpress.Xpo;
 using DevExpress.Mvvm.DataAnnotations;
@@ -10,8 +10,7 @@ using DevExpress.Mvvm.Xpf;
 namespace XPOIssues {
     public class MainViewModel : ViewModelBase {
         DetachedObjectsHelper<Issue> _DetachedObjectsHelper;
-        public DetachedObjectsHelper<Issue> DetachedObjectsHelper
-        {
+        public DetachedObjectsHelper<Issue> DetachedObjectsHelper {
             get
             {
                 if(_DetachedObjectsHelper == null) {
@@ -27,21 +26,20 @@ namespace XPOIssues {
                 return _DetachedObjectsHelper;
             }
         }
-        public System.ComponentModel.PropertyDescriptorCollection Properties
-        {
+        public System.ComponentModel.PropertyDescriptorCollection Properties {
             get
             {
                 return DetachedObjectsHelper.Properties;
             }
         }
+
         System.Linq.Expressions.Expression<System.Func<Issue, bool>> MakeFilterExpression(DevExpress.Data.Filtering.CriteriaOperator filter) {
             var converter = new DevExpress.Xpf.Data.GridFilterCriteriaToExpressionConverter<Issue>();
             return converter.Convert(filter);
         }
         [Command]
         public void FetchRows(FetchRowsAsyncArgs args) {
-            args.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() =>
-            {
+            args.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() => {
                 using(var session = new Session()) {
                     var queryable = session.Query<Issue>().SortBy(args.SortOrder, defaultUniqueSortPropertyName: nameof(Issue.Oid)).Where(MakeFilterExpression((DevExpress.Data.Filtering.CriteriaOperator)args.Filter));
                     var items = queryable.Skip(args.Skip).Take(args.Take ?? 100).ToArray();
@@ -51,8 +49,7 @@ namespace XPOIssues {
         }
         [Command]
         public void GetTotalSummaries(GetSummariesAsyncArgs args) {
-            args.Result = Task.Run(() =>
-            {
+            args.Result = Task.Run(() => {
                 using(var session = new Session()) {
                     return session.Query<Issue>().Where(MakeFilterExpression((DevExpress.Data.Filtering.CriteriaOperator)args.Filter)).GetSummaries(args.Summaries);
                 }
@@ -81,8 +78,7 @@ namespace XPOIssues {
             }
         }
         System.Collections.IList _Users;
-        public System.Collections.IList Users
-        {
+        public System.Collections.IList Users {
             get
             {
                 if(_Users == null && !DevExpress.Mvvm.ViewModelBase.IsInDesignMode) {

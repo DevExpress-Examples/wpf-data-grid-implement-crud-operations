@@ -9,6 +9,9 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <DefaultItemExcludes>obj*/**</DefaultItemExcludes>
+    <BaseIntermediateOutputPath>obj.Net5</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <IncrementalBuild>true</IncrementalBuild>
@@ -22,44 +25,7 @@
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1.Extensions, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
-    <Reference Include="DevExpress.Xpf.Grid.v22.1.Extensions, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
     <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="DevExpress.Mvvm.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Data.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.XPO.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v22.1.Core">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Images.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.LayoutControl.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1.Core">
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="C:\Work\2022.1\XPF\DevExpress.Xpf.Grid\DevExpress.Xpf.Grid.DesignTools\DevExpress.Xpf.Grid.DesignTools.v16.10.Tests\Bin\!crud\VB\ViewModel\XPO\InfiniteAsyncSource\MainViewModel.vb" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="System.Windows" />
@@ -90,8 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="MainViewModel.vb" />
+    <PackageReference Include="DevExpress.Wpf.Themes.All" Version="22.1.*-*" />
+    <PackageReference Include="DevExpress.Wpf.Grid.Core" Version="22.1.*-*" />
+    <PackageReference Include="DevExpress.Xpo" Version="22.1.*-*" />
+    <PackageReference Include="DevExpress.Images" Version="22.1.*-*" />
+    <PackageReference Include="DevExpress.Wpf.LayoutControl" Version="22.1.*-*" />
   </ItemGroup>
 </Project>

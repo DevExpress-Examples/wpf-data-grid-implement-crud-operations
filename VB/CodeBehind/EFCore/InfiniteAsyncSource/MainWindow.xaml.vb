@@ -1,4 +1,4 @@
-Imports EFCoreIssues.Issues
+﻿Imports EFCoreIssues.Issues
 Imports Microsoft.EntityFrameworkCore
 Imports DevExpress.Xpf.Data
 Imports System.Linq

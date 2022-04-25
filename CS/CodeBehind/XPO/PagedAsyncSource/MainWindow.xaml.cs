@@ -1,4 +1,4 @@
-using System.Windows;
+﻿using System.Windows;
 using XPOIssues.Issues;
 using DevExpress.Xpo;
 using DevExpress.Xpf.Data;
@@ -18,8 +18,7 @@ namespace XPOIssues {
                     .ToArray();
                 _DetachedObjectsHelper = DetachedObjectsHelper<Issue>.Create(classInfo.KeyProperty.Name, properties);
             }
-            var source = new PagedAsyncSource
-            {
+            var source = new PagedAsyncSource {
                 CustomProperties = _DetachedObjectsHelper.Properties,
                 KeyProperty = nameof(Issue.Oid),
                 PageNavigationMode = PageNavigationMode.ArbitraryWithTotalPageCount
@@ -37,8 +36,7 @@ namespace XPOIssues {
         DetachedObjectsHelper<Issue> _DetachedObjectsHelper;
 
         void OnFetchPage(object sender, FetchPageAsyncEventArgs e) {
-            e.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() =>
-            {
+            e.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() => {
                 const int pageTakeCount = 5;
                 using(var session = new Session()) {
                     var queryable = session.Query<Issue>().SortBy(e.SortOrder, defaultUniqueSortPropertyName: nameof(Issue.Oid)).Where(MakeFilterExpression((DevExpress.Data.Filtering.CriteriaOperator)e.Filter));
@@ -47,14 +45,15 @@ namespace XPOIssues {
                 }
             });
         }
+
         void OnGetTotalSummaries(object sender, GetSummariesAsyncEventArgs e) {
-            e.Result = Task.Run(() =>
-            {
+            e.Result = Task.Run(() => {
                 using(var session = new Session()) {
                     return session.Query<Issue>().Where(MakeFilterExpression(e.Filter)).GetSummaries(e.Summaries);
                 }
             });
         }
+
         void OnValidateRow(object sender, GridRowValidationEventArgs e) {
             using(var unitOfWork = new UnitOfWork()) {
                 var item = e.IsNewItem
@@ -67,10 +66,12 @@ namespace XPOIssues {
                 }
             }
         }
+
         void LoadLookupData() {
             var session = new DevExpress.Xpo.Session();
             usersLookup.ItemsSource = session.Query<XPOIssues.Issues.User>().OrderBy(user => user.Oid).Select(user => new { Id = user.Oid, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
+
         void OnDataSourceRefresh(object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }

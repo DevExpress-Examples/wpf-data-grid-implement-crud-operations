@@ -1,3 +1,3 @@
-Public Class IssueDetailView
+﻿Public Class IssueDetailView
 
 End Class

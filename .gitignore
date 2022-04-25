@@ -305,7 +305,5 @@ TesterMetadata.xml
 *.bak
 
 # ProjectUpdrade & TryConvert files
-*.csproj.old
-*.vbproj.old
 *.bak
 obj.Net5
