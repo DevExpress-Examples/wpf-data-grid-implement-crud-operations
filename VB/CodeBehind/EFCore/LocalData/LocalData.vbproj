@@ -139,33 +139,15 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Mvvm.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Data.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v22.1.Core">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Images.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.LayoutControl.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1.Core">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="DevExpress.Mvvm.v22.1" />
+    <Reference Include="DevExpress.Data.v22.1" />
+    <Reference Include="DevExpress.Printing.v22.1.Core" />
+    <Reference Include="DevExpress.Data.Desktop.v22.1" />
+    <Reference Include="DevExpress.Images.v22.1" />
+    <Reference Include="DevExpress.Xpf.Core.v22.1" />
+    <Reference Include="DevExpress.Xpf.LayoutControl.v22.1" />
+    <Reference Include="DevExpress.Xpf.Grid.v22.1" />
+    <Reference Include="DevExpress.Xpf.Grid.v22.1.Core" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="Application.xaml">

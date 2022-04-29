@@ -50,8 +50,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1.Extensions, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
-    <Reference Include="DevExpress.Xpo.v22.1, Version=22.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4" />
+    <Reference Include="DevExpress.Xpf.Grid.v22.1.Extensions" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -68,36 +67,16 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Mvvm.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Data.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.XPO.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v22.1.Core">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Images.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.LayoutControl.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v22.1.Core">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="DevExpress.Mvvm.v22.1" />
+    <Reference Include="DevExpress.Data.v22.1" />
+    <Reference Include="DevExpress.XPO.v22.1" />
+    <Reference Include="DevExpress.Printing.v22.1.Core" />
+    <Reference Include="DevExpress.Data.Desktop.v22.1" />
+    <Reference Include="DevExpress.Images.v22.1" />
+    <Reference Include="DevExpress.Xpf.Core.v22.1" />
+    <Reference Include="DevExpress.Xpf.LayoutControl.v22.1" />
+    <Reference Include="DevExpress.Xpf.Grid.v22.1" />
+    <Reference Include="DevExpress.Xpf.Grid.v22.1.Core" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="Application.xaml">
