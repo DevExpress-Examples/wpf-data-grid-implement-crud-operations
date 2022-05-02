@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using XPOIssues.Issues;
+using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
-using DevExpress.Xpf.Data;
 using System.Linq;
-using System.Threading.Tasks;
+using DevExpress.Xpf.Grid;
 using DevExpress.Mvvm.Xpf;
 using System;
 using System.Collections;
@@ -13,12 +13,12 @@ namespace XPOIssues {
         public MainWindow() {
             InitializeComponent();
             var properties = new ServerViewProperty[] {
-new ServerViewProperty("Subject", SortDirection.None, new DevExpress.Data.Filtering.OperandProperty("Subject")),
-new ServerViewProperty("UserId", SortDirection.None, new DevExpress.Data.Filtering.OperandProperty("UserId")),
-new ServerViewProperty("Created", SortDirection.None, new DevExpress.Data.Filtering.OperandProperty("Created")),
-new ServerViewProperty("Votes", SortDirection.None, new DevExpress.Data.Filtering.OperandProperty("Votes")),
-new ServerViewProperty("Priority", SortDirection.None, new DevExpress.Data.Filtering.OperandProperty("Priority")),
-new ServerViewProperty("Oid", SortDirection.Ascending, new DevExpress.Data.Filtering.OperandProperty("Oid"))
+new ServerViewProperty("Subject", SortDirection.None, new OperandProperty("Subject")),
+new ServerViewProperty("UserId", SortDirection.None, new OperandProperty("UserId")),
+new ServerViewProperty("Created", SortDirection.None, new OperandProperty("Created")),
+new ServerViewProperty("Votes", SortDirection.None, new OperandProperty("Votes")),
+new ServerViewProperty("Priority", SortDirection.None, new OperandProperty("Priority")),
+new ServerViewProperty("Oid", SortDirection.Ascending, new OperandProperty("Oid"))
 };
             var source = new XPInstantFeedbackView(typeof(Issue), properties, null);
             source.ResolveSession += (o, e) => {
@@ -29,15 +29,15 @@ new ServerViewProperty("Oid", SortDirection.Ascending, new DevExpress.Data.Filte
         }
 
         void LoadLookupData() {
-            var session = new DevExpress.Xpo.Session();
-            usersLookup.ItemsSource = session.Query<XPOIssues.Issues.User>().OrderBy(user => user.Oid).Select(user => new { Id = user.Oid, Name = user.FirstName + " " + user.LastName }).ToArray();
+            var session = new Session();
+            usersLookup.ItemsSource = session.Query<User>().OrderBy(user => user.Oid).Select(user => new { Id = user.Oid, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
 
-        void OnDataSourceRefresh(object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
+        void OnDataSourceRefresh(object sender, DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }
 
-        void OnCreateEditEntityViewModel(object sender, DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs e) {
+        void OnCreateEditEntityViewModel(object sender, CreateEditItemViewModelArgs e) {
             var unitOfWork = new UnitOfWork();
             var item = e.IsNewItem
                 ? new Issue(unitOfWork)
@@ -50,12 +50,12 @@ new ServerViewProperty("Oid", SortDirection.Ascending, new DevExpress.Data.Filte
             );
         }
 
-        void OnValidateRow(object sender, DevExpress.Mvvm.Xpf.EditFormRowValidationArgs e) {
+        void OnValidateRow(object sender, EditFormRowValidationArgs e) {
             var unitOfWork = ((EditIssueInfo)e.EditOperationContext).UnitOfWork;
             unitOfWork.CommitChanges();
         }
 
-        void OnValidateRowDeletion(object sender, DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs e) {
+        void OnValidateRowDeletion(object sender, EditFormValidateRowDeletionArgs e) {
             using(var unitOfWork = new UnitOfWork()) {
                 var key = (int)e.Keys.Single();
                 var item = unitOfWork.GetObjectByKey<Issue>(key);

@@ -1,8 +1,11 @@
 ﻿Imports EFCoreIssues.Issues
-Imports Microsoft.EntityFrameworkCore
+Imports System
+Imports System.Linq.Expressions
+Imports DevExpress.Data.Filtering
 Imports DevExpress.Xpf.Data
 Imports System.Linq
 Imports System.Threading.Tasks
+Imports Microsoft.EntityFrameworkCore
 Imports DevExpress.Xpf.Grid
 Class MainWindow
     Public Sub New()
@@ -18,24 +21,24 @@ Class MainWindow
         LoadLookupData()
     End Sub
 
-    Private Function MakeFilterExpression(ByVal filter As DevExpress.Data.Filtering.CriteriaOperator) As System.Linq.Expressions.Expression(Of System.Func(Of Issue, Boolean))
-        Dim converter = New DevExpress.Xpf.Data.GridFilterCriteriaToExpressionConverter(Of Issue)()
+    Private Function MakeFilterExpression(ByVal filter As CriteriaOperator) As Expression(Of Func(Of Issue, Boolean))
+        Dim converter = New GridFilterCriteriaToExpressionConverter(Of Issue)()
         Return converter.Convert(filter)
     End Function
 
     Private Sub OnFetchPage(ByVal sender As Object, ByVal e As FetchPageAsyncEventArgs)
         Const pageTakeCount As Integer = 5
-        e.Result = Task.Run(Of DevExpress.Xpf.Data.FetchRowsResult)(Function()
-                                                                        Dim context = New IssuesContext()
-                                                                        Dim queryable = context.Issues.AsNoTracking().SortBy(e.SortOrder, defaultUniqueSortPropertyName:=NameOf(Issue.Id)).Where(MakeFilterExpression(CType(e.Filter, DevExpress.Data.Filtering.CriteriaOperator)))
-                                                                        Return queryable.Skip(e.Skip).Take(e.Take * pageTakeCount).ToArray()
-                                                                    End Function)
+        e.Result = Task.Run(Of FetchRowsResult)(Function()
+                                                    Dim context = New IssuesContext()
+                                                    Dim queryable = context.Issues.AsNoTracking().SortBy(e.SortOrder, defaultUniqueSortPropertyName:=NameOf(Issue.Id)).Where(MakeFilterExpression(CType(e.Filter, CriteriaOperator)))
+                                                    Return queryable.Skip(e.Skip).Take(e.Take * pageTakeCount).ToArray()
+                                                End Function)
     End Sub
 
     Private Sub OnGetTotalSummaries(ByVal sender As Object, ByVal e As GetSummariesAsyncEventArgs)
         e.Result = Task.Run(Function()
                                 Dim context = New IssuesContext()
-                                Dim queryable = context.Issues.Where(MakeFilterExpression(CType(e.Filter, DevExpress.Data.Filtering.CriteriaOperator)))
+                                Dim queryable = context.Issues.Where(MakeFilterExpression(CType(e.Filter, CriteriaOperator)))
                                 Return queryable.GetSummaries(e.Summaries)
                             End Function)
     End Sub
@@ -54,14 +57,14 @@ Class MainWindow
     End Sub
 
     Private Sub LoadLookupData()
-        Dim context = New EFCoreIssues.Issues.IssuesContext()
+        Dim context = New IssuesContext()
         usersLookup.ItemsSource = context.Users.[Select](Function(user) New With {
             .Id = user.Id,
             .Name = user.FirstName & " " + user.LastName
         }).ToArray()
     End Sub
 
-    Private Sub OnDataSourceRefresh(ByVal sender As Object, ByVal e As DevExpress.Xpf.Grid.DataSourceRefreshEventArgs)
+    Private Sub OnDataSourceRefresh(ByVal sender As Object, ByVal e As DataSourceRefreshEventArgs)
         LoadLookupData()
     End Sub
 

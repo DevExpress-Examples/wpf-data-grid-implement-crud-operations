@@ -1,11 +1,16 @@
 ﻿using DevExpress.Mvvm;
 using XPOIssues.Issues;
-using DevExpress.Xpo;
 using DevExpress.Mvvm.DataAnnotations;
+using System;
+using System.Linq.Expressions;
+using DevExpress.Data.Filtering;
 using DevExpress.Xpf.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using DevExpress.Xpo;
+using System.ComponentModel;
 using DevExpress.Mvvm.Xpf;
+using System.Collections;
 
 namespace XPOIssues {
     public class MainViewModel : ViewModelBase {
@@ -26,22 +31,22 @@ namespace XPOIssues {
                 return _DetachedObjectsHelper;
             }
         }
-        public System.ComponentModel.PropertyDescriptorCollection Properties {
+        public PropertyDescriptorCollection Properties {
             get
             {
                 return DetachedObjectsHelper.Properties;
             }
         }
 
-        System.Linq.Expressions.Expression<System.Func<Issue, bool>> MakeFilterExpression(DevExpress.Data.Filtering.CriteriaOperator filter) {
-            var converter = new DevExpress.Xpf.Data.GridFilterCriteriaToExpressionConverter<Issue>();
+        Expression<Func<Issue, bool>> MakeFilterExpression(CriteriaOperator filter) {
+            var converter = new GridFilterCriteriaToExpressionConverter<Issue>();
             return converter.Convert(filter);
         }
         [Command]
         public void FetchRows(FetchRowsAsyncArgs args) {
-            args.Result = Task.Run<DevExpress.Xpf.Data.FetchRowsResult>(() => {
+            args.Result = Task.Run<FetchRowsResult>(() => {
                 using(var session = new Session()) {
-                    var queryable = session.Query<Issue>().SortBy(args.SortOrder, defaultUniqueSortPropertyName: nameof(Issue.Oid)).Where(MakeFilterExpression((DevExpress.Data.Filtering.CriteriaOperator)args.Filter));
+                    var queryable = session.Query<Issue>().SortBy(args.SortOrder, defaultUniqueSortPropertyName: nameof(Issue.Oid)).Where(MakeFilterExpression((CriteriaOperator)args.Filter));
                     var items = queryable.Skip(args.Skip).Take(args.Take ?? 100).ToArray();
                     return DetachedObjectsHelper.ConvertToDetachedObjects(items);
                 }
@@ -51,7 +56,7 @@ namespace XPOIssues {
         public void GetTotalSummaries(GetSummariesAsyncArgs args) {
             args.Result = Task.Run(() => {
                 using(var session = new Session()) {
-                    return session.Query<Issue>().Where(MakeFilterExpression((DevExpress.Data.Filtering.CriteriaOperator)args.Filter)).GetSummaries(args.Summaries);
+                    return session.Query<Issue>().Where(MakeFilterExpression((CriteriaOperator)args.Filter)).GetSummaries(args.Summaries);
                 }
             });
         }
@@ -77,21 +82,21 @@ namespace XPOIssues {
                 unitOfWork.CommitChanges();
             }
         }
-        System.Collections.IList _Users;
-        public System.Collections.IList Users {
+        IList _Users;
+        public IList Users {
             get
             {
                 if(_Users == null && !DevExpress.Mvvm.ViewModelBase.IsInDesignMode) {
                     {
-                        var session = new DevExpress.Xpo.Session();
-                        _Users = session.Query<XPOIssues.Issues.User>().OrderBy(user => user.Oid).Select(user => new { Id = user.Oid, Name = user.FirstName + " " + user.LastName }).ToArray();
+                        var session = new Session();
+                        _Users = session.Query<User>().OrderBy(user => user.Oid).Select(user => new { Id = user.Oid, Name = user.FirstName + " " + user.LastName }).ToArray();
                     }
                 }
                 return _Users;
             }
         }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void DataSourceRefresh(DevExpress.Mvvm.Xpf.DataSourceRefreshArgs args) {
+        [Command]
+        public void DataSourceRefresh(DataSourceRefreshArgs args) {
             _Users = null;
             RaisePropertyChanged(nameof(Users));
         }

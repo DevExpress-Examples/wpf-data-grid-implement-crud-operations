@@ -1,8 +1,11 @@
 ﻿Imports XPOIssues.Issues
-Imports DevExpress.Xpo
+Imports System
+Imports System.Linq.Expressions
+Imports DevExpress.Data.Filtering
 Imports DevExpress.Xpf.Data
 Imports System.Linq
 Imports System.Threading.Tasks
+Imports DevExpress.Xpo
 Imports DevExpress.Xpf.Grid
 Class MainWindow
     Public Sub New()
@@ -22,20 +25,20 @@ Class MainWindow
         LoadLookupData()
     End Sub
 
-    Private Function MakeFilterExpression(ByVal filter As DevExpress.Data.Filtering.CriteriaOperator) As System.Linq.Expressions.Expression(Of System.Func(Of Issue, Boolean))
-        Dim converter = New DevExpress.Xpf.Data.GridFilterCriteriaToExpressionConverter(Of Issue)()
+    Private Function MakeFilterExpression(ByVal filter As CriteriaOperator) As Expression(Of Func(Of Issue, Boolean))
+        Dim converter = New GridFilterCriteriaToExpressionConverter(Of Issue)()
         Return converter.Convert(filter)
     End Function
     Private _DetachedObjectsHelper As DetachedObjectsHelper(Of Issue)
 
     Private Sub OnFetchRows(ByVal sender As Object, ByVal e As FetchRowsAsyncEventArgs)
-        e.Result = Task.Run(Of DevExpress.Xpf.Data.FetchRowsResult)(Function()
-                                                                        Using session = New Session()
-                                                                            Dim queryable = session.Query(Of Issue)().SortBy(e.SortOrder, defaultUniqueSortPropertyName:=NameOf(Issue.Oid)).Where(MakeFilterExpression(e.Filter))
-                                                                            Dim items = queryable.Skip(e.Skip).Take(If(e.Take, 100)).ToArray()
-                                                                            Return _DetachedObjectsHelper.ConvertToDetachedObjects(items)
-                                                                        End Using
-                                                                    End Function)
+        e.Result = Task.Run(Of FetchRowsResult)(Function()
+                                                    Using session = New Session()
+                                                        Dim queryable = session.Query(Of Issue)().SortBy(e.SortOrder, defaultUniqueSortPropertyName:=NameOf(Issue.Oid)).Where(MakeFilterExpression(e.Filter))
+                                                        Dim items = queryable.Skip(e.Skip).Take(If(e.Take, 100)).ToArray()
+                                                        Return _DetachedObjectsHelper.ConvertToDetachedObjects(items)
+                                                    End Using
+                                                End Function)
     End Sub
 
     Private Sub OnGetTotalSummaries(ByVal sender As Object, ByVal e As GetSummariesAsyncEventArgs)
@@ -68,14 +71,14 @@ Class MainWindow
     End Sub
 
     Private Sub LoadLookupData()
-        Dim session = New DevExpress.Xpo.Session()
-        usersLookup.ItemsSource = session.Query(Of XPOIssues.Issues.User).OrderBy(Function(user) user.Oid).[Select](Function(user) New With {
+        Dim session = New Session()
+        usersLookup.ItemsSource = session.Query(Of User).OrderBy(Function(user) user.Oid).[Select](Function(user) New With {
             .Id = user.Oid,
             .Name = user.FirstName & " " + user.LastName
         }).ToArray()
     End Sub
 
-    Private Sub OnDataSourceRefresh(ByVal sender As Object, ByVal e As DevExpress.Xpf.Grid.DataSourceRefreshEventArgs)
+    Private Sub OnDataSourceRefresh(ByVal sender As Object, ByVal e As DataSourceRefreshEventArgs)
         LoadLookupData()
     End Sub
 

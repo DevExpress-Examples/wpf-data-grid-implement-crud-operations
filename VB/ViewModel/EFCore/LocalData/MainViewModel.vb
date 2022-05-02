@@ -1,6 +1,5 @@
 ﻿Imports DevExpress.Mvvm
 Imports EFCoreIssues.Issues
-Imports Microsoft.EntityFrameworkCore
 Imports DevExpress.Mvvm.DataAnnotations
 Imports System.Linq
 Imports System.Collections.Generic

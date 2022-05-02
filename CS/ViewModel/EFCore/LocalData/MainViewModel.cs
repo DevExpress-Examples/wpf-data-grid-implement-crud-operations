@@ -1,6 +1,5 @@
 ﻿using DevExpress.Mvvm;
 using EFCoreIssues.Issues;
-using Microsoft.EntityFrameworkCore;
 using DevExpress.Mvvm.DataAnnotations;
 using System.Linq;
 using System.Collections.Generic;

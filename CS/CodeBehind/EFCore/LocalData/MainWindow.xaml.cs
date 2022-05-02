@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using EFCoreIssues.Issues;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using DevExpress.Xpf.Grid;
 

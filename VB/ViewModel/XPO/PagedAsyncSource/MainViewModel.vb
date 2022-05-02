@@ -1,11 +1,16 @@
 ﻿Imports DevExpress.Mvvm
 Imports XPOIssues.Issues
-Imports DevExpress.Xpo
 Imports DevExpress.Mvvm.DataAnnotations
 Imports DevExpress.Mvvm.Xpf
+Imports System
+Imports System.Linq.Expressions
+Imports DevExpress.Data.Filtering
 Imports DevExpress.Xpf.Data
 Imports System.Linq
 Imports System.Threading.Tasks
+Imports DevExpress.Xpo
+Imports System.ComponentModel
+Imports System.Collections
 
 Public Class MainViewModel
     Inherits ViewModelBase
@@ -22,33 +27,33 @@ Public Class MainViewModel
             Return _DetachedObjectsHelper
         End Get
     End Property
-    Public ReadOnly Property Properties As System.ComponentModel.PropertyDescriptorCollection
+    Public ReadOnly Property Properties As PropertyDescriptorCollection
         Get
             Return DetachedObjectsHelper.Properties
         End Get
     End Property
 
-    Private Function MakeFilterExpression(ByVal filter As DevExpress.Data.Filtering.CriteriaOperator) As System.Linq.Expressions.Expression(Of System.Func(Of Issue, Boolean))
-        Dim converter = New DevExpress.Xpf.Data.GridFilterCriteriaToExpressionConverter(Of Issue)()
+    Private Function MakeFilterExpression(ByVal filter As CriteriaOperator) As Expression(Of Func(Of Issue, Boolean))
+        Dim converter = New GridFilterCriteriaToExpressionConverter(Of Issue)()
         Return converter.Convert(filter)
     End Function
     <Command>
     Public Sub FetchPage(ByVal args As FetchPageAsyncArgs)
-        args.Result = Task.Run(Of DevExpress.Xpf.Data.FetchRowsResult)(Function()
-                                                                           Const pageTakeCount As Integer = 5
+        args.Result = Task.Run(Of FetchRowsResult)(Function()
+                                                       Const pageTakeCount As Integer = 5
 
-                                                                           Using session = New Session()
-                                                                               Dim queryable = session.Query(Of Issue)().SortBy(args.SortOrder, defaultUniqueSortPropertyName:=NameOf(Issue.Oid)).Where(MakeFilterExpression(CType(args.Filter, DevExpress.Data.Filtering.CriteriaOperator)))
-                                                                               Dim items = queryable.Skip(args.Skip).Take(args.Take * pageTakeCount).ToArray()
-                                                                               Return DetachedObjectsHelper.ConvertToDetachedObjects(items)
-                                                                           End Using
-                                                                       End Function)
+                                                       Using session = New Session()
+                                                           Dim queryable = session.Query(Of Issue)().SortBy(args.SortOrder, defaultUniqueSortPropertyName:=NameOf(Issue.Oid)).Where(MakeFilterExpression(CType(args.Filter, CriteriaOperator)))
+                                                           Dim items = queryable.Skip(args.Skip).Take(args.Take * pageTakeCount).ToArray()
+                                                           Return DetachedObjectsHelper.ConvertToDetachedObjects(items)
+                                                       End Using
+                                                   End Function)
     End Sub
     <Command>
     Public Sub GetTotalSummaries(ByVal args As GetSummariesAsyncArgs)
         args.Result = Task.Run(Function()
                                    Using session = New Session()
-                                       Return session.Query(Of Issue)().Where(MakeFilterExpression(CType(args.Filter, DevExpress.Data.Filtering.CriteriaOperator))).GetSummaries(args.Summaries)
+                                       Return session.Query(Of Issue)().Where(MakeFilterExpression(CType(args.Filter, CriteriaOperator))).GetSummaries(args.Summaries)
                                    End Using
                                End Function)
     End Sub
@@ -64,12 +69,12 @@ Public Class MainViewModel
             End If
         End Using
     End Sub
-    Private _Users As System.Collections.IList
-    Public ReadOnly Property Users As System.Collections.IList
+    Private _Users As IList
+    Public ReadOnly Property Users As IList
         Get
             If _Users Is Nothing AndAlso Not DevExpress.Mvvm.ViewModelBase.IsInDesignMode Then
-                Dim session = New DevExpress.Xpo.Session()
-                _Users = session.Query(Of XPOIssues.Issues.User).OrderBy(Function(user) user.Oid).[Select](Function(user) New With {
+                Dim session = New Session()
+                _Users = session.Query(Of User).OrderBy(Function(user) user.Oid).[Select](Function(user) New With {
                     .Id = user.Oid,
                     .Name = user.FirstName & " " + user.LastName
                 }).ToArray()
@@ -77,8 +82,8 @@ Public Class MainViewModel
             Return _Users
         End Get
     End Property
-    <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub DataSourceRefresh(ByVal args As DevExpress.Mvvm.Xpf.DataSourceRefreshArgs)
+    <Command>
+    Public Sub DataSourceRefresh(ByVal args As DataSourceRefreshArgs)
         _Users = Nothing
         RaisePropertyChanged(Nameof(Users))
     End Sub

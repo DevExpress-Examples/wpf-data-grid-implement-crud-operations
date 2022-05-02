@@ -1,5 +1,4 @@
 ﻿Imports EFCoreIssues.Issues
-Imports Microsoft.EntityFrameworkCore
 Imports System.Linq
 Imports DevExpress.Xpf.Grid
 Class MainWindow

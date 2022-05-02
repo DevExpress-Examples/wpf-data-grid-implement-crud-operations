@@ -1,21 +1,21 @@
 ﻿Imports DevExpress.Mvvm
 Imports EFCoreIssues.Issues
-Imports Microsoft.EntityFrameworkCore
 Imports DevExpress.Mvvm.DataAnnotations
-Imports DevExpress.Xpf.Data
+Imports DevExpress.Data.Linq
+Imports Microsoft.EntityFrameworkCore
 Imports System.Linq
-Imports System.Threading.Tasks
+Imports System.Collections
 Imports DevExpress.Mvvm.Xpf
 Imports System
 
 Public Class MainViewModel
     Inherits ViewModelBase
-    Private _ItemsSource As DevExpress.Data.Linq.EntityServerModeSource
-    Public ReadOnly Property ItemsSource As DevExpress.Data.Linq.EntityServerModeSource
+    Private _ItemsSource As EntityServerModeSource
+    Public ReadOnly Property ItemsSource As EntityServerModeSource
         Get
             If _ItemsSource Is Nothing Then
                 Dim context = New IssuesContext()
-                _ItemsSource = New DevExpress.Data.Linq.EntityServerModeSource With {
+                _ItemsSource = New EntityServerModeSource With {
                     .KeyExpression = NameOf(Issue.Id),
                     .QueryableSource = context.Issues.AsNoTracking()
                 }
@@ -23,11 +23,11 @@ Public Class MainViewModel
             Return _ItemsSource
         End Get
     End Property
-    Private _Users As System.Collections.IList
-    Public ReadOnly Property Users As System.Collections.IList
+    Private _Users As IList
+    Public ReadOnly Property Users As IList
         Get
             If _Users Is Nothing AndAlso Not DevExpress.Mvvm.ViewModelBase.IsInDesignMode Then
-                Dim context = New EFCoreIssues.Issues.IssuesContext()
+                Dim context = New IssuesContext()
                 _Users = context.Users.[Select](Function(user) New With {
                     .Id = user.Id,
                     .Name = user.FirstName & " " + user.LastName
@@ -36,13 +36,13 @@ Public Class MainViewModel
             Return _Users
         End Get
     End Property
-    <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub DataSourceRefresh(ByVal args As DevExpress.Mvvm.Xpf.DataSourceRefreshArgs)
+    <Command>
+    Public Sub DataSourceRefresh(ByVal args As DataSourceRefreshArgs)
         _Users = Nothing
         RaisePropertyChanged(Nameof(Users))
     End Sub
-    <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub CreateEditEntityViewModel(ByVal args As DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs)
+    <Command>
+    Public Sub CreateEditEntityViewModel(ByVal args As CreateEditItemViewModelArgs)
         Dim context = New IssuesContext()
         Dim item As Issue
 
@@ -57,13 +57,13 @@ Public Class MainViewModel
 
         args.ViewModel = New EditItemViewModel(item, New EditIssueInfo(context, Users), title:=If(args.IsNewItem, "New ", "Edit ") & NameOf(Issue))
     End Sub
-    <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub ValidateRow(ByVal args As DevExpress.Mvvm.Xpf.EditFormRowValidationArgs)
+    <Command>
+    Public Sub ValidateRow(ByVal args As EditFormRowValidationArgs)
         Dim context = CType(args.EditOperationContext, EditIssueInfo).DbContext
         context.SaveChanges()
     End Sub
-    <DevExpress.Mvvm.DataAnnotations.Command>
-    Public Sub ValidateRowDeletion(ByVal args As DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs)
+    <Command>
+    Public Sub ValidateRowDeletion(ByVal args As EditFormValidateRowDeletionArgs)
         Dim key = CInt(args.Keys.[Single]())
         Dim item = New Issue() With {
             .Id = key

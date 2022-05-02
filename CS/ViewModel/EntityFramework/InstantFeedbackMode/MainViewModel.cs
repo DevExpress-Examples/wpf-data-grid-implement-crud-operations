@@ -1,21 +1,21 @@
 ﻿using DevExpress.Mvvm;
 using EntityFrameworkIssues.Issues;
-using System.Data.Entity;
 using DevExpress.Mvvm.DataAnnotations;
-using DevExpress.Xpf.Data;
+using DevExpress.Data.Linq;
+using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Collections;
 using DevExpress.Mvvm.Xpf;
 using System;
 
 namespace EntityFrameworkIssues {
     public class MainViewModel : ViewModelBase {
-        DevExpress.Data.Linq.EntityInstantFeedbackSource _ItemsSource;
-        public DevExpress.Data.Linq.EntityInstantFeedbackSource ItemsSource {
+        EntityInstantFeedbackSource _ItemsSource;
+        public EntityInstantFeedbackSource ItemsSource {
             get
             {
                 if(_ItemsSource == null) {
-                    _ItemsSource = new DevExpress.Data.Linq.EntityInstantFeedbackSource {
+                    _ItemsSource = new EntityInstantFeedbackSource {
                         KeyExpression = nameof(Issue.Id)
                     };
                     _ItemsSource.GetQueryable += (sender, e) => {
@@ -26,24 +26,24 @@ namespace EntityFrameworkIssues {
                 return _ItemsSource;
             }
         }
-        System.Collections.IList _Users;
-        public System.Collections.IList Users {
+        IList _Users;
+        public IList Users {
             get
             {
                 if(_Users == null && !DevExpress.Mvvm.ViewModelBase.IsInDesignMode) {
-                    var context = new EntityFrameworkIssues.Issues.IssuesContext();
+                    var context = new IssuesContext();
                     _Users = context.Users.Select(user => new { Id = user.Id, Name = user.FirstName + " " + user.LastName }).ToArray();
                 }
                 return _Users;
             }
         }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void DataSourceRefresh(DevExpress.Mvvm.Xpf.DataSourceRefreshArgs args) {
+        [Command]
+        public void DataSourceRefresh(DataSourceRefreshArgs args) {
             _Users = null;
             RaisePropertyChanged(nameof(Users));
         }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void CreateEditEntityViewModel(DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs args) {
+        [Command]
+        public void CreateEditEntityViewModel(CreateEditItemViewModelArgs args) {
             var context = new IssuesContext();
             Issue item;
             if(args.IsNewItem) {
@@ -58,13 +58,13 @@ namespace EntityFrameworkIssues {
                 title: (args.IsNewItem ? "New " : "Edit ") + nameof(Issue)
             );
         }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRow(DevExpress.Mvvm.Xpf.EditFormRowValidationArgs args) {
+        [Command]
+        public void ValidateRow(EditFormRowValidationArgs args) {
             var context = ((EditIssueInfo)args.EditOperationContext).DbContext;
             context.SaveChanges();
         }
-        [DevExpress.Mvvm.DataAnnotations.Command]
-        public void ValidateRowDeletion(DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs args) {
+        [Command]
+        public void ValidateRowDeletion(EditFormValidateRowDeletionArgs args) {
             var key = (int)args.Keys.Single();
             var item = new Issue() { Id = key };
             var context = new IssuesContext();

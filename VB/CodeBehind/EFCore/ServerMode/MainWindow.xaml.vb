@@ -1,8 +1,8 @@
 ﻿Imports EFCoreIssues.Issues
+Imports DevExpress.Data.Linq
 Imports Microsoft.EntityFrameworkCore
-Imports DevExpress.Xpf.Data
 Imports System.Linq
-Imports System.Threading.Tasks
+Imports DevExpress.Xpf.Grid
 Imports DevExpress.Mvvm.Xpf
 Imports System
 Imports System.Collections
@@ -10,7 +10,7 @@ Class MainWindow
     Public Sub New()
         InitializeComponent()
         Dim context = New IssuesContext()
-        Dim source = New DevExpress.Data.Linq.EntityServerModeSource With {
+        Dim source = New EntityServerModeSource With {
             .KeyExpression = NameOf(Issue.Id),
             .QueryableSource = context.Issues.AsNoTracking()
         }
@@ -19,18 +19,18 @@ Class MainWindow
     End Sub
 
     Private Sub LoadLookupData()
-        Dim context = New EFCoreIssues.Issues.IssuesContext()
+        Dim context = New IssuesContext()
         usersLookup.ItemsSource = context.Users.[Select](Function(user) New With {
             .Id = user.Id,
             .Name = user.FirstName & " " + user.LastName
         }).ToArray()
     End Sub
 
-    Private Sub OnDataSourceRefresh(ByVal sender As Object, ByVal e As DevExpress.Xpf.Grid.DataSourceRefreshEventArgs)
+    Private Sub OnDataSourceRefresh(ByVal sender As Object, ByVal e As DataSourceRefreshEventArgs)
         LoadLookupData()
     End Sub
 
-    Private Sub OnCreateEditEntityViewModel(ByVal sender As Object, ByVal e As DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs)
+    Private Sub OnCreateEditEntityViewModel(ByVal sender As Object, ByVal e As CreateEditItemViewModelArgs)
         Dim context = New IssuesContext()
         Dim item As Issue
 
@@ -46,12 +46,12 @@ Class MainWindow
         e.ViewModel = New EditItemViewModel(item, New EditIssueInfo(context, CType(usersLookup.ItemsSource, IList)), title:=If(e.IsNewItem, "New ", "Edit ") & NameOf(Issue))
     End Sub
 
-    Private Sub OnValidateRow(ByVal sender As Object, ByVal e As DevExpress.Mvvm.Xpf.EditFormRowValidationArgs)
+    Private Sub OnValidateRow(ByVal sender As Object, ByVal e As EditFormRowValidationArgs)
         Dim context = CType(e.EditOperationContext, EditIssueInfo).DbContext
         context.SaveChanges()
     End Sub
 
-    Private Sub OnValidateRowDeletion(ByVal sender As Object, ByVal e As DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs)
+    Private Sub OnValidateRowDeletion(ByVal sender As Object, ByVal e As EditFormValidateRowDeletionArgs)
         Dim key = CInt(e.Keys.[Single]())
         Dim item = New Issue() With {
             .Id = key

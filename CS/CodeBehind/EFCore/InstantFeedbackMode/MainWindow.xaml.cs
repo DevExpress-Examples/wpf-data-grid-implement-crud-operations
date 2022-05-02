@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using EFCoreIssues.Issues;
+using DevExpress.Data.Linq;
 using Microsoft.EntityFrameworkCore;
-using DevExpress.Xpf.Data;
 using System.Linq;
-using System.Threading.Tasks;
+using DevExpress.Xpf.Grid;
 using DevExpress.Mvvm.Xpf;
 using System;
 using System.Collections;
@@ -12,7 +12,7 @@ namespace EFCoreIssues {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            var source = new DevExpress.Data.Linq.EntityInstantFeedbackSource {
+            var source = new EntityInstantFeedbackSource {
                 KeyExpression = nameof(Issue.Id)
             };
             source.GetQueryable += (sender, e) => {
@@ -24,15 +24,15 @@ namespace EFCoreIssues {
         }
 
         void LoadLookupData() {
-            var context = new EFCoreIssues.Issues.IssuesContext();
+            var context = new IssuesContext();
             usersLookup.ItemsSource = context.Users.Select(user => new { Id = user.Id, Name = user.FirstName + " " + user.LastName }).ToArray();
         }
 
-        void OnDataSourceRefresh(object sender, DevExpress.Xpf.Grid.DataSourceRefreshEventArgs e) {
+        void OnDataSourceRefresh(object sender, DataSourceRefreshEventArgs e) {
             LoadLookupData();
         }
 
-        void OnCreateEditEntityViewModel(object sender, DevExpress.Mvvm.Xpf.CreateEditItemViewModelArgs e) {
+        void OnCreateEditEntityViewModel(object sender, CreateEditItemViewModelArgs e) {
             var context = new IssuesContext();
             Issue item;
             if(e.IsNewItem) {
@@ -48,12 +48,12 @@ namespace EFCoreIssues {
             );
         }
 
-        void OnValidateRow(object sender, DevExpress.Mvvm.Xpf.EditFormRowValidationArgs e) {
+        void OnValidateRow(object sender, EditFormRowValidationArgs e) {
             var context = ((EditIssueInfo)e.EditOperationContext).DbContext;
             context.SaveChanges();
         }
 
-        void OnValidateRowDeletion(object sender, DevExpress.Mvvm.Xpf.EditFormValidateRowDeletionArgs e) {
+        void OnValidateRowDeletion(object sender, EditFormValidateRowDeletionArgs e) {
             var key = (int)e.Keys.Single();
             var item = new Issue() { Id = key };
             var context = new IssuesContext();

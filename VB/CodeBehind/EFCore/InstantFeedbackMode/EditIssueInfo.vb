@@ -1,5 +1,6 @@
 ﻿Imports DevExpress.Mvvm
 Imports System.Collections.Generic
+Imports DevExpress.Xpf.Grid
 Imports EFCoreIssues.Issues
 
 Public Class EditIssueInfo

@@ -1,7 +1,7 @@
 ﻿Imports DevExpress.Mvvm
 Imports XPOIssues.Issues
-Imports DevExpress.Xpo
 Imports DevExpress.Mvvm.DataAnnotations
+Imports DevExpress.Xpo
 Imports System.Linq
 Imports System.Collections.Generic
 Imports DevExpress.Mvvm.Xpf

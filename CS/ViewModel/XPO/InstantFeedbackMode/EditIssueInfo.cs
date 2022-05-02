@@ -1,14 +1,16 @@
-﻿using DevExpress.Mvvm;
+﻿using DevExpress.Xpo;
+using DevExpress.Mvvm;
+using DevExpress.Xpf.Grid;
 using System.Collections;
 using XPOIssues.Issues;
 
 namespace XPOIssues {
     public class EditIssueInfo : BindableBase {
-        public EditIssueInfo(DevExpress.Xpo.UnitOfWork unitOfWork, IList users) {
+        public EditIssueInfo(UnitOfWork unitOfWork, IList users) {
             UnitOfWork = unitOfWork;
             Users = users;
         }
-        public DevExpress.Xpo.UnitOfWork UnitOfWork { get; }
+        public UnitOfWork UnitOfWork { get; }
         public IList Users { get; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using DevExpress.Mvvm;
 using XPOIssues.Issues;
-using DevExpress.Xpo;
 using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Xpo;
 using System.Linq;
 using System.Collections.Generic;
 using DevExpress.Mvvm.Xpf;
