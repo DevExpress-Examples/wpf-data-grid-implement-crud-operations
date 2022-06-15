@@ -16,7 +16,11 @@ The example includes multiple solutions that demonstrate:
 * Different binding mechanisms: [virtual sources](https://docs.devexpress.com/WPF/10803/controls-and-libraries/data-grid/bind-to-data/bind-to-any-data-source-with-virtual-sources), [server mode sources](https://docs.devexpress.com/WPF/6279/controls-and-libraries/data-grid/bind-to-data/server-mode-and-instant-feedback), and [local data](https://docs.devexpress.com/WPF/6090/controls-and-libraries/data-grid/bind-to-data/bind-to-local-data).
 * MVVM and code-behind patterns.
 
-**See also**: [How to Bind the WPF Data Grid to Data](https://github.com/DevExpress-Examples/how-to-bind-wpf-grid-to-data)
+**See also**:
+
+[How to Bind the WPF Data Grid to Data](https://github.com/DevExpress-Examples/how-to-bind-wpf-grid-to-data)
+
+[How to Bind the WPF Data Grid to Dynamic Data](https://github.com/DevExpress-Examples/wpf-bind-gridcontrol-to-dynamic-data)
 
 ## Building Issues
 
