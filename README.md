@@ -18,7 +18,7 @@ The example includes multiple solutions that demonstrate:
 
 **See also**: [How to Bind the WPF Data Grid to Data](https://github.com/DevExpress-Examples/how-to-bind-wpf-grid-to-data)
 
-## Building Issues
+## Building Issues 
 
 If you build the **.NET 5** app and then try to build the **.NET Framework** app, the following error occurs:
 
