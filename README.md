@@ -2,6 +2,7 @@
 ![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/265491908/21.2.3%2B)
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T899930)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
+[![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
 <!--WARNING: This file has been automatically generated. Do not change it manually.-->
 # Implement CRUD Operations in the WPF Data Grid
@@ -54,3 +55,10 @@ The example includes multiple solutions that demonstrate:
 |Paged Async Source [?](https://docs.devexpress.com/WPF/120193/controls-and-libraries/data-grid/bind-to-data/bind-to-any-data-source-with-virtual-sources/virtual-sources-overview#paged-source)|[project](VB/CodeBehind/EntityFramework/PagedAsyncSource), [code](VB/CodeBehind/EntityFramework/PagedAsyncSource/MainWindow.xaml.vb), [xaml](VB/CodeBehind/EntityFramework/PagedAsyncSource/MainWindow.xaml)|[project](VB/CodeBehind/EFCore/PagedAsyncSource), [code](VB/CodeBehind/EFCore/PagedAsyncSource/MainWindow.xaml.vb), [xaml](VB/CodeBehind/EFCore/PagedAsyncSource/MainWindow.xaml)|[project](VB/CodeBehind/XPO/PagedAsyncSource), [code](VB/CodeBehind/XPO/PagedAsyncSource/MainWindow.xaml.vb), [xaml](VB/CodeBehind/XPO/PagedAsyncSource/MainWindow.xaml)|
 |Instant Feedback Mode [?](https://docs.devexpress.com/WPF/6279/controls-and-libraries/data-grid/bind-to-data/server-mode-and-instant-feedback#instant-feedback-mode)|[project](VB/CodeBehind/EntityFramework/InstantFeedbackMode), [code](VB/CodeBehind/EntityFramework/InstantFeedbackMode/MainWindow.xaml.vb), [xaml](VB/CodeBehind/EntityFramework/InstantFeedbackMode/MainWindow.xaml)|[project](VB/CodeBehind/EFCore/InstantFeedbackMode), [code](VB/CodeBehind/EFCore/InstantFeedbackMode/MainWindow.xaml.vb), [xaml](VB/CodeBehind/EFCore/InstantFeedbackMode/MainWindow.xaml)|[project](VB/CodeBehind/XPO/InstantFeedbackMode), [code](VB/CodeBehind/XPO/InstantFeedbackMode/MainWindow.xaml.vb), [xaml](VB/CodeBehind/XPO/InstantFeedbackMode/MainWindow.xaml)|
 |Server Mode [?](https://docs.devexpress.com/WPF/6279/controls-and-libraries/data-grid/bind-to-data/server-mode-and-instant-feedback#server-mode)|[project](VB/CodeBehind/EntityFramework/ServerMode), [code](VB/CodeBehind/EntityFramework/ServerMode/MainWindow.xaml.vb), [xaml](VB/CodeBehind/EntityFramework/ServerMode/MainWindow.xaml)|[project](VB/CodeBehind/EFCore/ServerMode), [code](VB/CodeBehind/EFCore/ServerMode/MainWindow.xaml.vb), [xaml](VB/CodeBehind/EFCore/ServerMode/MainWindow.xaml)|[project](VB/CodeBehind/XPO/ServerMode), [code](VB/CodeBehind/XPO/ServerMode/MainWindow.xaml.vb), [xaml](VB/CodeBehind/XPO/ServerMode/MainWindow.xaml)|
+<!-- feedback -->
+## Does this example address your development requirements/objectives?
+
+[<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=wpf-data-grid-implement-crud-operations&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=wpf-data-grid-implement-crud-operations&~~~was_helpful=no)
+
+(you will be redirected to DevExpress.com to submit your response)
+<!-- feedback end -->
