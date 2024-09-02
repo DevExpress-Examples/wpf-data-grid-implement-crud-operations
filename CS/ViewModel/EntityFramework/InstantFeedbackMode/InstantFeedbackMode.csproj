@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>EntityFrameworkIssues</RootNamespace>
     <AssemblyName>EntityFrameworkIssues</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -38,7 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Xpf.Grid.v22.2.Extensions" />
+    <Reference Include="DevExpress.Xpf.Grid.v24.2.Extensions" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -62,15 +62,15 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Mvvm.v22.2" />
-    <Reference Include="DevExpress.Data.v22.2" />
-    <Reference Include="DevExpress.Printing.v22.2.Core" />
-    <Reference Include="DevExpress.Data.Desktop.v22.2" />
-    <Reference Include="DevExpress.Images.v22.2" />
-    <Reference Include="DevExpress.Xpf.Core.v22.2" />
-    <Reference Include="DevExpress.Xpf.LayoutControl.v22.2" />
-    <Reference Include="DevExpress.Xpf.Grid.v22.2" />
-    <Reference Include="DevExpress.Xpf.Grid.v22.2.Core" />
+    <Reference Include="DevExpress.Mvvm.v24.2" />
+    <Reference Include="DevExpress.Data.v24.2" />
+    <Reference Include="DevExpress.Printing.v24.2.Core" />
+    <Reference Include="DevExpress.Data.Desktop.v24.2" />
+    <Reference Include="DevExpress.Images.v24.2" />
+    <Reference Include="DevExpress.Xpf.Core.v24.2" />
+    <Reference Include="DevExpress.Xpf.LayoutControl.v24.2" />
+    <Reference Include="DevExpress.Xpf.Grid.v24.2" />
+    <Reference Include="DevExpress.Xpf.Grid.v24.2.Core" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

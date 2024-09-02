@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <RootNamespace>EFCoreIssues</RootNamespace>
     <AssemblyName>EFCoreIssues</AssemblyName>
@@ -48,9 +48,9 @@
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.1" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-    <PackageReference Include="DevExpress.Wpf.Themes.All" Version="22.2.*-*" />
-    <PackageReference Include="DevExpress.Images" Version="22.2.*-*" />
-    <PackageReference Include="DevExpress.Wpf.LayoutControl" Version="22.2.*-*" />
-    <PackageReference Include="DevExpress.Wpf.Grid.Core" Version="22.2.*-*" />
+    <PackageReference Include="DevExpress.Wpf.Themes.All" Version="24.2.*-*" />
+    <PackageReference Include="DevExpress.Images" Version="24.2.*-*" />
+    <PackageReference Include="DevExpress.Wpf.LayoutControl" Version="24.2.*-*" />
+    <PackageReference Include="DevExpress.Wpf.Grid.Core" Version="24.2.*-*" />
   </ItemGroup>
 </Project>
