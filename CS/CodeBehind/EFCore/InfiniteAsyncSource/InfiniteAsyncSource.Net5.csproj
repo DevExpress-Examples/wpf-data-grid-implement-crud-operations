@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <PropertyGroup>
-    <TargetFrameworks>net8.0-windows;net472</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows</TargetFrameworks>
     <OutputType>WinExe</OutputType>
     <RootNamespace>EFCoreIssues</RootNamespace>
     <AssemblyName>EFCoreIssues</AssemblyName>
