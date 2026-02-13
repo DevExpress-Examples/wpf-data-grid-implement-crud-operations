@@ -10,7 +10,7 @@ The following examples demonstrate how to implement CRUD operations (create, rea
 
 Refer to the [How to: Implement CRUD Operations in a Data-Bound Grid](https://docs.devexpress.com/WPF/401907/controls-and-libraries/data-grid/examples/data-editing-and-validation/how-to-crud-operations) documentation topic for more information.
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=wpf-data-grid-implement-crud-operations&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=wpf-data-grid-implement-crud-operations&~~~was_helpful=no)
 
