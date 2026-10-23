@@ -16,7 +16,7 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    
     <DefaultItemExcludes>obj*/**</DefaultItemExcludes>
     <BaseIntermediateOutputPath>obj.Net5</BaseIntermediateOutputPath>
   </PropertyGroup>

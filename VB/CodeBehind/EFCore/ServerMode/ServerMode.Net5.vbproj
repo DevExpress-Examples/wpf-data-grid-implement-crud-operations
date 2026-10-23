@@ -16,7 +16,7 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    
     <DefaultItemExcludes>obj*/**</DefaultItemExcludes>
     <BaseIntermediateOutputPath>obj.Net5</BaseIntermediateOutputPath>
   </PropertyGroup>
@@ -76,15 +76,9 @@
 	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.10" />
 	  <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.10" />
 	  <PackageReference Include="Microsoft.Extensions.Primitives" Version="10.0.10" />
-    <PackageReference Include="System.Buffers" Version="4.6.0" />
-    <PackageReference Include="System.Collections.Immutable" Version="10.0.1" />
+    
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="9.0.0" />
-    <PackageReference Include="System.Memory" Version="4.6.3" />
-    <PackageReference Include="System.Numerics.Vectors" Version="4.6.0" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.0" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.6.0" />
     <PackageReference Include="DevExpress.Wpf.Themes.All" Version="26.1.*-*" />
     <PackageReference Include="DevExpress.Wpf.Grid.Core" Version="26.1.*-*" />
     <PackageReference Include="DevExpress.Images" Version="26.1.*-*" />
